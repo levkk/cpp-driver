@@ -1,0 +1,762 @@
+
+
+
+<!doctype html>
+<html class="no-js" lang="en">
+  
+<head><!-- begin head.html -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>
+    CassExecProfile | Scylla Docs
+    </title>
+    <meta name="description" content="Scylla is an Apache Cassandra-compatible NoSQL data store that can handle 1 million transactions per second on a single server."/>
+
+    <link rel="icon" href="../_static/img/favicon.ico" type="image/x-icon"/>
+    <link rel="canonical" href="https://docs.scylladb.com/">
+
+    <link rel="author" href="mailto:info@scylladb.com">
+    <link rel="stylesheet" href="../_static/" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx_tabs/semantic-ui-2.4.1/segment.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx_tabs/semantic-ui-2.4.1/menu.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx_tabs/semantic-ui-2.4.1/tab.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx_tabs/tabs.css" />
+    
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.2/css/foundation.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/css/doc/main.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+
+    <script src="../_static/js/vendor/modernizr.js"></script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-T8P2JP');</script>
+    <!-- End Google Tag Manager -->
+
+    <!-- Marketo -->
+    <script type="text/javascript"> (function() { var didInit = false; function initMunchkin() { if(didInit === false) { didInit = true; Munchkin.init('791-QBF-350'); } } var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = '//munchkin.marketo.net/munchkin.js'; s.onreadystatechange = function() { if (this.readyState == 'complete' || this.readyState == 'loaded') { initMunchkin(); } }; s.onload = initMunchkin; document.getElementsByTagName('head')[0].appendChild(s); })(); </script>
+    <!-- End Marketo -->
+
+<!-- end head.html -->
+</head>
+
+<body>
+
+
+
+<header id="header" class="animated">
+    <div class="topbar_continer contain-to-grid clearfix">
+        <nav class="top-bar" id="top-bar" data-topbar role="navigation">
+            <ul class="title-area">
+                <li class="name">
+                    <div class="logo">
+                        <a href="https://docs.scylladb.com/"><img src="../_static/img/logo-scylla-docs.svg" alt="" width="151"></a>
+                    </div>
+                </li>
+                <li class="toggle-topbar"><a href="#"><span class="icon-manu"></span></a></li>
+            </ul>
+            <section class="top-bar-section clearfix">
+                <ul class="right">
+                    
+                    <li>
+                        <a href="https://cpp-driver.docs.scylladb.com/">C/C++ Driver</a>
+                    </li>
+                    
+                    <li>
+                        <a href="https://docs.scylladb.com/scylla-cloud/">Scylla Cloud</a>
+                    </li>
+                    
+                    <li>
+                        <a href="https://university.scylladb.com/">Scylla University</a>
+                    </li>
+                    
+                    <li>
+                        <a href="https://www.scylladb.com/">ScyllaDB Home</a>
+                    </li>
+                    
+                    <li class="search_continer show-for-medium-up">	
+                        <ci-search></ci-search>	
+                    </li>	
+                </ul>
+            </section>
+        </nav>
+    </div>
+</header>
+<section id="content">
+    <div class="row">
+	
+	<div class="large-6 large-push-3 columns">
+
+        
+
+        <div class="section" id="cassexecprofile">
+<h1>CassExecProfile<a class="headerlink" href="#cassexecprofile" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="_CPPv415CassExecProfile">
+<span id="_CPPv315CassExecProfile"></span><span id="_CPPv215CassExecProfile"></span><span id="CassExecProfile"></span><span class="target" id="struct_cass_exec_profile"></span><em class="property">struct </em><code class="sig-name descname">CassExecProfile</code><a class="headerlink" href="#_CPPv415CassExecProfile" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>An execution profile object provides a mechanism to group together a set of configuration options and reuse them across different statement executions. This feature is useful when dealing with different query workloads. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="function">
+<dt id="_CPPv426cass_execution_profile_newv">
+<span id="_CPPv326cass_execution_profile_newv"></span><span id="_CPPv226cass_execution_profile_newv"></span><span id="cass_execution_profile_new"></span><span class="target" id="struct_cass_exec_profile_1a129b44ec2ef8fe37d567a67a1fd55002"></span><a class="reference internal" href="#_CPPv415CassExecProfile" title="CassExecProfile">CassExecProfile</a> *<code class="sig-name descname">cass_execution_profile_new</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426cass_execution_profile_newv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Creates a new execution profile.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns a execution profile that must be freed.</p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#struct_cass_exec_profile_1af707dd5261e11491032eb99d883a3a45"><span class="std std-ref">cass_execution_profile_free()</span></a> </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv427cass_execution_profile_freeP15CassExecProfile">
+<span id="_CPPv327cass_execution_profile_freeP15CassExecProfile"></span><span id="_CPPv227cass_execution_profile_freeP15CassExecProfile"></span><span id="cass_execution_profile_free__CassExecProfileP"></span><span class="target" id="struct_cass_exec_profile_1af707dd5261e11491032eb99d883a3a45"></span>void <code class="sig-name descname">cass_execution_profile_free</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv415CassExecProfile" title="CassExecProfile">CassExecProfile</a> *<em>profile</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv427cass_execution_profile_freeP15CassExecProfile" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Frees a execution profile instance.</p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">profile</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv442cass_execution_profile_set_request_timeoutP15CassExecProfile13cass_uint64_t">
+<span id="_CPPv342cass_execution_profile_set_request_timeoutP15CassExecProfile13cass_uint64_t"></span><span id="_CPPv242cass_execution_profile_set_request_timeoutP15CassExecProfile13cass_uint64_t"></span><span id="cass_execution_profile_set_request_timeout__CassExecProfileP.cass_uint64_t"></span><span class="target" id="struct_cass_exec_profile_1ac5eb0cc00a455da0f869f477efc33e4a"></span>CassError <code class="sig-name descname">cass_execution_profile_set_request_timeout</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv415CassExecProfile" title="CassExecProfile">CassExecProfile</a> *<em>profile</em>, cass_uint64_t <em>timeout_ms</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv442cass_execution_profile_set_request_timeoutP15CassExecProfile13cass_uint64_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the timeout waiting for a response from a node.</p>
+<p><strong>Default:</strong> Disabled (uses the cluster request timeout)</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise an error occurred.</p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="struct.CassStatement.html#struct_cass_statement_1a00ce054c5493f32003bcf3e4940c40da"><span class="std std-ref">cass_statement_set_request_timeout()</span></a> </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">profile</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">timeout_ms</span></code>: Request timeout in milliseconds. Use 0 for no timeout or CASS_UINT64_MAX to disable. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv438cass_execution_profile_set_consistencyP15CassExecProfile15CassConsistency">
+<span id="_CPPv338cass_execution_profile_set_consistencyP15CassExecProfile15CassConsistency"></span><span id="_CPPv238cass_execution_profile_set_consistencyP15CassExecProfile15CassConsistency"></span><span id="cass_execution_profile_set_consistency__CassExecProfileP.CassConsistency"></span><span class="target" id="struct_cass_exec_profile_1adc03eb6e35e3847719cec4ff789ae663"></span>CassError <code class="sig-name descname">cass_execution_profile_set_consistency</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv415CassExecProfile" title="CassExecProfile">CassExecProfile</a> *<em>profile</em>, CassConsistency <em>consistency</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv438cass_execution_profile_set_consistencyP15CassExecProfile15CassConsistency" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the consistency level.</p>
+<p><strong>Default:</strong> Disabled (uses the default consistency)</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise an error occurred.</p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="struct.CassStatement.html#struct_cass_statement_1a3063188cef63dfff558a6d99e8c15baf"><span class="std std-ref">cass_statement_set_consistency()</span></a> </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">profile</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">consistency</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv445cass_execution_profile_set_serial_consistencyP15CassExecProfile15CassConsistency">
+<span id="_CPPv345cass_execution_profile_set_serial_consistencyP15CassExecProfile15CassConsistency"></span><span id="_CPPv245cass_execution_profile_set_serial_consistencyP15CassExecProfile15CassConsistency"></span><span id="cass_execution_profile_set_serial_consistency__CassExecProfileP.CassConsistency"></span><span class="target" id="struct_cass_exec_profile_1af9203a994e8bf07469645c63d633fb8e"></span>CassError <code class="sig-name descname">cass_execution_profile_set_serial_consistency</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv415CassExecProfile" title="CassExecProfile">CassExecProfile</a> *<em>profile</em>, CassConsistency <em>serial_consistency</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv445cass_execution_profile_set_serial_consistencyP15CassExecProfile15CassConsistency" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the serial consistency level.</p>
+<p><strong>Default:</strong> Disabled (uses the default serial consistency)</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise an error occurred.</p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="struct.CassStatement.html#struct_cass_statement_1a56cbef04aa5c10af63f6c13a19f3f75c"><span class="std std-ref">cass_statement_set_serial_consistency()</span></a> </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">profile</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">serial_consistency</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv451cass_execution_profile_set_load_balance_round_robinP15CassExecProfile">
+<span id="_CPPv351cass_execution_profile_set_load_balance_round_robinP15CassExecProfile"></span><span id="_CPPv251cass_execution_profile_set_load_balance_round_robinP15CassExecProfile"></span><span id="cass_execution_profile_set_load_balance_round_robin__CassExecProfileP"></span><span class="target" id="struct_cass_exec_profile_1a0fc7904b6c61fe4b1a1578b4dbae15e2"></span>CassError <code class="sig-name descname">cass_execution_profile_set_load_balance_round_robin</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv415CassExecProfile" title="CassExecProfile">CassExecProfile</a> *<em>profile</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv451cass_execution_profile_set_load_balance_round_robinP15CassExecProfile" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configures the execution profile to use round-robin load balancing.</p>
+<p>The driver discovers all nodes in a cluster and cycles through them per request. All are considered ‘local’.</p>
+<p><strong>Note:</strong> Profile-based load balancing policy is disabled by default; cluster load balancing policy is used when profile does not contain a policy.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise an error occurred.</p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="struct.CassCluster.html#struct_cass_cluster_1a22251b0a4555a12a955088358b66ba5d"><span class="std std-ref">cass_cluster_set_load_balance_round_robin()</span></a> </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">profile</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv448cass_execution_profile_set_load_balance_dc_awareP15CassExecProfilePKcj11cass_bool_t">
+<span id="_CPPv348cass_execution_profile_set_load_balance_dc_awareP15CassExecProfilePKcj11cass_bool_t"></span><span id="_CPPv248cass_execution_profile_set_load_balance_dc_awareP15CassExecProfilePKcj11cass_bool_t"></span><span id="cass_execution_profile_set_load_balance_dc_aware__CassExecProfileP.cCP.unsigned.cass_bool_t"></span><span class="target" id="struct_cass_exec_profile_1a3731f840fa5ae4a32105f7683ecf7756"></span>CassError <code class="sig-name descname">cass_execution_profile_set_load_balance_dc_aware</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv415CassExecProfile" title="CassExecProfile">CassExecProfile</a> *<em>profile</em>, <em class="property">const</em> char *<em>local_dc</em>, unsigned <em>used_hosts_per_remote_dc</em>, cass_bool_t <em>allow_remote_dcs_for_local_cl</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv448cass_execution_profile_set_load_balance_dc_awareP15CassExecProfilePKcj11cass_bool_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configures the execution profile to use DC-aware load balancing. For each query, all live nodes in a primary ‘local’ DC are tried first, followed by any node from other DCs.</p>
+<p><strong>Note:</strong> Profile-based load balancing policy is disabled by default; cluster load balancing policy is used when profile does not contain a policy.</p>
+<p></p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise an error occurred.</p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="struct.CassCluster.html#struct_cass_cluster_1a46b9816129aaa5ab61a1363489dccfd0"><span class="std std-ref">cass_cluster_set_load_balance_dc_aware()</span></a> </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">profile</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">local_dc</span></code>: The primary data center to try first </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">used_hosts_per_remote_dc</span></code>: The number of hosts used in each remote DC if no hosts are available in the local dc (<strong>deprecated</strong>) </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">allow_remote_dcs_for_local_cl</span></code>: Allows remote hosts to be used if no local dc hosts are available and the consistency level is LOCAL_ONE or LOCAL_QUORUM (<strong>deprecated</strong>) </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv450cass_execution_profile_set_load_balance_dc_aware_nP15CassExecProfilePKc6size_tj11cass_bool_t">
+<span id="_CPPv350cass_execution_profile_set_load_balance_dc_aware_nP15CassExecProfilePKc6size_tj11cass_bool_t"></span><span id="_CPPv250cass_execution_profile_set_load_balance_dc_aware_nP15CassExecProfilePKc6size_tj11cass_bool_t"></span><span id="cass_execution_profile_set_load_balance_dc_aware_n__CassExecProfileP.cCP.s.unsigned.cass_bool_t"></span><span class="target" id="struct_cass_exec_profile_1a11cf2fe0e4d8f877750fe4659b65700d"></span>CassError <code class="sig-name descname">cass_execution_profile_set_load_balance_dc_aware_n</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv415CassExecProfile" title="CassExecProfile">CassExecProfile</a> *<em>profile</em>, <em class="property">const</em> char *<em>local_dc</em>, size_t <em>local_dc_length</em>, unsigned <em>used_hosts_per_remote_dc</em>, cass_bool_t <em>allow_remote_dcs_for_local_cl</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv450cass_execution_profile_set_load_balance_dc_aware_nP15CassExecProfilePKc6size_tj11cass_bool_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Same as <a class="reference internal" href="#struct_cass_exec_profile_1a3731f840fa5ae4a32105f7683ecf7756"><span class="std std-ref">cass_execution_profile_set_load_balance_dc_aware()</span></a>, but with lengths for string parameters.</p>
+<p></p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>same as <a class="reference internal" href="#struct_cass_exec_profile_1a3731f840fa5ae4a32105f7683ecf7756"><span class="std std-ref">cass_execution_profile_set_load_balance_dc_aware()</span></a></p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#struct_cass_exec_profile_1a3731f840fa5ae4a32105f7683ecf7756"><span class="std std-ref">cass_execution_profile_set_load_balance_dc_aware()</span></a> </p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="struct.CassCluster.html#struct_cass_cluster_1a111228c4e6dff996f594ffcd60e0f24b"><span class="std std-ref">cass_cluster_set_load_balance_dc_aware_n()</span></a> </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">profile</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">local_dc</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">local_dc_length</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">used_hosts_per_remote_dc</span></code>: (<strong>deprecated</strong>) </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">allow_remote_dcs_for_local_cl</span></code>: (<strong>deprecated</strong>) </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv446cass_execution_profile_set_token_aware_routingP15CassExecProfile11cass_bool_t">
+<span id="_CPPv346cass_execution_profile_set_token_aware_routingP15CassExecProfile11cass_bool_t"></span><span id="_CPPv246cass_execution_profile_set_token_aware_routingP15CassExecProfile11cass_bool_t"></span><span id="cass_execution_profile_set_token_aware_routing__CassExecProfileP.cass_bool_t"></span><span class="target" id="struct_cass_exec_profile_1aefdc7f049c862911d4a8f7a605ffc359"></span>CassError <code class="sig-name descname">cass_execution_profile_set_token_aware_routing</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv415CassExecProfile" title="CassExecProfile">CassExecProfile</a> *<em>profile</em>, cass_bool_t <em>enabled</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv446cass_execution_profile_set_token_aware_routingP15CassExecProfile11cass_bool_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configures the execution profile to use token-aware request routing or not.</p>
+<p><strong>Important:</strong> Token-aware routing depends on keyspace metadata. For this reason enabling token-aware routing will also enable retrieving and updating keyspace schema metadata.</p>
+<p><strong>Default:</strong> cass_true (enabled).</p>
+<p>This routing policy composes the base routing policy, routing requests first to replicas on nodes considered ‘local’ by the base load balancing policy.</p>
+<p><strong>Note:</strong> Execution profiles use the cluster-level load balancing policy unless enabled. This setting is not applicable unless a load balancing policy is enabled on the execution profile.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise an error occurred.</p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="struct.CassCluster.html#struct_cass_cluster_1a12aa6b80523d58a5875e450d7d7913a2"><span class="std std-ref">cass_cluster_set_token_aware_routing()</span></a> </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">profile</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">enabled</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv463cass_execution_profile_set_token_aware_routing_shuffle_replicasP15CassExecProfile11cass_bool_t">
+<span id="_CPPv363cass_execution_profile_set_token_aware_routing_shuffle_replicasP15CassExecProfile11cass_bool_t"></span><span id="_CPPv263cass_execution_profile_set_token_aware_routing_shuffle_replicasP15CassExecProfile11cass_bool_t"></span><span id="cass_execution_profile_set_token_aware_routing_shuffle_replicas__CassExecProfileP.cass_bool_t"></span><span class="target" id="struct_cass_exec_profile_1a87a4f2f7d4d74c2065630dc8d93b2171"></span>CassError <code class="sig-name descname">cass_execution_profile_set_token_aware_routing_shuffle_replicas</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv415CassExecProfile" title="CassExecProfile">CassExecProfile</a> *<em>profile</em>, cass_bool_t <em>enabled</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv463cass_execution_profile_set_token_aware_routing_shuffle_replicasP15CassExecProfile11cass_bool_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configures the execution profile’s token-aware routing to randomly shuffle replicas. This can reduce the effectiveness of server-side caching, but it can better distribute load over replicas for a given partition key.</p>
+<p><strong>Note:</strong> Token-aware routing must be enabled and a load balancing policy must be enabled on the execution profile for the setting to be applicable.</p>
+<p><strong>Default:</strong> cass_true (enabled).</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise an error occurred.</p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="struct.CassCluster.html#struct_cass_cluster_1abd8ad579c8c15b2e31dfc2910e00a55e"><span class="std std-ref">cass_cluster_set_token_aware_routing_shuffle_replicas()</span></a> </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">profile</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">enabled</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv448cass_execution_profile_set_latency_aware_routingP15CassExecProfile11cass_bool_t">
+<span id="_CPPv348cass_execution_profile_set_latency_aware_routingP15CassExecProfile11cass_bool_t"></span><span id="_CPPv248cass_execution_profile_set_latency_aware_routingP15CassExecProfile11cass_bool_t"></span><span id="cass_execution_profile_set_latency_aware_routing__CassExecProfileP.cass_bool_t"></span><span class="target" id="struct_cass_exec_profile_1ad75a7fe6c335f55e936fa6e785635f48"></span>CassError <code class="sig-name descname">cass_execution_profile_set_latency_aware_routing</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv415CassExecProfile" title="CassExecProfile">CassExecProfile</a> *<em>profile</em>, cass_bool_t <em>enabled</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv448cass_execution_profile_set_latency_aware_routingP15CassExecProfile11cass_bool_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configures the execution profile to use latency-aware request routing or not.</p>
+<p><strong>Note:</strong> Execution profiles use the cluster-level load balancing policy unless enabled. This setting is not applicable unless a load balancing policy is enabled on the execution profile.</p>
+<p><strong>Default:</strong> cass_false (disabled).</p>
+<p>This routing policy is a top-level routing policy. It uses the base routing policy to determine locality (dc-aware) and/or placement (token-aware) before considering the latency.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise an error occurred.</p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="struct.CassCluster.html#struct_cass_cluster_1a45deb4d5fe1a8ddde37b30712be63173"><span class="std std-ref">cass_cluster_set_latency_aware_routing()</span></a> </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">profile</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">enabled</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv457cass_execution_profile_set_latency_aware_routing_settingsP15CassExecProfile13cass_double_t13cass_uint64_t13cass_uint64_t13cass_uint64_t13cass_uint64_t">
+<span id="_CPPv357cass_execution_profile_set_latency_aware_routing_settingsP15CassExecProfile13cass_double_t13cass_uint64_t13cass_uint64_t13cass_uint64_t13cass_uint64_t"></span><span id="_CPPv257cass_execution_profile_set_latency_aware_routing_settingsP15CassExecProfile13cass_double_t13cass_uint64_t13cass_uint64_t13cass_uint64_t13cass_uint64_t"></span><span id="cass_execution_profile_set_latency_aware_routing_settings__CassExecProfileP.cass_double_t.cass_uint64_t.cass_uint64_t.cass_uint64_t.cass_uint64_t"></span><span class="target" id="struct_cass_exec_profile_1a480e6e30fee8871a163c9c0f4daf7112"></span>CassError <code class="sig-name descname">cass_execution_profile_set_latency_aware_routing_settings</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv415CassExecProfile" title="CassExecProfile">CassExecProfile</a> *<em>profile</em>, cass_double_t <em>exclusion_threshold</em>, cass_uint64_t <em>scale_ms</em>, cass_uint64_t <em>retry_period_ms</em>, cass_uint64_t <em>update_rate_ms</em>, cass_uint64_t <em>min_measured</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv457cass_execution_profile_set_latency_aware_routing_settingsP15CassExecProfile13cass_double_t13cass_uint64_t13cass_uint64_t13cass_uint64_t13cass_uint64_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configures the execution profile’s settings for latency-aware request routing.</p>
+<p><strong>Note:</strong> Execution profiles use the cluster-level load balancing policy unless enabled. This setting is not applicable unless a load balancing policy is enabled on the execution profile.</p>
+<p><strong>Defaults:</strong></p>
+<p><ul class="simple">
+<li><p>exclusion_threshold: 2.0 </p></li>
+<li><p>scale_ms: 100 milliseconds </p></li>
+<li><p>retry_period_ms: 10,000 milliseconds (10 seconds) </p></li>
+<li><p>update_rate_ms: 100 milliseconds </p></li>
+<li><p>min_measured: 50 </p></li>
+</ul>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise an error occurred.</p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="struct.CassCluster.html#struct_cass_cluster_1ac8c9fb3317f8787c9318c7fe45075276"><span class="std std-ref">cass_cluster_set_latency_aware_routing_settings()</span></a> </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">profile</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">exclusion_threshold</span></code>: Controls how much worse the latency must be compared to the average latency of the best performing node before it penalized. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">scale_ms</span></code>: Controls the weight given to older latencies when calculating the average latency of a node. A bigger scale will give more weight to older latency measurements. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">retry_period_ms</span></code>: The amount of time a node is penalized by the policy before being given a second chance when the current average latency exceeds the calculated threshold (exclusion_threshold * best_average_latency). </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">update_rate_ms</span></code>: The rate at which the best average latency is recomputed. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">min_measured</span></code>: The minimum number of measurements per-host required to be considered by the policy. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv446cass_execution_profile_set_whitelist_filteringP15CassExecProfilePKc">
+<span id="_CPPv346cass_execution_profile_set_whitelist_filteringP15CassExecProfilePKc"></span><span id="_CPPv246cass_execution_profile_set_whitelist_filteringP15CassExecProfilePKc"></span><span id="cass_execution_profile_set_whitelist_filtering__CassExecProfileP.cCP"></span><span class="target" id="struct_cass_exec_profile_1ae91fa9aae49ed990f8f0f7a0d1512ed0"></span>CassError <code class="sig-name descname">cass_execution_profile_set_whitelist_filtering</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv415CassExecProfile" title="CassExecProfile">CassExecProfile</a> *<em>profile</em>, <em class="property">const</em> char *<em>hosts</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv446cass_execution_profile_set_whitelist_filteringP15CassExecProfilePKc" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets/Appends whitelist hosts for the execution profile. The first call sets the whitelist hosts and any subsequent calls appends additional hosts. Passing an empty string will clear and disable the whitelist. White space is striped from the hosts.</p>
+<p>This policy filters requests to all other policies, only allowing requests to the hosts contained in the whitelist. Any host not in the whitelist will be ignored and a connection will not be established. This policy is useful for ensuring that the driver will only connect to a predefined set of hosts.</p>
+<p>Examples: “127.0.0.1” “127.0.0.1,127.0.0.2”</p>
+<p><strong>Note:</strong> Execution profiles use the cluster-level load balancing policy unless enabled. This setting is not applicable unless a load balancing policy is enabled on the execution profile.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise an error occurred.</p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="struct.CassCluster.html#struct_cass_cluster_1a90133103a91651ec103ada9ef4ccc2ad"><span class="std std-ref">cass_cluster_set_whitelist_filtering()</span></a> </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">profile</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hosts</span></code>: A comma delimited list of addresses. An empty string will clear the whitelist hosts. The string is copied into the cluster configuration; the memory pointed to by this parameter can be freed after this call. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv448cass_execution_profile_set_whitelist_filtering_nP15CassExecProfilePKc6size_t">
+<span id="_CPPv348cass_execution_profile_set_whitelist_filtering_nP15CassExecProfilePKc6size_t"></span><span id="_CPPv248cass_execution_profile_set_whitelist_filtering_nP15CassExecProfilePKc6size_t"></span><span id="cass_execution_profile_set_whitelist_filtering_n__CassExecProfileP.cCP.s"></span><span class="target" id="struct_cass_exec_profile_1a4d1df33c5de0214a54c21ab5ab55d71f"></span>CassError <code class="sig-name descname">cass_execution_profile_set_whitelist_filtering_n</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv415CassExecProfile" title="CassExecProfile">CassExecProfile</a> *<em>profile</em>, <em class="property">const</em> char *<em>hosts</em>, size_t <em>hosts_length</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv448cass_execution_profile_set_whitelist_filtering_nP15CassExecProfilePKc6size_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Same as <a class="reference internal" href="#struct_cass_exec_profile_1ae91fa9aae49ed990f8f0f7a0d1512ed0"><span class="std std-ref">cass_execution_profile_set_whitelist_filtering()</span></a>, but with lengths for string parameters.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>same as <a class="reference internal" href="#struct_cass_exec_profile_1ae91fa9aae49ed990f8f0f7a0d1512ed0"><span class="std std-ref">cass_execution_profile_set_whitelist_filtering()</span></a></p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#struct_cass_exec_profile_1ae91fa9aae49ed990f8f0f7a0d1512ed0"><span class="std std-ref">cass_execution_profile_set_whitelist_filtering()</span></a> </p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="struct.CassCluster.html#struct_cass_cluster_1a90133103a91651ec103ada9ef4ccc2ad"><span class="std std-ref">cass_cluster_set_whitelist_filtering()</span></a> </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">profile</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hosts</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hosts_length</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv446cass_execution_profile_set_blacklist_filteringP15CassExecProfilePKc">
+<span id="_CPPv346cass_execution_profile_set_blacklist_filteringP15CassExecProfilePKc"></span><span id="_CPPv246cass_execution_profile_set_blacklist_filteringP15CassExecProfilePKc"></span><span id="cass_execution_profile_set_blacklist_filtering__CassExecProfileP.cCP"></span><span class="target" id="struct_cass_exec_profile_1a1391c95ad107b7503adba24d1214d8cd"></span>CassError <code class="sig-name descname">cass_execution_profile_set_blacklist_filtering</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv415CassExecProfile" title="CassExecProfile">CassExecProfile</a> *<em>profile</em>, <em class="property">const</em> char *<em>hosts</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv446cass_execution_profile_set_blacklist_filteringP15CassExecProfilePKc" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets/Appends blacklist hosts for the execution profile. The first call sets the blacklist hosts and any subsequent calls appends additional hosts. Passing an empty string will clear and disable the blacklist. White space is striped from the hosts.</p>
+<p>This policy filters requests to all other policies, only allowing requests to the hosts not contained in the blacklist. Any host in the blacklist will be ignored and a connection will not be established. This policy is useful for ensuring that the driver will not connect to a predefined set of hosts.</p>
+<p>Examples: “127.0.0.1” “127.0.0.1,127.0.0.2”</p>
+<p><strong>Note:</strong> Execution profiles use the cluster-level load balancing policy unless enabled. This setting is not applicable unless a load balancing policy is enabled on the execution profile.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise an error occurred.</p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="struct.CassCluster.html#struct_cass_cluster_1ad33d26b9f9a99037fad562850bf185e5"><span class="std std-ref">cass_cluster_set_blacklist_filtering()</span></a> </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">profile</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hosts</span></code>: A comma delimited list of addresses. An empty string will clear the blacklist hosts. The string is copied into the cluster configuration; the memory pointed to by this parameter can be freed after this call. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv448cass_execution_profile_set_blacklist_filtering_nP15CassExecProfilePKc6size_t">
+<span id="_CPPv348cass_execution_profile_set_blacklist_filtering_nP15CassExecProfilePKc6size_t"></span><span id="_CPPv248cass_execution_profile_set_blacklist_filtering_nP15CassExecProfilePKc6size_t"></span><span id="cass_execution_profile_set_blacklist_filtering_n__CassExecProfileP.cCP.s"></span><span class="target" id="struct_cass_exec_profile_1a058234af723c9aa8c74ecd53707b39a3"></span>CassError <code class="sig-name descname">cass_execution_profile_set_blacklist_filtering_n</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv415CassExecProfile" title="CassExecProfile">CassExecProfile</a> *<em>profile</em>, <em class="property">const</em> char *<em>hosts</em>, size_t <em>hosts_length</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv448cass_execution_profile_set_blacklist_filtering_nP15CassExecProfilePKc6size_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Same as <a class="reference internal" href="#struct_cass_exec_profile_1a1391c95ad107b7503adba24d1214d8cd"><span class="std std-ref">cass_execution_profile_set_blacklist_filtering()</span></a>, but with lengths for string parameters.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>same as cass_execution_profile_set_blacklist_filtering_hosts()</p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#struct_cass_exec_profile_1a1391c95ad107b7503adba24d1214d8cd"><span class="std std-ref">cass_execution_profile_set_blacklist_filtering()</span></a> </p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="struct.CassCluster.html#struct_cass_cluster_1ad33d26b9f9a99037fad562850bf185e5"><span class="std std-ref">cass_cluster_set_blacklist_filtering()</span></a> </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">profile</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hosts</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hosts_length</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv449cass_execution_profile_set_whitelist_dc_filteringP15CassExecProfilePKc">
+<span id="_CPPv349cass_execution_profile_set_whitelist_dc_filteringP15CassExecProfilePKc"></span><span id="_CPPv249cass_execution_profile_set_whitelist_dc_filteringP15CassExecProfilePKc"></span><span id="cass_execution_profile_set_whitelist_dc_filtering__CassExecProfileP.cCP"></span><span class="target" id="struct_cass_exec_profile_1ae0aa52f42b6664f87709883261c8a803"></span>CassError <code class="sig-name descname">cass_execution_profile_set_whitelist_dc_filtering</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv415CassExecProfile" title="CassExecProfile">CassExecProfile</a> *<em>profile</em>, <em class="property">const</em> char *<em>dcs</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv449cass_execution_profile_set_whitelist_dc_filteringP15CassExecProfilePKc" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Same as <a class="reference internal" href="#struct_cass_exec_profile_1ae91fa9aae49ed990f8f0f7a0d1512ed0"><span class="std std-ref">cass_execution_profile_set_whitelist_filtering()</span></a>, but whitelist all hosts of a dc.</p>
+<p>Examples: “dc1”, “dc1,dc2”</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise an error occurred.</p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="struct.CassCluster.html#struct_cass_cluster_1a82ff31637d2b388cc382e724319dace5"><span class="std std-ref">cass_cluster_set_whitelist_dc_filtering()</span></a> </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">profile</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dcs</span></code>: A comma delimited list of dcs. An empty string will clear the whitelist dcs. The string is copied into the cluster configuration; the memory pointed to by this parameter can be freed after this call. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv451cass_execution_profile_set_whitelist_dc_filtering_nP15CassExecProfilePKc6size_t">
+<span id="_CPPv351cass_execution_profile_set_whitelist_dc_filtering_nP15CassExecProfilePKc6size_t"></span><span id="_CPPv251cass_execution_profile_set_whitelist_dc_filtering_nP15CassExecProfilePKc6size_t"></span><span id="cass_execution_profile_set_whitelist_dc_filtering_n__CassExecProfileP.cCP.s"></span><span class="target" id="struct_cass_exec_profile_1a08b5fac5976f4e987ec5f6611ae71ff5"></span>CassError <code class="sig-name descname">cass_execution_profile_set_whitelist_dc_filtering_n</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv415CassExecProfile" title="CassExecProfile">CassExecProfile</a> *<em>profile</em>, <em class="property">const</em> char *<em>dcs</em>, size_t <em>dcs_length</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv451cass_execution_profile_set_whitelist_dc_filtering_nP15CassExecProfilePKc6size_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Same as <a class="reference internal" href="#struct_cass_exec_profile_1ae0aa52f42b6664f87709883261c8a803"><span class="std std-ref">cass_execution_profile_set_whitelist_dc_filtering()</span></a>, but with lengths for string parameters.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>same as <a class="reference internal" href="#struct_cass_exec_profile_1ae0aa52f42b6664f87709883261c8a803"><span class="std std-ref">cass_execution_profile_set_whitelist_dc_filtering()</span></a></p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#struct_cass_exec_profile_1ae0aa52f42b6664f87709883261c8a803"><span class="std std-ref">cass_execution_profile_set_whitelist_dc_filtering()</span></a> </p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="struct.CassCluster.html#struct_cass_cluster_1a82ff31637d2b388cc382e724319dace5"><span class="std std-ref">cass_cluster_set_whitelist_dc_filtering()</span></a> </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">profile</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dcs</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dcs_length</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv449cass_execution_profile_set_blacklist_dc_filteringP15CassExecProfilePKc">
+<span id="_CPPv349cass_execution_profile_set_blacklist_dc_filteringP15CassExecProfilePKc"></span><span id="_CPPv249cass_execution_profile_set_blacklist_dc_filteringP15CassExecProfilePKc"></span><span id="cass_execution_profile_set_blacklist_dc_filtering__CassExecProfileP.cCP"></span><span class="target" id="struct_cass_exec_profile_1a7f262e6af50f289387e6b5bd2a868805"></span>CassError <code class="sig-name descname">cass_execution_profile_set_blacklist_dc_filtering</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv415CassExecProfile" title="CassExecProfile">CassExecProfile</a> *<em>profile</em>, <em class="property">const</em> char *<em>dcs</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv449cass_execution_profile_set_blacklist_dc_filteringP15CassExecProfilePKc" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Same as <a class="reference internal" href="#struct_cass_exec_profile_1a1391c95ad107b7503adba24d1214d8cd"><span class="std std-ref">cass_execution_profile_set_blacklist_filtering()</span></a>, but blacklist all hosts of a dc.</p>
+<p>Examples: “dc1”, “dc1,dc2”</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise an error occurred.</p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#struct_cass_exec_profile_1a1391c95ad107b7503adba24d1214d8cd"><span class="std std-ref">cass_execution_profile_set_blacklist_filtering()</span></a> </p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="struct.CassCluster.html#struct_cass_cluster_1a173626e06c076728d9f7d1cc4e50c03b"><span class="std std-ref">cass_cluster_set_blacklist_dc_filtering()</span></a> </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">profile</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dcs</span></code>: A comma delimited list of dcs. An empty string will clear the blacklist dcs. The string is copied into the cluster configuration; the memory pointed to by this parameter can be freed after this call. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv451cass_execution_profile_set_blacklist_dc_filtering_nP15CassExecProfilePKc6size_t">
+<span id="_CPPv351cass_execution_profile_set_blacklist_dc_filtering_nP15CassExecProfilePKc6size_t"></span><span id="_CPPv251cass_execution_profile_set_blacklist_dc_filtering_nP15CassExecProfilePKc6size_t"></span><span id="cass_execution_profile_set_blacklist_dc_filtering_n__CassExecProfileP.cCP.s"></span><span class="target" id="struct_cass_exec_profile_1a6cf946ebe7f6eb86a4d2b2d9c4bdbb98"></span>CassError <code class="sig-name descname">cass_execution_profile_set_blacklist_dc_filtering_n</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv415CassExecProfile" title="CassExecProfile">CassExecProfile</a> *<em>profile</em>, <em class="property">const</em> char *<em>dcs</em>, size_t <em>dcs_length</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv451cass_execution_profile_set_blacklist_dc_filtering_nP15CassExecProfilePKc6size_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Same as <a class="reference internal" href="#struct_cass_exec_profile_1a7f262e6af50f289387e6b5bd2a868805"><span class="std std-ref">cass_execution_profile_set_blacklist_dc_filtering()</span></a>, but with lengths for string parameters.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>same as <a class="reference internal" href="#struct_cass_exec_profile_1a7f262e6af50f289387e6b5bd2a868805"><span class="std std-ref">cass_execution_profile_set_blacklist_dc_filtering()</span></a></p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#struct_cass_exec_profile_1a7f262e6af50f289387e6b5bd2a868805"><span class="std std-ref">cass_execution_profile_set_blacklist_dc_filtering()</span></a> </p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="struct.CassCluster.html#struct_cass_cluster_1a173626e06c076728d9f7d1cc4e50c03b"><span class="std std-ref">cass_cluster_set_blacklist_dc_filtering()</span></a> </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">profile</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dcs</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dcs_length</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv439cass_execution_profile_set_retry_policyP15CassExecProfileP15CassRetryPolicy">
+<span id="_CPPv339cass_execution_profile_set_retry_policyP15CassExecProfileP15CassRetryPolicy"></span><span id="_CPPv239cass_execution_profile_set_retry_policyP15CassExecProfileP15CassRetryPolicy"></span><span id="cass_execution_profile_set_retry_policy__CassExecProfileP.CassRetryPolicyP"></span><span class="target" id="struct_cass_exec_profile_1a549e70c0a3e3f5c3389f3e5fdf7bbfd4"></span>CassError <code class="sig-name descname">cass_execution_profile_set_retry_policy</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv415CassExecProfile" title="CassExecProfile">CassExecProfile</a> *<em>profile</em>, <a class="reference internal" href="struct.CassRetryPolicy.html#_CPPv415CassRetryPolicy" title="CassRetryPolicy">CassRetryPolicy</a> *<em>retry_policy</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv439cass_execution_profile_set_retry_policyP15CassExecProfileP15CassRetryPolicy" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the execution profile’s retry policy.</p>
+<p><strong>Note:</strong> Profile-based retry policy is disabled by default; cluster retry policy is used when profile does not contain a policy unless the retry policy was explicitly set on the batch/statement request.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise an error occurred.</p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="struct.CassCluster.html#struct_cass_cluster_1ab2093e6dd5a154d8211f4959c0d70bb2"><span class="std std-ref">cass_cluster_set_retry_policy()</span></a> </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">profile</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">retry_policy</span></code>: NULL will clear retry policy from execution profile </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv464cass_execution_profile_set_constant_speculative_execution_policyP15CassExecProfile12cass_int64_ti">
+<span id="_CPPv364cass_execution_profile_set_constant_speculative_execution_policyP15CassExecProfile12cass_int64_ti"></span><span id="_CPPv264cass_execution_profile_set_constant_speculative_execution_policyP15CassExecProfile12cass_int64_ti"></span><span id="cass_execution_profile_set_constant_speculative_execution_policy__CassExecProfileP.cass_int64_t.i"></span><span class="target" id="struct_cass_exec_profile_1a67224fd581ec3862b1e0ae6b13c8dcbd"></span>CassError <code class="sig-name descname">cass_execution_profile_set_constant_speculative_execution_policy</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv415CassExecProfile" title="CassExecProfile">CassExecProfile</a> *<em>profile</em>, cass_int64_t <em>constant_delay_ms</em>, int <em>max_speculative_executions</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv464cass_execution_profile_set_constant_speculative_execution_policyP15CassExecProfile12cass_int64_ti" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enable constant speculative executions with the supplied settings for the execution profile.</p>
+<p><strong>Note:</strong> Profile-based speculative execution policy is disabled by default; cluster speculative execution policy is used when profile does not contain a policy.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise an error occurred</p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="struct.CassCluster.html#struct_cass_cluster_1af7a46f2196156a5226f3241fd3cfe62f"><span class="std std-ref">cass_cluster_set_constant_speculative_execution_policy()</span></a> </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">profile</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">constant_delay_ms</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max_speculative_executions</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv458cass_execution_profile_set_no_speculative_execution_policyP15CassExecProfile">
+<span id="_CPPv358cass_execution_profile_set_no_speculative_execution_policyP15CassExecProfile"></span><span id="_CPPv258cass_execution_profile_set_no_speculative_execution_policyP15CassExecProfile"></span><span id="cass_execution_profile_set_no_speculative_execution_policy__CassExecProfileP"></span><span class="target" id="struct_cass_exec_profile_1a543d908c374cc6555ad368924fc211a6"></span>CassError <code class="sig-name descname">cass_execution_profile_set_no_speculative_execution_policy</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv415CassExecProfile" title="CassExecProfile">CassExecProfile</a> *<em>profile</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv458cass_execution_profile_set_no_speculative_execution_policyP15CassExecProfile" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disable speculative executions for the execution profile.</p>
+<p><strong>Note:</strong> Profile-based speculative execution policy is disabled by default; cluster speculative execution policy is used when profile does not contain a policy.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise an error occurred</p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="struct.CassCluster.html#struct_cass_cluster_1a925b6f3f3d3f4d86ba6631470dcc2006"><span class="std std-ref">cass_cluster_set_no_speculative_execution_policy()</span></a> </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">profile</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</div>
+
+        </div>
+
+        <div id="sidebar" class="large-3 large-pull-6 columns"><div class="side-nav">
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">C/C++ Driver for ScyllaDB</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="struct.CassAggregateMeta.html">CassAggregateMeta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassAuthenticator.html">CassAuthenticator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassBatch.html">CassBatch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassCluster.html">CassCluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassCollection.html">CassCollection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassColumnMeta.html">CassColumnMeta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassCustomPayload.html">CassCustomPayload</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassDataType.html">CassDataType</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassErrorResult.html">CassErrorResult</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">CassExecProfile</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassFunctionMeta.html">CassFunctionMeta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassFuture.html">CassFuture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassIndexMeta.html">CassIndexMeta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassInet.html">CassInet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassIterator.html">CassIterator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassKeyspaceMeta.html">CassKeyspaceMeta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassMaterializedViewMeta.html">CassMaterializedViewMeta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassMetrics.html">CassMetrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassPrepared.html">CassPrepared</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassResult.html">CassResult</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassRetryPolicy.html">CassRetryPolicy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassRow.html">CassRow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassSchemaMeta.html">CassSchemaMeta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassSession.html">CassSession</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassSsl.html">CassSsl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassStatement.html">CassStatement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassTableMeta.html">CassTableMeta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassTimestampGen.html">CassTimestampGen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassTuple.html">CassTuple</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassUserType.html">CassUserType</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassUuid.html">CassUuid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassUuidGen.html">CassUuidGen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassValue.html">CassValue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassVersion.html">CassVersion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.DseDateRange.html">DseDateRange</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.DseDateRangeBound.html">DseDateRangeBound</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.DseLineString.html">DseLineString</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.DseLineStringIterator.html">DseLineStringIterator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.DsePolygon.html">DsePolygon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.DsePolygonIterator.html">DsePolygonIterator</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../topics/index.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../topics/dse_features/index.html">DSE Features</a></li>
+</ul>
+
+</div>
+        </div>
+
+        <div class="large-3 columns">
+            
+                <div class="versions-dropdown single-version">
+    <button class="button">
+	master
+
+	 <i class="fa fa-caret-down" aria-hidden="true"></i>
+    </button>
+    <ul class="content">
+            <li><a href="struct.CassExecProfile.html">master</a></li>
+    </ul>
+</div>
+            
+        </div>
+
+    </div>
+</section>
+
+<!-- newsleter modal -->
+
+<div id="newsletter_signup" class="reveal-modal tiny radius dark_modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+    <a class="close-reveal-modal" aria-label="Close">×</a>
+    <h2 id="modalTitle">Sign up for the Scylla newsletter</h2>
+    <div id="mc_embed_signup">
+        <form action="//cloudius-systems.us10.list-manage.com/subscribe/post?u=df8bb543c68230d5f7b4dcf78&amp;id=9a4589f144" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate="">
+            <div id="mc_embed_signup_scroll">
+
+                <div class="mc-field-group">
+                    <div class="row collapse">
+                        <div class="small-3 columns"><label for="mce-EMAIL">Email</label></div>
+                        <div class="small-9 columns"><input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL"></div>
+                    </div>
+                </div>
+                <div class="mc-field-group">
+                    <div class="row collapse">
+                        <div class="small-3 columns"><label for="mce-FNAME">First Name </label></div>
+                        <div class="small-9 columns"><input type="text" value="" name="FNAME" class="" id="mce-FNAME"></div>
+                    </div>
+                </div>
+                <div class="mc-field-group">
+                    <div class="row collapse">
+                        <div class="small-3 columns"><label for="mce-LNAME">Last Name </label></div>
+                        <div class="small-9 columns"><input type="text" value="" name="LNAME" class="" id="mce-LNAME"></div>
+                    </div>
+                </div>
+                <div id="mce-responses" class="clear">
+                    <div class="response" id="mce-error-response" style="display:none"></div>
+                    <div class="response" id="mce-success-response" style="display:none"></div>
+                </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                <div style="position: absolute; left: -5000px;"><input type="text" name="b_df8bb543c68230d5f7b4dcf78_9a4589f144" tabindex="-1" value=""></div>
+                <div class="clear"><input type="submit" class="button" value="Sign up" name="subscribe" id="mc-embedded-subscribe"></div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- end newsleter modal -->
+
+
+
+<!-- footer.html -->
+<footer id="footer">
+    <div class="footer-top">
+        <a class="logo" href="https://www.scylladb.com"><img src="../_static/img/logo-scylla-horizontal-RGB.svg" alt=""></a>
+        <div class="footer-links">
+            <a class="link" href="https://docs.scylladb.com">Docs</a>
+            <a class="link" href="https://www.scylladb.com/company/contact-us/">Contact Us</a>
+            <a class="link" href="https://www.scylladb.com/company/">About Us</a>
+            <a class="link button" href="https://github.com/scylladb/cpp-driver/issues/new?title=Issue in page CassExecProfile&&body=I%20would%20like%20to%20report%20an%20issue%20in%20page%20https://cpp-driver.docs.scylladb.com/master/api/struct.CassExecProfile%0A%0A%23%23%23%20Problem%0A%0A%23%23%23%20%20Suggest%20a%20fix" target="_blank">
+                Report an issue on this page</a>
+        </div>
+        <div class="footer-actions">
+            <a class="link-icon" href="https://github.com/ScyllaDB" target="_blank">
+                <span class="icon-github2"></span></a>
+            <a class="link-icon" href="https://twitter.com/ScyllaDB" target="_blank">
+                <span class="icon-twitter"></span></a>
+            <a class="link-icon" href="https://www.linkedin.com/company/scylladb"  target="_blank">
+                <span class="icon-linkedin2"></span></a>
+            <a class="link-icon" href="https://www.facebook.com/scylladb/" target="_blank">
+                <span class="icon-facebook"></span></a>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="footer-info">
+            <div class="footer-copyright">
+                &#169; 2021, ScyllaDB. All rights reserved.
+            </div>
+            <div class="footer-last-updated">
+                Last updated on 26 February 2021.
+            </div>
+            <div class="footer-version">
+                Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.4</a>
+                &amp; <a href="https://pypi.org/project/sphinx-scylladb-theme">ScyllaDB Theme 0.1.21</a>
+            </div>
+        </div>
+        <div class="footer-links">
+        </div>
+    </div>
+</footer>
+<!-- end footer.html -->
+
+<!-- bodyscripts.html -->
+<!-- at the end of the BODY --> 
+<script src="../_static/js/vendor/jquery.js"></script>
+<script src="../_static/js/vendor/jquery.cookie.min.js"></script>
+<script src="../_static/expertrec.js"></script>
+<script src="../_static/js/foundation/foundation.js"></script>
+<script src="../_static/js/foundation/foundation.topbar.js"></script>
+<script src="../_static/app.js"></script>
+<script>
+    $(document).foundation();
+</script>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T8P2JP"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+  <!-- end bodyscripts.html -->
+</body>
+</html>

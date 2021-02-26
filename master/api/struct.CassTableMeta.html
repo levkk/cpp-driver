@@ -1,0 +1,726 @@
+
+
+
+<!doctype html>
+<html class="no-js" lang="en">
+  
+<head><!-- begin head.html -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>
+    CassTableMeta | Scylla Docs
+    </title>
+    <meta name="description" content="Scylla is an Apache Cassandra-compatible NoSQL data store that can handle 1 million transactions per second on a single server."/>
+
+    <link rel="icon" href="../_static/img/favicon.ico" type="image/x-icon"/>
+    <link rel="canonical" href="https://docs.scylladb.com/">
+
+    <link rel="author" href="mailto:info@scylladb.com">
+    <link rel="stylesheet" href="../_static/" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx_tabs/semantic-ui-2.4.1/segment.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx_tabs/semantic-ui-2.4.1/menu.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx_tabs/semantic-ui-2.4.1/tab.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx_tabs/tabs.css" />
+    
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.2/css/foundation.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/css/doc/main.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+
+    <script src="../_static/js/vendor/modernizr.js"></script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-T8P2JP');</script>
+    <!-- End Google Tag Manager -->
+
+    <!-- Marketo -->
+    <script type="text/javascript"> (function() { var didInit = false; function initMunchkin() { if(didInit === false) { didInit = true; Munchkin.init('791-QBF-350'); } } var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = '//munchkin.marketo.net/munchkin.js'; s.onreadystatechange = function() { if (this.readyState == 'complete' || this.readyState == 'loaded') { initMunchkin(); } }; s.onload = initMunchkin; document.getElementsByTagName('head')[0].appendChild(s); })(); </script>
+    <!-- End Marketo -->
+
+<!-- end head.html -->
+</head>
+
+<body>
+
+
+
+<header id="header" class="animated">
+    <div class="topbar_continer contain-to-grid clearfix">
+        <nav class="top-bar" id="top-bar" data-topbar role="navigation">
+            <ul class="title-area">
+                <li class="name">
+                    <div class="logo">
+                        <a href="https://docs.scylladb.com/"><img src="../_static/img/logo-scylla-docs.svg" alt="" width="151"></a>
+                    </div>
+                </li>
+                <li class="toggle-topbar"><a href="#"><span class="icon-manu"></span></a></li>
+            </ul>
+            <section class="top-bar-section clearfix">
+                <ul class="right">
+                    
+                    <li>
+                        <a href="https://cpp-driver.docs.scylladb.com/">C/C++ Driver</a>
+                    </li>
+                    
+                    <li>
+                        <a href="https://docs.scylladb.com/scylla-cloud/">Scylla Cloud</a>
+                    </li>
+                    
+                    <li>
+                        <a href="https://university.scylladb.com/">Scylla University</a>
+                    </li>
+                    
+                    <li>
+                        <a href="https://www.scylladb.com/">ScyllaDB Home</a>
+                    </li>
+                    
+                    <li class="search_continer show-for-medium-up">	
+                        <ci-search></ci-search>	
+                    </li>	
+                </ul>
+            </section>
+        </nav>
+    </div>
+</header>
+<section id="content">
+    <div class="row">
+	
+	<div class="large-6 large-push-3 columns">
+
+        
+
+        <div class="section" id="casstablemeta">
+<h1>CassTableMeta<a class="headerlink" href="#casstablemeta" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="_CPPv413CassTableMeta">
+<span id="_CPPv313CassTableMeta"></span><span id="_CPPv213CassTableMeta"></span><span id="CassTableMeta"></span><span class="target" id="struct_cass_table_meta"></span><em class="property">struct </em><code class="sig-name descname">CassTableMeta</code><a class="headerlink" href="#_CPPv413CassTableMeta" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Table metadata </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="function">
+<dt id="_CPPv420cass_table_meta_namePK13CassTableMetaPPKcP6size_t">
+<span id="_CPPv320cass_table_meta_namePK13CassTableMetaPPKcP6size_t"></span><span id="_CPPv220cass_table_meta_namePK13CassTableMetaPPKcP6size_t"></span><span id="cass_table_meta_name__CassTableMetaCP.cCPP.sP"></span><span class="target" id="struct_cass_table_meta_1af1a080c1d6ac8aa363cbc99c258257bf"></span>void <code class="sig-name descname">cass_table_meta_name</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv413CassTableMeta" title="CassTableMeta">CassTableMeta</a> *<em>table_meta</em>, <em class="property">const</em> char **<em>name</em>, size_t *<em>name_length</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420cass_table_meta_namePK13CassTableMetaPPKcP6size_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the name of the table.</p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">table_meta</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">name_length</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv426cass_table_meta_is_virtualPK13CassTableMeta">
+<span id="_CPPv326cass_table_meta_is_virtualPK13CassTableMeta"></span><span id="_CPPv226cass_table_meta_is_virtualPK13CassTableMeta"></span><span id="cass_table_meta_is_virtual__CassTableMetaCP"></span><span class="target" id="struct_cass_table_meta_1a84dbc2b7ac2ee81ecc17cafacd418cb5"></span>cass_bool_t <code class="sig-name descname">cass_table_meta_is_virtual</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv413CassTableMeta" title="CassTableMeta">CassTableMeta</a> *<em>table_meta</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426cass_table_meta_is_virtualPK13CassTableMeta" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Determine if the table is a virtual table.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>cass_true is the table is virtual, otherwise cass_false </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">table_meta</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv430cass_table_meta_column_by_namePK13CassTableMetaPKc">
+<span id="_CPPv330cass_table_meta_column_by_namePK13CassTableMetaPKc"></span><span id="_CPPv230cass_table_meta_column_by_namePK13CassTableMetaPKc"></span><span id="cass_table_meta_column_by_name__CassTableMetaCP.cCP"></span><span class="target" id="struct_cass_table_meta_1a02d820b4ade3e2092d5ef2d485cee01f"></span><em class="property">const</em> <a class="reference internal" href="struct.CassColumnMeta.html#_CPPv414CassColumnMeta" title="CassColumnMeta">CassColumnMeta</a> *<code class="sig-name descname">cass_table_meta_column_by_name</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv413CassTableMeta" title="CassTableMeta">CassTableMeta</a> *<em>table_meta</em>, <em class="property">const</em> char *<em>column</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv430cass_table_meta_column_by_namePK13CassTableMetaPKc" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the column metadata for the provided column name.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The metadata for a column. NULL if column does not exist. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">table_meta</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">column</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv432cass_table_meta_column_by_name_nPK13CassTableMetaPKc6size_t">
+<span id="_CPPv332cass_table_meta_column_by_name_nPK13CassTableMetaPKc6size_t"></span><span id="_CPPv232cass_table_meta_column_by_name_nPK13CassTableMetaPKc6size_t"></span><span id="cass_table_meta_column_by_name_n__CassTableMetaCP.cCP.s"></span><span class="target" id="struct_cass_table_meta_1aa159646f768dcb3b64a95d8c994ca347"></span><em class="property">const</em> <a class="reference internal" href="struct.CassColumnMeta.html#_CPPv414CassColumnMeta" title="CassColumnMeta">CassColumnMeta</a> *<code class="sig-name descname">cass_table_meta_column_by_name_n</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv413CassTableMeta" title="CassTableMeta">CassTableMeta</a> *<em>table_meta</em>, <em class="property">const</em> char *<em>column</em>, size_t <em>column_length</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv432cass_table_meta_column_by_name_nPK13CassTableMetaPKc6size_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Same as <a class="reference internal" href="#struct_cass_table_meta_1a02d820b4ade3e2092d5ef2d485cee01f"><span class="std std-ref">cass_table_meta_column_by_name()</span></a>, but with lengths for string parameters.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>same as <a class="reference internal" href="#struct_cass_table_meta_1a02d820b4ade3e2092d5ef2d485cee01f"><span class="std std-ref">cass_table_meta_column_by_name()</span></a></p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#struct_cass_table_meta_1a02d820b4ade3e2092d5ef2d485cee01f"><span class="std std-ref">cass_table_meta_column_by_name()</span></a> </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">table_meta</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">column</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">column_length</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv428cass_table_meta_column_countPK13CassTableMeta">
+<span id="_CPPv328cass_table_meta_column_countPK13CassTableMeta"></span><span id="_CPPv228cass_table_meta_column_countPK13CassTableMeta"></span><span id="cass_table_meta_column_count__CassTableMetaCP"></span><span class="target" id="struct_cass_table_meta_1a2ec35e794f174bd1f436d4e6ec6c50ff"></span>size_t <code class="sig-name descname">cass_table_meta_column_count</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv413CassTableMeta" title="CassTableMeta">CassTableMeta</a> *<em>table_meta</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428cass_table_meta_column_countPK13CassTableMeta" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the total number of columns for the table.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The total column count. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">table_meta</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv422cass_table_meta_columnPK13CassTableMeta6size_t">
+<span id="_CPPv322cass_table_meta_columnPK13CassTableMeta6size_t"></span><span id="_CPPv222cass_table_meta_columnPK13CassTableMeta6size_t"></span><span id="cass_table_meta_column__CassTableMetaCP.s"></span><span class="target" id="struct_cass_table_meta_1acee27af6219925835762b8e60d12fb56"></span><em class="property">const</em> <a class="reference internal" href="struct.CassColumnMeta.html#_CPPv414CassColumnMeta" title="CassColumnMeta">CassColumnMeta</a> *<code class="sig-name descname">cass_table_meta_column</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv413CassTableMeta" title="CassTableMeta">CassTableMeta</a> *<em>table_meta</em>, size_t <em>index</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422cass_table_meta_columnPK13CassTableMeta6size_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the column metadata for the provided index.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The metadata for a column. NULL returned if the index is out of range. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">table_meta</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">index</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv429cass_table_meta_index_by_namePK13CassTableMetaPKc">
+<span id="_CPPv329cass_table_meta_index_by_namePK13CassTableMetaPKc"></span><span id="_CPPv229cass_table_meta_index_by_namePK13CassTableMetaPKc"></span><span id="cass_table_meta_index_by_name__CassTableMetaCP.cCP"></span><span class="target" id="struct_cass_table_meta_1a669c5091b645e85ff17db8948e72cc42"></span><em class="property">const</em> <a class="reference internal" href="struct.CassIndexMeta.html#_CPPv413CassIndexMeta" title="CassIndexMeta">CassIndexMeta</a> *<code class="sig-name descname">cass_table_meta_index_by_name</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv413CassTableMeta" title="CassTableMeta">CassTableMeta</a> *<em>table_meta</em>, <em class="property">const</em> char *<em>index</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv429cass_table_meta_index_by_namePK13CassTableMetaPKc" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the index metadata for the provided index name.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The metadata for a index. NULL if index does not exist. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">table_meta</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">index</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv431cass_table_meta_index_by_name_nPK13CassTableMetaPKc6size_t">
+<span id="_CPPv331cass_table_meta_index_by_name_nPK13CassTableMetaPKc6size_t"></span><span id="_CPPv231cass_table_meta_index_by_name_nPK13CassTableMetaPKc6size_t"></span><span id="cass_table_meta_index_by_name_n__CassTableMetaCP.cCP.s"></span><span class="target" id="struct_cass_table_meta_1a2d8e9bb33878fb669158b9d8bf27ad58"></span><em class="property">const</em> <a class="reference internal" href="struct.CassIndexMeta.html#_CPPv413CassIndexMeta" title="CassIndexMeta">CassIndexMeta</a> *<code class="sig-name descname">cass_table_meta_index_by_name_n</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv413CassTableMeta" title="CassTableMeta">CassTableMeta</a> *<em>table_meta</em>, <em class="property">const</em> char *<em>index</em>, size_t <em>index_length</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv431cass_table_meta_index_by_name_nPK13CassTableMetaPKc6size_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Same as <a class="reference internal" href="#struct_cass_table_meta_1a669c5091b645e85ff17db8948e72cc42"><span class="std std-ref">cass_table_meta_index_by_name()</span></a>, but with lengths for string parameters.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>same as <a class="reference internal" href="#struct_cass_table_meta_1a669c5091b645e85ff17db8948e72cc42"><span class="std std-ref">cass_table_meta_index_by_name()</span></a></p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#struct_cass_table_meta_1a669c5091b645e85ff17db8948e72cc42"><span class="std std-ref">cass_table_meta_index_by_name()</span></a> </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">table_meta</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">index</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">index_length</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv427cass_table_meta_index_countPK13CassTableMeta">
+<span id="_CPPv327cass_table_meta_index_countPK13CassTableMeta"></span><span id="_CPPv227cass_table_meta_index_countPK13CassTableMeta"></span><span id="cass_table_meta_index_count__CassTableMetaCP"></span><span class="target" id="struct_cass_table_meta_1a4946853d330c77083576737796871c18"></span>size_t <code class="sig-name descname">cass_table_meta_index_count</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv413CassTableMeta" title="CassTableMeta">CassTableMeta</a> *<em>table_meta</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv427cass_table_meta_index_countPK13CassTableMeta" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the total number of indexes for the table.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The total index count. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">table_meta</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv421cass_table_meta_indexPK13CassTableMeta6size_t">
+<span id="_CPPv321cass_table_meta_indexPK13CassTableMeta6size_t"></span><span id="_CPPv221cass_table_meta_indexPK13CassTableMeta6size_t"></span><span id="cass_table_meta_index__CassTableMetaCP.s"></span><span class="target" id="struct_cass_table_meta_1afeabe26f70c48a52b778a983c4452c1a"></span><em class="property">const</em> <a class="reference internal" href="struct.CassIndexMeta.html#_CPPv413CassIndexMeta" title="CassIndexMeta">CassIndexMeta</a> *<code class="sig-name descname">cass_table_meta_index</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv413CassTableMeta" title="CassTableMeta">CassTableMeta</a> *<em>table_meta</em>, size_t <em>index</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421cass_table_meta_indexPK13CassTableMeta6size_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the index metadata for the provided index.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The metadata for a index. NULL returned if the index is out of range. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">table_meta</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">index</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv441cass_table_meta_materialized_view_by_namePK13CassTableMetaPKc">
+<span id="_CPPv341cass_table_meta_materialized_view_by_namePK13CassTableMetaPKc"></span><span id="_CPPv241cass_table_meta_materialized_view_by_namePK13CassTableMetaPKc"></span><span id="cass_table_meta_materialized_view_by_name__CassTableMetaCP.cCP"></span><span class="target" id="struct_cass_table_meta_1ad5b562062ed21db3273d2a5e1657daeb"></span><em class="property">const</em> <a class="reference internal" href="struct.CassMaterializedViewMeta.html#_CPPv424CassMaterializedViewMeta" title="CassMaterializedViewMeta">CassMaterializedViewMeta</a> *<code class="sig-name descname">cass_table_meta_materialized_view_by_name</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv413CassTableMeta" title="CassTableMeta">CassTableMeta</a> *<em>table_meta</em>, <em class="property">const</em> char *<em>view</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv441cass_table_meta_materialized_view_by_namePK13CassTableMetaPKc" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the materialized view metadata for the provided view name.</p>
+<p><strong>Requires Apache Cassandra:</strong> 3.0+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The metadata for a view. NULL if view does not exist. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">table_meta</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">view</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv443cass_table_meta_materialized_view_by_name_nPK13CassTableMetaPKc6size_t">
+<span id="_CPPv343cass_table_meta_materialized_view_by_name_nPK13CassTableMetaPKc6size_t"></span><span id="_CPPv243cass_table_meta_materialized_view_by_name_nPK13CassTableMetaPKc6size_t"></span><span id="cass_table_meta_materialized_view_by_name_n__CassTableMetaCP.cCP.s"></span><span class="target" id="struct_cass_table_meta_1a5129d89737f665a0c5ddbe62eb9ff177"></span><em class="property">const</em> <a class="reference internal" href="struct.CassMaterializedViewMeta.html#_CPPv424CassMaterializedViewMeta" title="CassMaterializedViewMeta">CassMaterializedViewMeta</a> *<code class="sig-name descname">cass_table_meta_materialized_view_by_name_n</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv413CassTableMeta" title="CassTableMeta">CassTableMeta</a> *<em>table_meta</em>, <em class="property">const</em> char *<em>view</em>, size_t <em>view_length</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv443cass_table_meta_materialized_view_by_name_nPK13CassTableMetaPKc6size_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Same as <a class="reference internal" href="#struct_cass_table_meta_1ad5b562062ed21db3273d2a5e1657daeb"><span class="std std-ref">cass_table_meta_materialized_view_by_name()</span></a>, but with lengths for string parameters.</p>
+<p><strong>Requires Apache Cassandra:</strong> 3.0+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>same as <a class="reference internal" href="#struct_cass_table_meta_1ad5b562062ed21db3273d2a5e1657daeb"><span class="std std-ref">cass_table_meta_materialized_view_by_name()</span></a></p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#struct_cass_table_meta_1ad5b562062ed21db3273d2a5e1657daeb"><span class="std std-ref">cass_table_meta_materialized_view_by_name()</span></a> </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">table_meta</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">view</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">view_length</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv439cass_table_meta_materialized_view_countPK13CassTableMeta">
+<span id="_CPPv339cass_table_meta_materialized_view_countPK13CassTableMeta"></span><span id="_CPPv239cass_table_meta_materialized_view_countPK13CassTableMeta"></span><span id="cass_table_meta_materialized_view_count__CassTableMetaCP"></span><span class="target" id="struct_cass_table_meta_1a39e406c8c197963470c77632b0f93f4e"></span>size_t <code class="sig-name descname">cass_table_meta_materialized_view_count</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv413CassTableMeta" title="CassTableMeta">CassTableMeta</a> *<em>table_meta</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv439cass_table_meta_materialized_view_countPK13CassTableMeta" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the total number of views for the table.</p>
+<p><strong>Requires Apache Cassandra:</strong> 3.0+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The total view count. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">table_meta</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv433cass_table_meta_materialized_viewPK13CassTableMeta6size_t">
+<span id="_CPPv333cass_table_meta_materialized_viewPK13CassTableMeta6size_t"></span><span id="_CPPv233cass_table_meta_materialized_viewPK13CassTableMeta6size_t"></span><span id="cass_table_meta_materialized_view__CassTableMetaCP.s"></span><span class="target" id="struct_cass_table_meta_1a6970b65e353c9e00d87f6bd281883b66"></span><em class="property">const</em> <a class="reference internal" href="struct.CassMaterializedViewMeta.html#_CPPv424CassMaterializedViewMeta" title="CassMaterializedViewMeta">CassMaterializedViewMeta</a> *<code class="sig-name descname">cass_table_meta_materialized_view</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv413CassTableMeta" title="CassTableMeta">CassTableMeta</a> *<em>table_meta</em>, size_t <em>index</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv433cass_table_meta_materialized_viewPK13CassTableMeta6size_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the materialized view metadata for the provided index.</p>
+<p><strong>Requires Apache Cassandra:</strong> 3.0+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The metadata for a view. NULL returned if the index is out of range. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">table_meta</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">index</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv435cass_table_meta_partition_key_countPK13CassTableMeta">
+<span id="_CPPv335cass_table_meta_partition_key_countPK13CassTableMeta"></span><span id="_CPPv235cass_table_meta_partition_key_countPK13CassTableMeta"></span><span id="cass_table_meta_partition_key_count__CassTableMetaCP"></span><span class="target" id="struct_cass_table_meta_1abb65433a430b4bfff6c40be8c2155a1e"></span>size_t <code class="sig-name descname">cass_table_meta_partition_key_count</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv413CassTableMeta" title="CassTableMeta">CassTableMeta</a> *<em>table_meta</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv435cass_table_meta_partition_key_countPK13CassTableMeta" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the number of columns for the table’s partition key.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The count for the number of columns in the partition key. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">table_meta</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv429cass_table_meta_partition_keyPK13CassTableMeta6size_t">
+<span id="_CPPv329cass_table_meta_partition_keyPK13CassTableMeta6size_t"></span><span id="_CPPv229cass_table_meta_partition_keyPK13CassTableMeta6size_t"></span><span id="cass_table_meta_partition_key__CassTableMetaCP.s"></span><span class="target" id="struct_cass_table_meta_1a82dec73b4ea8ed7271286b5f89309bd2"></span><em class="property">const</em> <a class="reference internal" href="struct.CassColumnMeta.html#_CPPv414CassColumnMeta" title="CassColumnMeta">CassColumnMeta</a> *<code class="sig-name descname">cass_table_meta_partition_key</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv413CassTableMeta" title="CassTableMeta">CassTableMeta</a> *<em>table_meta</em>, size_t <em>index</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv429cass_table_meta_partition_keyPK13CassTableMeta6size_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the partition key column metadata for the provided index.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The metadata for a column. NULL returned if the index is out of range.</p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#struct_cass_table_meta_1abb65433a430b4bfff6c40be8c2155a1e"><span class="std std-ref">cass_table_meta_partition_key_count()</span></a> </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">table_meta</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">index</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv436cass_table_meta_clustering_key_countPK13CassTableMeta">
+<span id="_CPPv336cass_table_meta_clustering_key_countPK13CassTableMeta"></span><span id="_CPPv236cass_table_meta_clustering_key_countPK13CassTableMeta"></span><span id="cass_table_meta_clustering_key_count__CassTableMetaCP"></span><span class="target" id="struct_cass_table_meta_1a4b25446a2ca099ef43058924e2f4a7f8"></span>size_t <code class="sig-name descname">cass_table_meta_clustering_key_count</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv413CassTableMeta" title="CassTableMeta">CassTableMeta</a> *<em>table_meta</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv436cass_table_meta_clustering_key_countPK13CassTableMeta" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the number of columns for the table’s clustering key.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The count for the number of columns in the clustering key. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">table_meta</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv430cass_table_meta_clustering_keyPK13CassTableMeta6size_t">
+<span id="_CPPv330cass_table_meta_clustering_keyPK13CassTableMeta6size_t"></span><span id="_CPPv230cass_table_meta_clustering_keyPK13CassTableMeta6size_t"></span><span id="cass_table_meta_clustering_key__CassTableMetaCP.s"></span><span class="target" id="struct_cass_table_meta_1a604a875907b154395207c5ef5f727ba9"></span><em class="property">const</em> <a class="reference internal" href="struct.CassColumnMeta.html#_CPPv414CassColumnMeta" title="CassColumnMeta">CassColumnMeta</a> *<code class="sig-name descname">cass_table_meta_clustering_key</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv413CassTableMeta" title="CassTableMeta">CassTableMeta</a> *<em>table_meta</em>, size_t <em>index</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv430cass_table_meta_clustering_keyPK13CassTableMeta6size_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the clustering key column metadata for the provided index.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The metadata for a column. NULL returned if the index is out of range.</p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#struct_cass_table_meta_1a4b25446a2ca099ef43058924e2f4a7f8"><span class="std std-ref">cass_table_meta_clustering_key_count()</span></a> </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">table_meta</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">index</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv436cass_table_meta_clustering_key_orderPK13CassTableMeta6size_t">
+<span id="_CPPv336cass_table_meta_clustering_key_orderPK13CassTableMeta6size_t"></span><span id="_CPPv236cass_table_meta_clustering_key_orderPK13CassTableMeta6size_t"></span><span id="cass_table_meta_clustering_key_order__CassTableMetaCP.s"></span><span class="target" id="struct_cass_table_meta_1adf66b3d7c7612b2365ee2abeffef975b"></span>CassClusteringOrder <code class="sig-name descname">cass_table_meta_clustering_key_order</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv413CassTableMeta" title="CassTableMeta">CassTableMeta</a> *<em>table_meta</em>, size_t <em>index</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv436cass_table_meta_clustering_key_orderPK13CassTableMeta6size_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the clustering order column metadata for the provided index.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The clustering order for a column. CASS_CLUSTERING_ORDER_NONE returned if the index is out of range.</p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#struct_cass_table_meta_1a4b25446a2ca099ef43058924e2f4a7f8"><span class="std std-ref">cass_table_meta_clustering_key_count()</span></a> </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">table_meta</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">index</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv429cass_table_meta_field_by_namePK13CassTableMetaPKc">
+<span id="_CPPv329cass_table_meta_field_by_namePK13CassTableMetaPKc"></span><span id="_CPPv229cass_table_meta_field_by_namePK13CassTableMetaPKc"></span><span id="cass_table_meta_field_by_name__CassTableMetaCP.cCP"></span><span class="target" id="struct_cass_table_meta_1ad0c01583c8496294cd16fbbc8ddcf8b2"></span><em class="property">const</em> <a class="reference internal" href="struct.CassValue.html#_CPPv49CassValue" title="CassValue">CassValue</a> *<code class="sig-name descname">cass_table_meta_field_by_name</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv413CassTableMeta" title="CassTableMeta">CassTableMeta</a> *<em>table_meta</em>, <em class="property">const</em> char *<em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv429cass_table_meta_field_by_namePK13CassTableMetaPKc" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets a metadata field for the provided name. Metadata fields allow direct access to the column data found in the underlying “tables” metadata table.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>A metadata field value. NULL if the field does not exist. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">table_meta</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv431cass_table_meta_field_by_name_nPK13CassTableMetaPKc6size_t">
+<span id="_CPPv331cass_table_meta_field_by_name_nPK13CassTableMetaPKc6size_t"></span><span id="_CPPv231cass_table_meta_field_by_name_nPK13CassTableMetaPKc6size_t"></span><span id="cass_table_meta_field_by_name_n__CassTableMetaCP.cCP.s"></span><span class="target" id="struct_cass_table_meta_1ac39421e2677669ae6c1e29ad5817dbd1"></span><em class="property">const</em> <a class="reference internal" href="struct.CassValue.html#_CPPv49CassValue" title="CassValue">CassValue</a> *<code class="sig-name descname">cass_table_meta_field_by_name_n</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv413CassTableMeta" title="CassTableMeta">CassTableMeta</a> *<em>table_meta</em>, <em class="property">const</em> char *<em>name</em>, size_t <em>name_length</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv431cass_table_meta_field_by_name_nPK13CassTableMetaPKc6size_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Same as <a class="reference internal" href="#struct_cass_table_meta_1ad0c01583c8496294cd16fbbc8ddcf8b2"><span class="std std-ref">cass_table_meta_field_by_name()</span></a>, but with lengths for string parameters.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>same as <a class="reference internal" href="#struct_cass_table_meta_1ad0c01583c8496294cd16fbbc8ddcf8b2"><span class="std std-ref">cass_table_meta_field_by_name()</span></a></p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#struct_cass_table_meta_1ad0c01583c8496294cd16fbbc8ddcf8b2"><span class="std std-ref">cass_table_meta_field_by_name()</span></a> </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">table_meta</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">name_length</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv437cass_iterator_columns_from_table_metaPK13CassTableMeta">
+<span id="_CPPv337cass_iterator_columns_from_table_metaPK13CassTableMeta"></span><span id="_CPPv237cass_iterator_columns_from_table_metaPK13CassTableMeta"></span><span id="cass_iterator_columns_from_table_meta__CassTableMetaCP"></span><span class="target" id="struct_cass_table_meta_1a151c672b8b5b8c6a1d4dfdb732173af6"></span><a class="reference internal" href="struct.CassIterator.html#_CPPv412CassIterator" title="CassIterator">CassIterator</a> *<code class="sig-name descname">cass_iterator_columns_from_table_meta</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv413CassTableMeta" title="CassTableMeta">CassTableMeta</a> *<em>table_meta</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv437cass_iterator_columns_from_table_metaPK13CassTableMeta" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Creates a new iterator for the specified table metadata. This can be used to iterate over columns.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>A new iterator that must be freed.</p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="struct.CassIterator.html#struct_cass_iterator_1a4de8e0f58d63661697a9b256ab1d3bf9"><span class="std std-ref">cass_iterator_get_column_meta()</span></a> </p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="struct.CassIterator.html#struct_cass_iterator_1af58d429466e18d3ff4539082d09eea74"><span class="std std-ref">cass_iterator_free()</span></a> </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">table_meta</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv437cass_iterator_indexes_from_table_metaPK13CassTableMeta">
+<span id="_CPPv337cass_iterator_indexes_from_table_metaPK13CassTableMeta"></span><span id="_CPPv237cass_iterator_indexes_from_table_metaPK13CassTableMeta"></span><span id="cass_iterator_indexes_from_table_meta__CassTableMetaCP"></span><span class="target" id="struct_cass_table_meta_1a56d27353a37cd470cf957386321d52be"></span><a class="reference internal" href="struct.CassIterator.html#_CPPv412CassIterator" title="CassIterator">CassIterator</a> *<code class="sig-name descname">cass_iterator_indexes_from_table_meta</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv413CassTableMeta" title="CassTableMeta">CassTableMeta</a> *<em>table_meta</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv437cass_iterator_indexes_from_table_metaPK13CassTableMeta" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Creates a new iterator for the specified table metadata. This can be used to iterate over indexes.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>A new iterator that must be freed.</p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="struct.CassIterator.html#struct_cass_iterator_1ab94642e4e0e46960db3c04d5c7ddbc8b"><span class="std std-ref">cass_iterator_get_index_meta()</span></a> </p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="struct.CassIterator.html#struct_cass_iterator_1af58d429466e18d3ff4539082d09eea74"><span class="std std-ref">cass_iterator_free()</span></a> </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">table_meta</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv448cass_iterator_materialized_views_from_table_metaPK13CassTableMeta">
+<span id="_CPPv348cass_iterator_materialized_views_from_table_metaPK13CassTableMeta"></span><span id="_CPPv248cass_iterator_materialized_views_from_table_metaPK13CassTableMeta"></span><span id="cass_iterator_materialized_views_from_table_meta__CassTableMetaCP"></span><span class="target" id="struct_cass_table_meta_1a4e8bd03516033a7be32ffabd61fd5711"></span><a class="reference internal" href="struct.CassIterator.html#_CPPv412CassIterator" title="CassIterator">CassIterator</a> *<code class="sig-name descname">cass_iterator_materialized_views_from_table_meta</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv413CassTableMeta" title="CassTableMeta">CassTableMeta</a> *<em>table_meta</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv448cass_iterator_materialized_views_from_table_metaPK13CassTableMeta" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Creates a new iterator for the specified materialized view metadata. This can be used to iterate over columns.</p>
+<p><strong>Requires Apache Cassandra:</strong> 3.0+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>A new iterator that must be freed.</p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="struct.CassIterator.html#struct_cass_iterator_1a7e4ad4b22249a2ccec0ede52ad94d501"><span class="std std-ref">cass_iterator_get_materialized_view_meta()</span></a> </p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="struct.CassIterator.html#struct_cass_iterator_1af58d429466e18d3ff4539082d09eea74"><span class="std std-ref">cass_iterator_free()</span></a> </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">table_meta</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv436cass_iterator_fields_from_table_metaPK13CassTableMeta">
+<span id="_CPPv336cass_iterator_fields_from_table_metaPK13CassTableMeta"></span><span id="_CPPv236cass_iterator_fields_from_table_metaPK13CassTableMeta"></span><span id="cass_iterator_fields_from_table_meta__CassTableMetaCP"></span><span class="target" id="struct_cass_table_meta_1a4dedb4d0e60b29b904e83fc39685480a"></span><a class="reference internal" href="struct.CassIterator.html#_CPPv412CassIterator" title="CassIterator">CassIterator</a> *<code class="sig-name descname">cass_iterator_fields_from_table_meta</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv413CassTableMeta" title="CassTableMeta">CassTableMeta</a> *<em>table_meta</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv436cass_iterator_fields_from_table_metaPK13CassTableMeta" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Creates a new fields iterator for the specified table metadata. Metadata fields allow direct access to the column data found in the underlying “tables” metadata table. This can be used to iterate those metadata field entries.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>A new iterator that must be freed.</p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="struct.CassIterator.html#struct_cass_iterator_1a23e5a0c8a2e27d61f1a0b515ae588a9f"><span class="std std-ref">cass_iterator_get_meta_field_name()</span></a> </p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="struct.CassIterator.html#struct_cass_iterator_1aeea357b4088f94551bfe85d75064a52a"><span class="std std-ref">cass_iterator_get_meta_field_value()</span></a> </p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="struct.CassIterator.html#struct_cass_iterator_1af58d429466e18d3ff4539082d09eea74"><span class="std std-ref">cass_iterator_free()</span></a> </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">table_meta</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</div>
+
+        </div>
+
+        <div id="sidebar" class="large-3 large-pull-6 columns"><div class="side-nav">
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">C/C++ Driver for ScyllaDB</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="struct.CassAggregateMeta.html">CassAggregateMeta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassAuthenticator.html">CassAuthenticator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassBatch.html">CassBatch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassCluster.html">CassCluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassCollection.html">CassCollection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassColumnMeta.html">CassColumnMeta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassCustomPayload.html">CassCustomPayload</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassDataType.html">CassDataType</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassErrorResult.html">CassErrorResult</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassExecProfile.html">CassExecProfile</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassFunctionMeta.html">CassFunctionMeta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassFuture.html">CassFuture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassIndexMeta.html">CassIndexMeta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassInet.html">CassInet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassIterator.html">CassIterator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassKeyspaceMeta.html">CassKeyspaceMeta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassMaterializedViewMeta.html">CassMaterializedViewMeta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassMetrics.html">CassMetrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassPrepared.html">CassPrepared</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassResult.html">CassResult</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassRetryPolicy.html">CassRetryPolicy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassRow.html">CassRow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassSchemaMeta.html">CassSchemaMeta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassSession.html">CassSession</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassSsl.html">CassSsl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassStatement.html">CassStatement</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">CassTableMeta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassTimestampGen.html">CassTimestampGen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassTuple.html">CassTuple</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassUserType.html">CassUserType</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassUuid.html">CassUuid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassUuidGen.html">CassUuidGen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassValue.html">CassValue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassVersion.html">CassVersion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.DseDateRange.html">DseDateRange</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.DseDateRangeBound.html">DseDateRangeBound</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.DseLineString.html">DseLineString</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.DseLineStringIterator.html">DseLineStringIterator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.DsePolygon.html">DsePolygon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.DsePolygonIterator.html">DsePolygonIterator</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../topics/index.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../topics/dse_features/index.html">DSE Features</a></li>
+</ul>
+
+</div>
+        </div>
+
+        <div class="large-3 columns">
+            
+                <div class="versions-dropdown single-version">
+    <button class="button">
+	master
+
+	 <i class="fa fa-caret-down" aria-hidden="true"></i>
+    </button>
+    <ul class="content">
+            <li><a href="struct.CassTableMeta.html">master</a></li>
+    </ul>
+</div>
+            
+        </div>
+
+    </div>
+</section>
+
+<!-- newsleter modal -->
+
+<div id="newsletter_signup" class="reveal-modal tiny radius dark_modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+    <a class="close-reveal-modal" aria-label="Close">×</a>
+    <h2 id="modalTitle">Sign up for the Scylla newsletter</h2>
+    <div id="mc_embed_signup">
+        <form action="//cloudius-systems.us10.list-manage.com/subscribe/post?u=df8bb543c68230d5f7b4dcf78&amp;id=9a4589f144" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate="">
+            <div id="mc_embed_signup_scroll">
+
+                <div class="mc-field-group">
+                    <div class="row collapse">
+                        <div class="small-3 columns"><label for="mce-EMAIL">Email</label></div>
+                        <div class="small-9 columns"><input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL"></div>
+                    </div>
+                </div>
+                <div class="mc-field-group">
+                    <div class="row collapse">
+                        <div class="small-3 columns"><label for="mce-FNAME">First Name </label></div>
+                        <div class="small-9 columns"><input type="text" value="" name="FNAME" class="" id="mce-FNAME"></div>
+                    </div>
+                </div>
+                <div class="mc-field-group">
+                    <div class="row collapse">
+                        <div class="small-3 columns"><label for="mce-LNAME">Last Name </label></div>
+                        <div class="small-9 columns"><input type="text" value="" name="LNAME" class="" id="mce-LNAME"></div>
+                    </div>
+                </div>
+                <div id="mce-responses" class="clear">
+                    <div class="response" id="mce-error-response" style="display:none"></div>
+                    <div class="response" id="mce-success-response" style="display:none"></div>
+                </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                <div style="position: absolute; left: -5000px;"><input type="text" name="b_df8bb543c68230d5f7b4dcf78_9a4589f144" tabindex="-1" value=""></div>
+                <div class="clear"><input type="submit" class="button" value="Sign up" name="subscribe" id="mc-embedded-subscribe"></div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- end newsleter modal -->
+
+
+
+<!-- footer.html -->
+<footer id="footer">
+    <div class="footer-top">
+        <a class="logo" href="https://www.scylladb.com"><img src="../_static/img/logo-scylla-horizontal-RGB.svg" alt=""></a>
+        <div class="footer-links">
+            <a class="link" href="https://docs.scylladb.com">Docs</a>
+            <a class="link" href="https://www.scylladb.com/company/contact-us/">Contact Us</a>
+            <a class="link" href="https://www.scylladb.com/company/">About Us</a>
+            <a class="link button" href="https://github.com/scylladb/cpp-driver/issues/new?title=Issue in page CassTableMeta&&body=I%20would%20like%20to%20report%20an%20issue%20in%20page%20https://cpp-driver.docs.scylladb.com/master/api/struct.CassTableMeta%0A%0A%23%23%23%20Problem%0A%0A%23%23%23%20%20Suggest%20a%20fix" target="_blank">
+                Report an issue on this page</a>
+        </div>
+        <div class="footer-actions">
+            <a class="link-icon" href="https://github.com/ScyllaDB" target="_blank">
+                <span class="icon-github2"></span></a>
+            <a class="link-icon" href="https://twitter.com/ScyllaDB" target="_blank">
+                <span class="icon-twitter"></span></a>
+            <a class="link-icon" href="https://www.linkedin.com/company/scylladb"  target="_blank">
+                <span class="icon-linkedin2"></span></a>
+            <a class="link-icon" href="https://www.facebook.com/scylladb/" target="_blank">
+                <span class="icon-facebook"></span></a>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="footer-info">
+            <div class="footer-copyright">
+                &#169; 2021, ScyllaDB. All rights reserved.
+            </div>
+            <div class="footer-last-updated">
+                Last updated on 26 February 2021.
+            </div>
+            <div class="footer-version">
+                Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.4</a>
+                &amp; <a href="https://pypi.org/project/sphinx-scylladb-theme">ScyllaDB Theme 0.1.21</a>
+            </div>
+        </div>
+        <div class="footer-links">
+        </div>
+    </div>
+</footer>
+<!-- end footer.html -->
+
+<!-- bodyscripts.html -->
+<!-- at the end of the BODY --> 
+<script src="../_static/js/vendor/jquery.js"></script>
+<script src="../_static/js/vendor/jquery.cookie.min.js"></script>
+<script src="../_static/expertrec.js"></script>
+<script src="../_static/js/foundation/foundation.js"></script>
+<script src="../_static/js/foundation/foundation.topbar.js"></script>
+<script src="../_static/app.js"></script>
+<script>
+    $(document).foundation();
+</script>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T8P2JP"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+  <!-- end bodyscripts.html -->
+</body>
+</html>

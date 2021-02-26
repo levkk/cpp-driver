@@ -1,0 +1,1743 @@
+
+
+
+<!doctype html>
+<html class="no-js" lang="en">
+  
+<head><!-- begin head.html -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>
+    CassCluster | Scylla Docs
+    </title>
+    <meta name="description" content="Scylla is an Apache Cassandra-compatible NoSQL data store that can handle 1 million transactions per second on a single server."/>
+
+    <link rel="icon" href="../_static/img/favicon.ico" type="image/x-icon"/>
+    <link rel="canonical" href="https://docs.scylladb.com/">
+
+    <link rel="author" href="mailto:info@scylladb.com">
+    <link rel="stylesheet" href="../_static/" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx_tabs/semantic-ui-2.4.1/segment.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx_tabs/semantic-ui-2.4.1/menu.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx_tabs/semantic-ui-2.4.1/tab.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx_tabs/tabs.css" />
+    
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.2/css/foundation.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/css/doc/main.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+
+    <script src="../_static/js/vendor/modernizr.js"></script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-T8P2JP');</script>
+    <!-- End Google Tag Manager -->
+
+    <!-- Marketo -->
+    <script type="text/javascript"> (function() { var didInit = false; function initMunchkin() { if(didInit === false) { didInit = true; Munchkin.init('791-QBF-350'); } } var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = '//munchkin.marketo.net/munchkin.js'; s.onreadystatechange = function() { if (this.readyState == 'complete' || this.readyState == 'loaded') { initMunchkin(); } }; s.onload = initMunchkin; document.getElementsByTagName('head')[0].appendChild(s); })(); </script>
+    <!-- End Marketo -->
+
+<!-- end head.html -->
+</head>
+
+<body>
+
+
+
+<header id="header" class="animated">
+    <div class="topbar_continer contain-to-grid clearfix">
+        <nav class="top-bar" id="top-bar" data-topbar role="navigation">
+            <ul class="title-area">
+                <li class="name">
+                    <div class="logo">
+                        <a href="https://docs.scylladb.com/"><img src="../_static/img/logo-scylla-docs.svg" alt="" width="151"></a>
+                    </div>
+                </li>
+                <li class="toggle-topbar"><a href="#"><span class="icon-manu"></span></a></li>
+            </ul>
+            <section class="top-bar-section clearfix">
+                <ul class="right">
+                    
+                    <li>
+                        <a href="https://cpp-driver.docs.scylladb.com/">C/C++ Driver</a>
+                    </li>
+                    
+                    <li>
+                        <a href="https://docs.scylladb.com/scylla-cloud/">Scylla Cloud</a>
+                    </li>
+                    
+                    <li>
+                        <a href="https://university.scylladb.com/">Scylla University</a>
+                    </li>
+                    
+                    <li>
+                        <a href="https://www.scylladb.com/">ScyllaDB Home</a>
+                    </li>
+                    
+                    <li class="search_continer show-for-medium-up">	
+                        <ci-search></ci-search>	
+                    </li>	
+                </ul>
+            </section>
+        </nav>
+    </div>
+</header>
+<section id="content">
+    <div class="row">
+	
+	<div class="large-6 large-push-3 columns">
+
+        
+
+        <div class="section" id="casscluster">
+<h1>CassCluster<a class="headerlink" href="#casscluster" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="_CPPv411CassCluster">
+<span id="_CPPv311CassCluster"></span><span id="_CPPv211CassCluster"></span><span id="CassCluster"></span><span class="target" id="struct_cass_cluster"></span><em class="property">struct </em><code class="sig-name descname">CassCluster</code><a class="headerlink" href="#_CPPv411CassCluster" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>A cluster object describes the configuration of the Cassandra cluster and is used to construct a session instance. Unlike other DataStax drivers the cluster object does not maintain the control connection. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="function">
+<dt id="_CPPv416cass_cluster_newv">
+<span id="_CPPv316cass_cluster_newv"></span><span id="_CPPv216cass_cluster_newv"></span><span id="cass_cluster_new"></span><span class="target" id="struct_cass_cluster_1a1dc7e3247568b45862ecaa4ac0f0fd5c"></span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<code class="sig-name descname">cass_cluster_new</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416cass_cluster_newv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Creates a new cluster.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns a cluster that must be freed.</p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#struct_cass_cluster_1a72dec26358d8270d47c8d500fa388acd"><span class="std std-ref">cass_cluster_free()</span></a> </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv417cass_cluster_freeP11CassCluster">
+<span id="_CPPv317cass_cluster_freeP11CassCluster"></span><span id="_CPPv217cass_cluster_freeP11CassCluster"></span><span id="cass_cluster_free__CassClusterP"></span><span class="target" id="struct_cass_cluster_1a72dec26358d8270d47c8d500fa388acd"></span>void <code class="sig-name descname">cass_cluster_free</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417cass_cluster_freeP11CassCluster" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Frees a cluster instance.</p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv431cass_cluster_set_contact_pointsP11CassClusterPKc">
+<span id="_CPPv331cass_cluster_set_contact_pointsP11CassClusterPKc"></span><span id="_CPPv231cass_cluster_set_contact_pointsP11CassClusterPKc"></span><span id="cass_cluster_set_contact_points__CassClusterP.cCP"></span><span class="target" id="struct_cass_cluster_1af742955c67a6e5ff191ed0788c4bce67"></span>CassError <code class="sig-name descname">cass_cluster_set_contact_points</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, <em class="property">const</em> char *<em>contact_points</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv431cass_cluster_set_contact_pointsP11CassClusterPKc" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets/Appends contact points. This <em>MUST</em> be set. The first call sets the contact points and any subsequent calls appends additional contact points. Passing an empty string will clear the contact points. White space is striped from the contact points.</p>
+<p>Examples: “127.0.0.1” “127.0.0.1,127.0.0.2”, “server1.domain.com”</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise an error occurred. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">contact_points</span></code>: A comma delimited list of addresses or names. An empty string will clear the contact points. The string is copied into the cluster configuration; the memory pointed to by this parameter can be freed after this call. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv433cass_cluster_set_contact_points_nP11CassClusterPKc6size_t">
+<span id="_CPPv333cass_cluster_set_contact_points_nP11CassClusterPKc6size_t"></span><span id="_CPPv233cass_cluster_set_contact_points_nP11CassClusterPKc6size_t"></span><span id="cass_cluster_set_contact_points_n__CassClusterP.cCP.s"></span><span class="target" id="struct_cass_cluster_1a00bf96fb9a1f659aca3ce3e90d079230"></span>CassError <code class="sig-name descname">cass_cluster_set_contact_points_n</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, <em class="property">const</em> char *<em>contact_points</em>, size_t <em>contact_points_length</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv433cass_cluster_set_contact_points_nP11CassClusterPKc6size_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Same as <a class="reference internal" href="#struct_cass_cluster_1af742955c67a6e5ff191ed0788c4bce67"><span class="std std-ref">cass_cluster_set_contact_points()</span></a>, but with lengths for string parameters.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>same as <a class="reference internal" href="#struct_cass_cluster_1af742955c67a6e5ff191ed0788c4bce67"><span class="std std-ref">cass_cluster_set_contact_points()</span></a></p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#struct_cass_cluster_1af742955c67a6e5ff191ed0788c4bce67"><span class="std std-ref">cass_cluster_set_contact_points()</span></a> </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">contact_points</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">contact_points_length</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv421cass_cluster_set_portP11CassClusteri">
+<span id="_CPPv321cass_cluster_set_portP11CassClusteri"></span><span id="_CPPv221cass_cluster_set_portP11CassClusteri"></span><span id="cass_cluster_set_port__CassClusterP.i"></span><span class="target" id="struct_cass_cluster_1ac6618cda27be77a37639288b1cdeb803"></span>CassError <code class="sig-name descname">cass_cluster_set_port</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, int <em>port</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421cass_cluster_set_portP11CassClusteri" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the port.</p>
+<p><strong>Default:</strong> 9042</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise an error occurred. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">port</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv430cass_cluster_set_local_addressP11CassClusterPKc">
+<span id="_CPPv330cass_cluster_set_local_addressP11CassClusterPKc"></span><span id="_CPPv230cass_cluster_set_local_addressP11CassClusterPKc"></span><span id="cass_cluster_set_local_address__CassClusterP.cCP"></span><span class="target" id="struct_cass_cluster_1a9f1d02acfea3160b042dea9bbcf70b28"></span>CassError <code class="sig-name descname">cass_cluster_set_local_address</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, <em class="property">const</em> char *<em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv430cass_cluster_set_local_addressP11CassClusterPKc" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the local address to bind when connecting to the cluster, if desired.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise an error occurred. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code>: IP address to bind, or empty string for no binding. Only numeric addresses are supported; no resolution is done. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv432cass_cluster_set_local_address_nP11CassClusterPKc6size_t">
+<span id="_CPPv332cass_cluster_set_local_address_nP11CassClusterPKc6size_t"></span><span id="_CPPv232cass_cluster_set_local_address_nP11CassClusterPKc6size_t"></span><span id="cass_cluster_set_local_address_n__CassClusterP.cCP.s"></span><span class="target" id="struct_cass_cluster_1a00b87d7f88db2b041a3e9109d719d786"></span>CassError <code class="sig-name descname">cass_cluster_set_local_address_n</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, <em class="property">const</em> char *<em>name</em>, size_t <em>name_length</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv432cass_cluster_set_local_address_nP11CassClusterPKc6size_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Same as <a class="reference internal" href="#struct_cass_cluster_1a9f1d02acfea3160b042dea9bbcf70b28"><span class="std std-ref">cass_cluster_set_local_address()</span></a>, but with lengths for string parameters.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>same as <a class="reference internal" href="#struct_cass_cluster_1a9f1d02acfea3160b042dea9bbcf70b28"><span class="std std-ref">cass_cluster_set_local_address()</span></a></p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#struct_cass_cluster_1a9f1d02acfea3160b042dea9bbcf70b28"><span class="std std-ref">cass_cluster_set_local_address()</span></a> </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">name_length</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv433cass_cluster_set_local_port_rangeP11CassClusterii">
+<span id="_CPPv333cass_cluster_set_local_port_rangeP11CassClusterii"></span><span id="_CPPv233cass_cluster_set_local_port_rangeP11CassClusterii"></span><span id="cass_cluster_set_local_port_range__CassClusterP.i.i"></span><span class="target" id="struct_cass_cluster_1a4097b0b7851b29fa933baabd97c5ec63"></span>CassError <code class="sig-name descname">cass_cluster_set_local_port_range</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, int <em>lo</em>, int <em>hi</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv433cass_cluster_set_local_port_rangeP11CassClusterii" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the range of outgoing port numbers (ephemeral ports) to be used when establishing the shard-aware connections. This is applicable when the routing of connection to shard is based on the client-side port number.</p>
+<p>When application connects to multiple CassCluster-s it is advised to assign mutually non-overlapping port intervals to each. It is assumed that the supplied range is allowed by the OS (e.g. it fits inside /proc/sys/net/ipv4/ip_local_port_range on *nix systems)</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise the range is invalid. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lo</span></code>: The lower bound (inclusive) </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hi</span></code>: The upper bound (exclusive) </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv420cass_cluster_set_sslP11CassClusterP7CassSsl">
+<span id="_CPPv320cass_cluster_set_sslP11CassClusterP7CassSsl"></span><span id="_CPPv220cass_cluster_set_sslP11CassClusterP7CassSsl"></span><span id="cass_cluster_set_ssl__CassClusterP.CassSslP"></span><span class="target" id="struct_cass_cluster_1acb05599f2cd8f4efb2a817949190db93"></span>void <code class="sig-name descname">cass_cluster_set_ssl</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, <a class="reference internal" href="struct.CassSsl.html#_CPPv47CassSsl" title="CassSsl">CassSsl</a> *<em>ssl</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420cass_cluster_set_sslP11CassClusterP7CassSsl" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the SSL context and enables SSL.</p>
+<p><dl class="simple">
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="struct.CassSsl.html#struct_cass_ssl_1a25340df889e674a5e2ad1b60e6dcc4e4"><span class="std std-ref">cass_ssl_new()</span></a> </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ssl</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv440cass_cluster_set_authenticator_callbacksP11CassClusterPK26CassAuthenticatorCallbacks36CassAuthenticatorDataCleanupCallbackPv">
+<span id="_CPPv340cass_cluster_set_authenticator_callbacksP11CassClusterPK26CassAuthenticatorCallbacks36CassAuthenticatorDataCleanupCallbackPv"></span><span id="_CPPv240cass_cluster_set_authenticator_callbacksP11CassClusterPK26CassAuthenticatorCallbacks36CassAuthenticatorDataCleanupCallbackPv"></span><span id="cass_cluster_set_authenticator_callbacks__CassClusterP.CassAuthenticatorCallbacksCP.CassAuthenticatorDataCleanupCallback.voidP"></span><span class="target" id="struct_cass_cluster_1afdec12620918104d6f247b80ab376d49"></span>CassError <code class="sig-name descname">cass_cluster_set_authenticator_callbacks</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, <em class="property">const</em> CassAuthenticatorCallbacks *<em>exchange_callbacks</em>, CassAuthenticatorDataCleanupCallback <em>cleanup_callback</em>, void *<em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv440cass_cluster_set_authenticator_callbacksP11CassClusterPK26CassAuthenticatorCallbacks36CassAuthenticatorDataCleanupCallbackPv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets custom authenticator</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise an error occurred. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">exchange_callbacks</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cleanup_callback</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv433cass_cluster_set_protocol_versionP11CassClusteri">
+<span id="_CPPv333cass_cluster_set_protocol_versionP11CassClusteri"></span><span id="_CPPv233cass_cluster_set_protocol_versionP11CassClusteri"></span><span id="cass_cluster_set_protocol_version__CassClusterP.i"></span><span class="target" id="struct_cass_cluster_1a35ac971c2e6ce9c55c53343c021f16f5"></span>CassError <code class="sig-name descname">cass_cluster_set_protocol_version</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, int <em>protocol_version</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv433cass_cluster_set_protocol_versionP11CassClusteri" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the protocol version. The driver will automatically downgrade to the lowest supported protocol version.</p>
+<p><strong>Default:</strong> CASS_PROTOCOL_VERSION_V4 or CASS_PROTOCOL_VERSION_DSEV1 when using the DSE driver with DataStax Enterprise.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise an error occurred.</p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#struct_cass_cluster_1ab13f641c70c83d9f5c06f094db855ea8"><span class="std std-ref">cass_cluster_set_use_beta_protocol_version()</span></a> </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">protocol_version</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv442cass_cluster_set_use_beta_protocol_versionP11CassCluster11cass_bool_t">
+<span id="_CPPv342cass_cluster_set_use_beta_protocol_versionP11CassCluster11cass_bool_t"></span><span id="_CPPv242cass_cluster_set_use_beta_protocol_versionP11CassCluster11cass_bool_t"></span><span id="cass_cluster_set_use_beta_protocol_version__CassClusterP.cass_bool_t"></span><span class="target" id="struct_cass_cluster_1ab13f641c70c83d9f5c06f094db855ea8"></span>CassError <code class="sig-name descname">cass_cluster_set_use_beta_protocol_version</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, cass_bool_t <em>enable</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv442cass_cluster_set_use_beta_protocol_versionP11CassCluster11cass_bool_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Use the newest beta protocol version. This currently enables the use of protocol version v5 (CASS_PROTOCOL_VERSION_V5) or DSEv2 (CASS_PROTOCOL_VERSION_DSEV2) when using the DSE driver with DataStax Enterprise.</p>
+<p><strong>Default:</strong> cass_false</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise an error occurred. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">enable</span></code>: if false the highest non-beta protocol version will be used </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv428cass_cluster_set_consistencyP11CassCluster15CassConsistency">
+<span id="_CPPv328cass_cluster_set_consistencyP11CassCluster15CassConsistency"></span><span id="_CPPv228cass_cluster_set_consistencyP11CassCluster15CassConsistency"></span><span id="cass_cluster_set_consistency__CassClusterP.CassConsistency"></span><span class="target" id="struct_cass_cluster_1ad11cccfcfcdf4f41a6b45af159e135b7"></span>CassError <code class="sig-name descname">cass_cluster_set_consistency</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, CassConsistency <em>consistency</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428cass_cluster_set_consistencyP11CassCluster15CassConsistency" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets default consistency level of statement.</p>
+<p><strong>Default:</strong> CASS_CONSISTENCY_LOCAL_ONE</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise an error occurred. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">consistency</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv435cass_cluster_set_serial_consistencyP11CassCluster15CassConsistency">
+<span id="_CPPv335cass_cluster_set_serial_consistencyP11CassCluster15CassConsistency"></span><span id="_CPPv235cass_cluster_set_serial_consistencyP11CassCluster15CassConsistency"></span><span id="cass_cluster_set_serial_consistency__CassClusterP.CassConsistency"></span><span class="target" id="struct_cass_cluster_1a6831288d1703d9cb25e2a91db3a8e3ec"></span>CassError <code class="sig-name descname">cass_cluster_set_serial_consistency</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, CassConsistency <em>consistency</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv435cass_cluster_set_serial_consistencyP11CassCluster15CassConsistency" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets default serial consistency level of statement.</p>
+<p><strong>Default:</strong> CASS_CONSISTENCY_ANY</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise an error occurred. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">consistency</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv431cass_cluster_set_num_threads_ioP11CassClusterj">
+<span id="_CPPv331cass_cluster_set_num_threads_ioP11CassClusterj"></span><span id="_CPPv231cass_cluster_set_num_threads_ioP11CassClusterj"></span><span id="cass_cluster_set_num_threads_io__CassClusterP.unsigned"></span><span class="target" id="struct_cass_cluster_1af768d5a0838ded6cce36a906392eb14e"></span>CassError <code class="sig-name descname">cass_cluster_set_num_threads_io</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, unsigned <em>num_threads</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv431cass_cluster_set_num_threads_ioP11CassClusterj" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the number of IO threads. This is the number of threads that will handle query requests.</p>
+<p><strong>Default:</strong> 1</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise an error occurred. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_threads</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv430cass_cluster_set_queue_size_ioP11CassClusterj">
+<span id="_CPPv330cass_cluster_set_queue_size_ioP11CassClusterj"></span><span id="_CPPv230cass_cluster_set_queue_size_ioP11CassClusterj"></span><span id="cass_cluster_set_queue_size_io__CassClusterP.unsigned"></span><span class="target" id="struct_cass_cluster_1af6e038da3c6d3a89abc40ea8449fef01"></span>CassError <code class="sig-name descname">cass_cluster_set_queue_size_io</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, unsigned <em>queue_size</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv430cass_cluster_set_queue_size_ioP11CassClusterj" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the size of the fixed size queue that stores pending requests.</p>
+<p><strong>Default:</strong> 8192</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise an error occurred. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">queue_size</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv433cass_cluster_set_queue_size_eventP11CassClusterj">
+<span id="_CPPv333cass_cluster_set_queue_size_eventP11CassClusterj"></span><span id="_CPPv233cass_cluster_set_queue_size_eventP11CassClusterj"></span><span id="cass_cluster_set_queue_size_event__CassClusterP.unsigned"></span><span class="target" id="struct_cass_cluster_1ab78f904f982a1da5178bef09a8381fd6"></span>CassError <code class="sig-name descname">cass_cluster_set_queue_size_event</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, unsigned <em>queue_size</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv433cass_cluster_set_queue_size_eventP11CassClusterj" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the size of the fixed size queue that stores events.</p>
+<p><strong>Default:</strong> 8192</p>
+<p></p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise an error occurred. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">queue_size</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv442cass_cluster_set_core_connections_per_hostP11CassClusterj">
+<span id="_CPPv342cass_cluster_set_core_connections_per_hostP11CassClusterj"></span><span id="_CPPv242cass_cluster_set_core_connections_per_hostP11CassClusterj"></span><span id="cass_cluster_set_core_connections_per_host__CassClusterP.unsigned"></span><span class="target" id="struct_cass_cluster_1a9e097ef89aec9d38db983291c457eeeb"></span>CassError <code class="sig-name descname">cass_cluster_set_core_connections_per_host</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, unsigned <em>num_connections</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv442cass_cluster_set_core_connections_per_hostP11CassClusterj" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the number of connections made to each server in each IO thread.</p>
+<p><strong>Default:</strong> 1</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise an error occurred. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_connections</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv441cass_cluster_set_max_connections_per_hostP11CassClusterj">
+<span id="_CPPv341cass_cluster_set_max_connections_per_hostP11CassClusterj"></span><span id="_CPPv241cass_cluster_set_max_connections_per_hostP11CassClusterj"></span><span id="cass_cluster_set_max_connections_per_host__CassClusterP.unsigned"></span><span class="target" id="struct_cass_cluster_1a12d4be74311f1d796af75ba74f696a75"></span>CassError <code class="sig-name descname">cass_cluster_set_max_connections_per_host</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, unsigned <em>num_connections</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv441cass_cluster_set_max_connections_per_hostP11CassClusterj" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the maximum number of connections made to each server in each IO thread.</p>
+<p><strong>Default:</strong> 2</p>
+<p></p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise an error occurred. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_connections</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv436cass_cluster_set_reconnect_wait_timeP11CassClusterj">
+<span id="_CPPv336cass_cluster_set_reconnect_wait_timeP11CassClusterj"></span><span id="_CPPv236cass_cluster_set_reconnect_wait_timeP11CassClusterj"></span><span id="cass_cluster_set_reconnect_wait_time__CassClusterP.unsigned"></span><span class="target" id="struct_cass_cluster_1af0e3532094c501a3c4d8c14a55570456"></span>void <code class="sig-name descname">cass_cluster_set_reconnect_wait_time</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, unsigned <em>wait_time</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv436cass_cluster_set_reconnect_wait_timeP11CassClusterj" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the amount of time to wait before attempting to reconnect.</p>
+<p></p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wait_time</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv435cass_cluster_set_constant_reconnectP11CassCluster13cass_uint64_t">
+<span id="_CPPv335cass_cluster_set_constant_reconnectP11CassCluster13cass_uint64_t"></span><span id="_CPPv235cass_cluster_set_constant_reconnectP11CassCluster13cass_uint64_t"></span><span id="cass_cluster_set_constant_reconnect__CassClusterP.cass_uint64_t"></span><span class="target" id="struct_cass_cluster_1aae0a9fc407e852d680182098aa95f4e0"></span>void <code class="sig-name descname">cass_cluster_set_constant_reconnect</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, cass_uint64_t <em>delay_ms</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv435cass_cluster_set_constant_reconnectP11CassCluster13cass_uint64_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configures the cluster to use a reconnection policy that waits a constant time between each reconnection attempt.</p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">delay_ms</span></code>: Time in milliseconds to delay attempting a reconnection; 0 to perform a reconnection immediately. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv438cass_cluster_set_exponential_reconnectP11CassCluster13cass_uint64_t13cass_uint64_t">
+<span id="_CPPv338cass_cluster_set_exponential_reconnectP11CassCluster13cass_uint64_t13cass_uint64_t"></span><span id="_CPPv238cass_cluster_set_exponential_reconnectP11CassCluster13cass_uint64_t13cass_uint64_t"></span><span id="cass_cluster_set_exponential_reconnect__CassClusterP.cass_uint64_t.cass_uint64_t"></span><span class="target" id="struct_cass_cluster_1aba9361bb9971ae996e7aa7c96f89ba00"></span>CassError <code class="sig-name descname">cass_cluster_set_exponential_reconnect</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, cass_uint64_t <em>base_delay_ms</em>, cass_uint64_t <em>max_delay_ms</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv438cass_cluster_set_exponential_reconnectP11CassCluster13cass_uint64_t13cass_uint64_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configures the cluster to use a reconnection policy that waits exponentially longer between each reconnection attempt; however will maintain a constant delay once the maximum delay is reached.</p>
+<p><strong>Default:</strong> <ul class="simple">
+<li><p>2000 milliseconds base delay </p></li>
+<li><p>60000 milliseconds max delay </p></li>
+</ul>
+</p>
+<p><strong>Note:</strong> A random amount of jitter (+/- 15%) will be added to the pure exponential delay value. This helps to prevent situations where multiple connections are in the reconnection process at exactly the same time. The jitter will never cause the delay to be less than the base delay, or more than the max delay. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise error occurred. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">base_delay_ms</span></code>: The base delay (in milliseconds) to use for scheduling reconnection attempts. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max_delay_ms</span></code>: The maximum delay to wait between two reconnection attempts. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv431cass_cluster_set_coalesce_delayP11CassCluster12cass_int64_t">
+<span id="_CPPv331cass_cluster_set_coalesce_delayP11CassCluster12cass_int64_t"></span><span id="_CPPv231cass_cluster_set_coalesce_delayP11CassCluster12cass_int64_t"></span><span id="cass_cluster_set_coalesce_delay__CassClusterP.cass_int64_t"></span><span class="target" id="struct_cass_cluster_1a015cb21e45266592b49f2e2d91fb3c2c"></span>CassError <code class="sig-name descname">cass_cluster_set_coalesce_delay</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, cass_int64_t <em>delay_us</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv431cass_cluster_set_coalesce_delayP11CassCluster12cass_int64_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the amount of time, in microseconds, to wait for new requests to coalesce into a single system call. This should be set to a value around the latency SLA of your application’s requests while also considering the request’s roundtrip time. Larger values should be used for throughput bound workloads and lower values should be used for latency bound workloads.</p>
+<p><strong>Default:</strong> 200 us</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise an error occurred. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">delay_us</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv434cass_cluster_set_new_request_ratioP11CassCluster12cass_int32_t">
+<span id="_CPPv334cass_cluster_set_new_request_ratioP11CassCluster12cass_int32_t"></span><span id="_CPPv234cass_cluster_set_new_request_ratioP11CassCluster12cass_int32_t"></span><span id="cass_cluster_set_new_request_ratio__CassClusterP.cass_int32_t"></span><span class="target" id="struct_cass_cluster_1a00a255e24b4eea5d149c0c7a86d01458"></span>CassError <code class="sig-name descname">cass_cluster_set_new_request_ratio</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, cass_int32_t <em>ratio</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv434cass_cluster_set_new_request_ratioP11CassCluster12cass_int32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the ratio of time spent processing new requests versus handling the I/O and processing of outstanding requests. The range of this setting is 1 to 100, where larger values allocate more time to processing new requests and smaller values allocate more time to processing outstanding requests.</p>
+<p><strong>Default:</strong> 50</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise an error occurred. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ratio</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv440cass_cluster_set_max_concurrent_creationP11CassClusterj">
+<span id="_CPPv340cass_cluster_set_max_concurrent_creationP11CassClusterj"></span><span id="_CPPv240cass_cluster_set_max_concurrent_creationP11CassClusterj"></span><span id="cass_cluster_set_max_concurrent_creation__CassClusterP.unsigned"></span><span class="target" id="struct_cass_cluster_1ac5404987e5ae6084dee2f804a8a01cd7"></span>CassError <code class="sig-name descname">cass_cluster_set_max_concurrent_creation</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, unsigned <em>num_connections</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv440cass_cluster_set_max_concurrent_creationP11CassClusterj" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the maximum number of connections that will be created concurrently. Connections are created when the current connections are unable to keep up with request throughput.</p>
+<p><strong>Default:</strong> 1</p>
+<p></p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise an error occurred. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_connections</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv450cass_cluster_set_max_concurrent_requests_thresholdP11CassClusterj">
+<span id="_CPPv350cass_cluster_set_max_concurrent_requests_thresholdP11CassClusterj"></span><span id="_CPPv250cass_cluster_set_max_concurrent_requests_thresholdP11CassClusterj"></span><span id="cass_cluster_set_max_concurrent_requests_threshold__CassClusterP.unsigned"></span><span class="target" id="struct_cass_cluster_1a8a22786188533ce407b2c5a98e46a9b9"></span>CassError <code class="sig-name descname">cass_cluster_set_max_concurrent_requests_threshold</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, unsigned <em>num_requests</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv450cass_cluster_set_max_concurrent_requests_thresholdP11CassClusterj" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the threshold for the maximum number of concurrent requests in-flight on a connection before creating a new connection. The number of new connections created will not exceed max_connections_per_host.</p>
+<p><strong>Default:</strong> 100</p>
+<p></p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise an error occurred. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_requests</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv439cass_cluster_set_max_requests_per_flushP11CassClusterj">
+<span id="_CPPv339cass_cluster_set_max_requests_per_flushP11CassClusterj"></span><span id="_CPPv239cass_cluster_set_max_requests_per_flushP11CassClusterj"></span><span id="cass_cluster_set_max_requests_per_flush__CassClusterP.unsigned"></span><span class="target" id="struct_cass_cluster_1a7982528ba6e2816843f444ef88418429"></span>CassError <code class="sig-name descname">cass_cluster_set_max_requests_per_flush</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, unsigned <em>num_requests</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv439cass_cluster_set_max_requests_per_flushP11CassClusterj" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the maximum number of requests processed by an IO worker per flush.</p>
+<p><strong>Default:</strong> 128</p>
+<p></p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise an error occurred. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_requests</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv444cass_cluster_set_write_bytes_high_water_markP11CassClusterj">
+<span id="_CPPv344cass_cluster_set_write_bytes_high_water_markP11CassClusterj"></span><span id="_CPPv244cass_cluster_set_write_bytes_high_water_markP11CassClusterj"></span><span id="cass_cluster_set_write_bytes_high_water_mark__CassClusterP.unsigned"></span><span class="target" id="struct_cass_cluster_1a86ef18b6e52e8668653439bf3486ce06"></span>CassError <code class="sig-name descname">cass_cluster_set_write_bytes_high_water_mark</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, unsigned <em>num_bytes</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv444cass_cluster_set_write_bytes_high_water_markP11CassClusterj" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the high water mark for the number of bytes outstanding on a connection. Disables writes to a connection if the number of bytes queued exceed this value.</p>
+<p><strong>Default:</strong> 64 KB</p>
+<p></p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise an error occurred. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_bytes</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv443cass_cluster_set_write_bytes_low_water_markP11CassClusterj">
+<span id="_CPPv343cass_cluster_set_write_bytes_low_water_markP11CassClusterj"></span><span id="_CPPv243cass_cluster_set_write_bytes_low_water_markP11CassClusterj"></span><span id="cass_cluster_set_write_bytes_low_water_mark__CassClusterP.unsigned"></span><span class="target" id="struct_cass_cluster_1a652aeaee1ecf2f59a3c4b6e0ecac8723"></span>CassError <code class="sig-name descname">cass_cluster_set_write_bytes_low_water_mark</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, unsigned <em>num_bytes</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv443cass_cluster_set_write_bytes_low_water_markP11CassClusterj" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the low water mark for number of bytes outstanding on a connection. After exceeding high water mark bytes, writes will only resume once the number of bytes fall below this value.</p>
+<p><strong>Default:</strong> 32 KB</p>
+<p></p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise an error occurred. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_bytes</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv449cass_cluster_set_pending_requests_high_water_markP11CassClusterj">
+<span id="_CPPv349cass_cluster_set_pending_requests_high_water_markP11CassClusterj"></span><span id="_CPPv249cass_cluster_set_pending_requests_high_water_markP11CassClusterj"></span><span id="cass_cluster_set_pending_requests_high_water_mark__CassClusterP.unsigned"></span><span class="target" id="struct_cass_cluster_1abd8962505d70f13b6550672c0da59d28"></span>CassError <code class="sig-name descname">cass_cluster_set_pending_requests_high_water_mark</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, unsigned <em>num_requests</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv449cass_cluster_set_pending_requests_high_water_markP11CassClusterj" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the high water mark for the number of requests queued waiting for a connection in a connection pool. Disables writes to a host on an IO worker if the number of requests queued exceed this value.</p>
+<p><strong>Default:</strong> 256</p>
+<p></p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise an error occurred. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_requests</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv448cass_cluster_set_pending_requests_low_water_markP11CassClusterj">
+<span id="_CPPv348cass_cluster_set_pending_requests_low_water_markP11CassClusterj"></span><span id="_CPPv248cass_cluster_set_pending_requests_low_water_markP11CassClusterj"></span><span id="cass_cluster_set_pending_requests_low_water_mark__CassClusterP.unsigned"></span><span class="target" id="struct_cass_cluster_1a616328589c2e945cfc4955eafcbb6b39"></span>CassError <code class="sig-name descname">cass_cluster_set_pending_requests_low_water_mark</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, unsigned <em>num_requests</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv448cass_cluster_set_pending_requests_low_water_markP11CassClusterj" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the low water mark for the number of requests queued waiting for a connection in a connection pool. After exceeding high water mark requests, writes to a host will only resume once the number of requests fall below this value.</p>
+<p><strong>Default:</strong> 128</p>
+<p></p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise an error occurred. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_requests</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv432cass_cluster_set_connect_timeoutP11CassClusterj">
+<span id="_CPPv332cass_cluster_set_connect_timeoutP11CassClusterj"></span><span id="_CPPv232cass_cluster_set_connect_timeoutP11CassClusterj"></span><span id="cass_cluster_set_connect_timeout__CassClusterP.unsigned"></span><span class="target" id="struct_cass_cluster_1a7e977d7e5bc1249f65157860efdb0b5b"></span>void <code class="sig-name descname">cass_cluster_set_connect_timeout</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, unsigned <em>timeout_ms</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv432cass_cluster_set_connect_timeoutP11CassClusterj" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the timeout for connecting to a node.</p>
+<p><strong>Default:</strong> 5000 milliseconds</p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">timeout_ms</span></code>: Connect timeout in milliseconds </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv432cass_cluster_set_request_timeoutP11CassClusterj">
+<span id="_CPPv332cass_cluster_set_request_timeoutP11CassClusterj"></span><span id="_CPPv232cass_cluster_set_request_timeoutP11CassClusterj"></span><span id="cass_cluster_set_request_timeout__CassClusterP.unsigned"></span><span class="target" id="struct_cass_cluster_1a7c02c5320bdcfff9e617ddfbeba5f713"></span>void <code class="sig-name descname">cass_cluster_set_request_timeout</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, unsigned <em>timeout_ms</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv432cass_cluster_set_request_timeoutP11CassClusterj" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the timeout for waiting for a response from a node.</p>
+<p><strong>Default:</strong> 12000 milliseconds</p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">timeout_ms</span></code>: Request timeout in milliseconds. Use 0 for no timeout. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv432cass_cluster_set_resolve_timeoutP11CassClusterj">
+<span id="_CPPv332cass_cluster_set_resolve_timeoutP11CassClusterj"></span><span id="_CPPv232cass_cluster_set_resolve_timeoutP11CassClusterj"></span><span id="cass_cluster_set_resolve_timeout__CassClusterP.unsigned"></span><span class="target" id="struct_cass_cluster_1a8ae11c93f4592b15deec81bfd998f34c"></span>void <code class="sig-name descname">cass_cluster_set_resolve_timeout</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, unsigned <em>timeout_ms</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv432cass_cluster_set_resolve_timeoutP11CassClusterj" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the timeout for waiting for DNS name resolution.</p>
+<p><strong>Default:</strong> 2000 milliseconds</p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">timeout_ms</span></code>: Request timeout in milliseconds </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv437cass_cluster_set_max_schema_wait_timeP11CassClusterj">
+<span id="_CPPv337cass_cluster_set_max_schema_wait_timeP11CassClusterj"></span><span id="_CPPv237cass_cluster_set_max_schema_wait_timeP11CassClusterj"></span><span id="cass_cluster_set_max_schema_wait_time__CassClusterP.unsigned"></span><span class="target" id="struct_cass_cluster_1ad7b0cb59ac27f66b7ce58bd8851030f9"></span>void <code class="sig-name descname">cass_cluster_set_max_schema_wait_time</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, unsigned <em>wait_time_ms</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv437cass_cluster_set_max_schema_wait_timeP11CassClusterj" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the maximum time to wait for schema agreement after a schema change is made (e.g. creating, altering, dropping a table/keyspace/view/index etc).</p>
+<p><strong>Default:</strong> 10000 milliseconds</p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wait_time_ms</span></code>: Wait time in milliseconds </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv428cass_cluster_set_credentialsP11CassClusterPKcPKc">
+<span id="_CPPv328cass_cluster_set_credentialsP11CassClusterPKcPKc"></span><span id="_CPPv228cass_cluster_set_credentialsP11CassClusterPKcPKc"></span><span id="cass_cluster_set_credentials__CassClusterP.cCP.cCP"></span><span class="target" id="struct_cass_cluster_1a44848bd5231e0e525fdfa5c5f4c37ff8"></span>void <code class="sig-name descname">cass_cluster_set_credentials</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, <em class="property">const</em> char *<em>username</em>, <em class="property">const</em> char *<em>password</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428cass_cluster_set_credentialsP11CassClusterPKcPKc" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets credentials for plain text authentication.</p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">username</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">password</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv430cass_cluster_set_credentials_nP11CassClusterPKc6size_tPKc6size_t">
+<span id="_CPPv330cass_cluster_set_credentials_nP11CassClusterPKc6size_tPKc6size_t"></span><span id="_CPPv230cass_cluster_set_credentials_nP11CassClusterPKc6size_tPKc6size_t"></span><span id="cass_cluster_set_credentials_n__CassClusterP.cCP.s.cCP.s"></span><span class="target" id="struct_cass_cluster_1a8ab8a6a5430bbb560368b5ac31da265a"></span>void <code class="sig-name descname">cass_cluster_set_credentials_n</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, <em class="property">const</em> char *<em>username</em>, size_t <em>username_length</em>, <em class="property">const</em> char *<em>password</em>, size_t <em>password_length</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv430cass_cluster_set_credentials_nP11CassClusterPKc6size_tPKc6size_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Same as <a class="reference internal" href="#struct_cass_cluster_1a44848bd5231e0e525fdfa5c5f4c37ff8"><span class="std std-ref">cass_cluster_set_credentials()</span></a>, but with lengths for string parameters.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>same as <a class="reference internal" href="#struct_cass_cluster_1a44848bd5231e0e525fdfa5c5f4c37ff8"><span class="std std-ref">cass_cluster_set_credentials()</span></a></p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#struct_cass_cluster_1a44848bd5231e0e525fdfa5c5f4c37ff8"><span class="std std-ref">cass_cluster_set_credentials()</span></a>; </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">username</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">username_length</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">password</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">password_length</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv441cass_cluster_set_load_balance_round_robinP11CassCluster">
+<span id="_CPPv341cass_cluster_set_load_balance_round_robinP11CassCluster"></span><span id="_CPPv241cass_cluster_set_load_balance_round_robinP11CassCluster"></span><span id="cass_cluster_set_load_balance_round_robin__CassClusterP"></span><span class="target" id="struct_cass_cluster_1a22251b0a4555a12a955088358b66ba5d"></span>void <code class="sig-name descname">cass_cluster_set_load_balance_round_robin</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv441cass_cluster_set_load_balance_round_robinP11CassCluster" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configures the cluster to use round-robin load balancing.</p>
+<p>The driver discovers all nodes in a cluster and cycles through them per request. All are considered ‘local’.</p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv438cass_cluster_set_load_balance_dc_awareP11CassClusterPKcj11cass_bool_t">
+<span id="_CPPv338cass_cluster_set_load_balance_dc_awareP11CassClusterPKcj11cass_bool_t"></span><span id="_CPPv238cass_cluster_set_load_balance_dc_awareP11CassClusterPKcj11cass_bool_t"></span><span id="cass_cluster_set_load_balance_dc_aware__CassClusterP.cCP.unsigned.cass_bool_t"></span><span class="target" id="struct_cass_cluster_1a46b9816129aaa5ab61a1363489dccfd0"></span>CassError <code class="sig-name descname">cass_cluster_set_load_balance_dc_aware</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, <em class="property">const</em> char *<em>local_dc</em>, unsigned <em>used_hosts_per_remote_dc</em>, cass_bool_t <em>allow_remote_dcs_for_local_cl</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv438cass_cluster_set_load_balance_dc_awareP11CassClusterPKcj11cass_bool_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configures the cluster to use DC-aware load balancing. For each query, all live nodes in a primary ‘local’ DC are tried first, followed by any node from other DCs.</p>
+<p><strong>Note:</strong> This is the default, and does not need to be called unless switching an existing from another policy or changing settings. Without further configuration, a default local_dc is chosen from the first connected contact point, and no remote hosts are considered in query plans. If relying on this mechanism, be sure to use only contact points from the local DC.</p>
+<p></p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise an error occurred </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">local_dc</span></code>: The primary data center to try first </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">used_hosts_per_remote_dc</span></code>: The number of hosts used in each remote DC if no hosts are available in the local dc (<strong>deprecated</strong>) </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">allow_remote_dcs_for_local_cl</span></code>: Allows remote hosts to be used if no local dc hosts are available and the consistency level is LOCAL_ONE or LOCAL_QUORUM (<strong>deprecated</strong>) </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv440cass_cluster_set_load_balance_dc_aware_nP11CassClusterPKc6size_tj11cass_bool_t">
+<span id="_CPPv340cass_cluster_set_load_balance_dc_aware_nP11CassClusterPKc6size_tj11cass_bool_t"></span><span id="_CPPv240cass_cluster_set_load_balance_dc_aware_nP11CassClusterPKc6size_tj11cass_bool_t"></span><span id="cass_cluster_set_load_balance_dc_aware_n__CassClusterP.cCP.s.unsigned.cass_bool_t"></span><span class="target" id="struct_cass_cluster_1a111228c4e6dff996f594ffcd60e0f24b"></span>CassError <code class="sig-name descname">cass_cluster_set_load_balance_dc_aware_n</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, <em class="property">const</em> char *<em>local_dc</em>, size_t <em>local_dc_length</em>, unsigned <em>used_hosts_per_remote_dc</em>, cass_bool_t <em>allow_remote_dcs_for_local_cl</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv440cass_cluster_set_load_balance_dc_aware_nP11CassClusterPKc6size_tj11cass_bool_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Same as <a class="reference internal" href="#struct_cass_cluster_1a46b9816129aaa5ab61a1363489dccfd0"><span class="std std-ref">cass_cluster_set_load_balance_dc_aware()</span></a>, but with lengths for string parameters.</p>
+<p></p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>same as <a class="reference internal" href="#struct_cass_cluster_1a46b9816129aaa5ab61a1363489dccfd0"><span class="std std-ref">cass_cluster_set_load_balance_dc_aware()</span></a></p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#struct_cass_cluster_1a46b9816129aaa5ab61a1363489dccfd0"><span class="std std-ref">cass_cluster_set_load_balance_dc_aware()</span></a> </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">local_dc</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">local_dc_length</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">used_hosts_per_remote_dc</span></code>: (<strong>deprecated</strong>) </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">allow_remote_dcs_for_local_cl</span></code>: (<strong>deprecated</strong>) </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv436cass_cluster_set_token_aware_routingP11CassCluster11cass_bool_t">
+<span id="_CPPv336cass_cluster_set_token_aware_routingP11CassCluster11cass_bool_t"></span><span id="_CPPv236cass_cluster_set_token_aware_routingP11CassCluster11cass_bool_t"></span><span id="cass_cluster_set_token_aware_routing__CassClusterP.cass_bool_t"></span><span class="target" id="struct_cass_cluster_1a12aa6b80523d58a5875e450d7d7913a2"></span>void <code class="sig-name descname">cass_cluster_set_token_aware_routing</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, cass_bool_t <em>enabled</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv436cass_cluster_set_token_aware_routingP11CassCluster11cass_bool_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configures the cluster to use token-aware request routing or not.</p>
+<p><strong>Important:</strong> Token-aware routing depends on keyspace metadata. For this reason enabling token-aware routing will also enable retrieving and updating keyspace schema metadata.</p>
+<p><strong>Default:</strong> cass_true (enabled).</p>
+<p>This routing policy composes the base routing policy, routing requests first to replicas on nodes considered ‘local’ by the base load balancing policy.</p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">enabled</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv453cass_cluster_set_token_aware_routing_shuffle_replicasP11CassCluster11cass_bool_t">
+<span id="_CPPv353cass_cluster_set_token_aware_routing_shuffle_replicasP11CassCluster11cass_bool_t"></span><span id="_CPPv253cass_cluster_set_token_aware_routing_shuffle_replicasP11CassCluster11cass_bool_t"></span><span id="cass_cluster_set_token_aware_routing_shuffle_replicas__CassClusterP.cass_bool_t"></span><span class="target" id="struct_cass_cluster_1abd8ad579c8c15b2e31dfc2910e00a55e"></span>void <code class="sig-name descname">cass_cluster_set_token_aware_routing_shuffle_replicas</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, cass_bool_t <em>enabled</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv453cass_cluster_set_token_aware_routing_shuffle_replicasP11CassCluster11cass_bool_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configures token-aware routing to randomly shuffle replicas. This can reduce the effectiveness of server-side caching, but it can better distribute load over replicas for a given partition key.</p>
+<p><strong>Note:</strong> Token-aware routing must be enabled for the setting to be applicable.</p>
+<p><strong>Default:</strong> cass_true (enabled).</p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">enabled</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv438cass_cluster_set_latency_aware_routingP11CassCluster11cass_bool_t">
+<span id="_CPPv338cass_cluster_set_latency_aware_routingP11CassCluster11cass_bool_t"></span><span id="_CPPv238cass_cluster_set_latency_aware_routingP11CassCluster11cass_bool_t"></span><span id="cass_cluster_set_latency_aware_routing__CassClusterP.cass_bool_t"></span><span class="target" id="struct_cass_cluster_1a45deb4d5fe1a8ddde37b30712be63173"></span>void <code class="sig-name descname">cass_cluster_set_latency_aware_routing</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, cass_bool_t <em>enabled</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv438cass_cluster_set_latency_aware_routingP11CassCluster11cass_bool_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configures the cluster to use latency-aware request routing or not.</p>
+<p><strong>Default:</strong> cass_false (disabled).</p>
+<p>This routing policy is a top-level routing policy. It uses the base routing policy to determine locality (dc-aware) and/or placement (token-aware) before considering the latency.</p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">enabled</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv447cass_cluster_set_latency_aware_routing_settingsP11CassCluster13cass_double_t13cass_uint64_t13cass_uint64_t13cass_uint64_t13cass_uint64_t">
+<span id="_CPPv347cass_cluster_set_latency_aware_routing_settingsP11CassCluster13cass_double_t13cass_uint64_t13cass_uint64_t13cass_uint64_t13cass_uint64_t"></span><span id="_CPPv247cass_cluster_set_latency_aware_routing_settingsP11CassCluster13cass_double_t13cass_uint64_t13cass_uint64_t13cass_uint64_t13cass_uint64_t"></span><span id="cass_cluster_set_latency_aware_routing_settings__CassClusterP.cass_double_t.cass_uint64_t.cass_uint64_t.cass_uint64_t.cass_uint64_t"></span><span class="target" id="struct_cass_cluster_1ac8c9fb3317f8787c9318c7fe45075276"></span>void <code class="sig-name descname">cass_cluster_set_latency_aware_routing_settings</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, cass_double_t <em>exclusion_threshold</em>, cass_uint64_t <em>scale_ms</em>, cass_uint64_t <em>retry_period_ms</em>, cass_uint64_t <em>update_rate_ms</em>, cass_uint64_t <em>min_measured</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv447cass_cluster_set_latency_aware_routing_settingsP11CassCluster13cass_double_t13cass_uint64_t13cass_uint64_t13cass_uint64_t13cass_uint64_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configures the settings for latency-aware request routing.</p>
+<p><strong>Defaults:</strong></p>
+<p><ul class="simple">
+<li><p>exclusion_threshold: 2.0 </p></li>
+<li><p>scale_ms: 100 milliseconds </p></li>
+<li><p>retry_period_ms: 10,000 milliseconds (10 seconds) </p></li>
+<li><p>update_rate_ms: 100 milliseconds </p></li>
+<li><p>min_measured: 50 </p></li>
+</ul>
+</p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">exclusion_threshold</span></code>: Controls how much worse the latency must be compared to the average latency of the best performing node before it penalized. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">scale_ms</span></code>: Controls the weight given to older latencies when calculating the average latency of a node. A bigger scale will give more weight to older latency measurements. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">retry_period_ms</span></code>: The amount of time a node is penalized by the policy before being given a second chance when the current average latency exceeds the calculated threshold (exclusion_threshold * best_average_latency). </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">update_rate_ms</span></code>: The rate at which the best average latency is recomputed. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">min_measured</span></code>: The minimum number of measurements per-host required to be considered by the policy. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv436cass_cluster_set_whitelist_filteringP11CassClusterPKc">
+<span id="_CPPv336cass_cluster_set_whitelist_filteringP11CassClusterPKc"></span><span id="_CPPv236cass_cluster_set_whitelist_filteringP11CassClusterPKc"></span><span id="cass_cluster_set_whitelist_filtering__CassClusterP.cCP"></span><span class="target" id="struct_cass_cluster_1a90133103a91651ec103ada9ef4ccc2ad"></span>void <code class="sig-name descname">cass_cluster_set_whitelist_filtering</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, <em class="property">const</em> char *<em>hosts</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv436cass_cluster_set_whitelist_filteringP11CassClusterPKc" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets/Appends whitelist hosts. The first call sets the whitelist hosts and any subsequent calls appends additional hosts. Passing an empty string will clear and disable the whitelist. White space is striped from the hosts.</p>
+<p>This policy filters requests to all other policies, only allowing requests to the hosts contained in the whitelist. Any host not in the whitelist will be ignored and a connection will not be established. This policy is useful for ensuring that the driver will only connect to a predefined set of hosts.</p>
+<p>Examples: “127.0.0.1” “127.0.0.1,127.0.0.2”</p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hosts</span></code>: A comma delimited list of addresses. An empty string will clear the whitelist hosts. The string is copied into the cluster configuration; the memory pointed to by this parameter can be freed after this call. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv438cass_cluster_set_whitelist_filtering_nP11CassClusterPKc6size_t">
+<span id="_CPPv338cass_cluster_set_whitelist_filtering_nP11CassClusterPKc6size_t"></span><span id="_CPPv238cass_cluster_set_whitelist_filtering_nP11CassClusterPKc6size_t"></span><span id="cass_cluster_set_whitelist_filtering_n__CassClusterP.cCP.s"></span><span class="target" id="struct_cass_cluster_1abdd0bd78fdcbd8e8e269c5a9fcc36201"></span>void <code class="sig-name descname">cass_cluster_set_whitelist_filtering_n</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, <em class="property">const</em> char *<em>hosts</em>, size_t <em>hosts_length</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv438cass_cluster_set_whitelist_filtering_nP11CassClusterPKc6size_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Same as <a class="reference internal" href="#struct_cass_cluster_1a90133103a91651ec103ada9ef4ccc2ad"><span class="std std-ref">cass_cluster_set_whitelist_filtering()</span></a>, but with lengths for string parameters.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>same as <a class="reference internal" href="#struct_cass_cluster_1a90133103a91651ec103ada9ef4ccc2ad"><span class="std std-ref">cass_cluster_set_whitelist_filtering()</span></a></p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#struct_cass_cluster_1a90133103a91651ec103ada9ef4ccc2ad"><span class="std std-ref">cass_cluster_set_whitelist_filtering()</span></a> </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hosts</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hosts_length</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv436cass_cluster_set_blacklist_filteringP11CassClusterPKc">
+<span id="_CPPv336cass_cluster_set_blacklist_filteringP11CassClusterPKc"></span><span id="_CPPv236cass_cluster_set_blacklist_filteringP11CassClusterPKc"></span><span id="cass_cluster_set_blacklist_filtering__CassClusterP.cCP"></span><span class="target" id="struct_cass_cluster_1ad33d26b9f9a99037fad562850bf185e5"></span>void <code class="sig-name descname">cass_cluster_set_blacklist_filtering</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, <em class="property">const</em> char *<em>hosts</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv436cass_cluster_set_blacklist_filteringP11CassClusterPKc" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets/Appends blacklist hosts. The first call sets the blacklist hosts and any subsequent calls appends additional hosts. Passing an empty string will clear and disable the blacklist. White space is striped from the hosts.</p>
+<p>This policy filters requests to all other policies, only allowing requests to the hosts not contained in the blacklist. Any host in the blacklist will be ignored and a connection will not be established. This policy is useful for ensuring that the driver will not connect to a predefined set of hosts.</p>
+<p>Examples: “127.0.0.1” “127.0.0.1,127.0.0.2”</p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hosts</span></code>: A comma delimited list of addresses. An empty string will clear the blacklist hosts. The string is copied into the cluster configuration; the memory pointed to by this parameter can be freed after this call. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv438cass_cluster_set_blacklist_filtering_nP11CassClusterPKc6size_t">
+<span id="_CPPv338cass_cluster_set_blacklist_filtering_nP11CassClusterPKc6size_t"></span><span id="_CPPv238cass_cluster_set_blacklist_filtering_nP11CassClusterPKc6size_t"></span><span id="cass_cluster_set_blacklist_filtering_n__CassClusterP.cCP.s"></span><span class="target" id="struct_cass_cluster_1aebb86510a627b18add13519e47d551f6"></span>void <code class="sig-name descname">cass_cluster_set_blacklist_filtering_n</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, <em class="property">const</em> char *<em>hosts</em>, size_t <em>hosts_length</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv438cass_cluster_set_blacklist_filtering_nP11CassClusterPKc6size_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Same as cass_cluster_set_blacklist_filtering_hosts(), but with lengths for string parameters.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>same as <a class="reference internal" href="#struct_cass_cluster_1ad33d26b9f9a99037fad562850bf185e5"><span class="std std-ref">cass_cluster_set_blacklist_filtering()</span></a></p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#struct_cass_cluster_1ad33d26b9f9a99037fad562850bf185e5"><span class="std std-ref">cass_cluster_set_blacklist_filtering()</span></a> </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hosts</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hosts_length</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv439cass_cluster_set_whitelist_dc_filteringP11CassClusterPKc">
+<span id="_CPPv339cass_cluster_set_whitelist_dc_filteringP11CassClusterPKc"></span><span id="_CPPv239cass_cluster_set_whitelist_dc_filteringP11CassClusterPKc"></span><span id="cass_cluster_set_whitelist_dc_filtering__CassClusterP.cCP"></span><span class="target" id="struct_cass_cluster_1a82ff31637d2b388cc382e724319dace5"></span>void <code class="sig-name descname">cass_cluster_set_whitelist_dc_filtering</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, <em class="property">const</em> char *<em>dcs</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv439cass_cluster_set_whitelist_dc_filteringP11CassClusterPKc" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Same as <a class="reference internal" href="#struct_cass_cluster_1a90133103a91651ec103ada9ef4ccc2ad"><span class="std std-ref">cass_cluster_set_whitelist_filtering()</span></a>, but whitelist all hosts of a dc</p>
+<p>Examples: “dc1”, “dc1,dc2”</p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dcs</span></code>: A comma delimited list of dcs. An empty string will clear the whitelist dcs. The string is copied into the cluster configuration; the memory pointed to by this parameter can be freed after this call. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv441cass_cluster_set_whitelist_dc_filtering_nP11CassClusterPKc6size_t">
+<span id="_CPPv341cass_cluster_set_whitelist_dc_filtering_nP11CassClusterPKc6size_t"></span><span id="_CPPv241cass_cluster_set_whitelist_dc_filtering_nP11CassClusterPKc6size_t"></span><span id="cass_cluster_set_whitelist_dc_filtering_n__CassClusterP.cCP.s"></span><span class="target" id="struct_cass_cluster_1aaf3d643345a12d0ca187a14e45d110e7"></span>void <code class="sig-name descname">cass_cluster_set_whitelist_dc_filtering_n</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, <em class="property">const</em> char *<em>dcs</em>, size_t <em>dcs_length</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv441cass_cluster_set_whitelist_dc_filtering_nP11CassClusterPKc6size_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Same as <a class="reference internal" href="#struct_cass_cluster_1a82ff31637d2b388cc382e724319dace5"><span class="std std-ref">cass_cluster_set_whitelist_dc_filtering()</span></a>, but with lengths for string parameters.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>same as <a class="reference internal" href="#struct_cass_cluster_1a82ff31637d2b388cc382e724319dace5"><span class="std std-ref">cass_cluster_set_whitelist_dc_filtering()</span></a></p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#struct_cass_cluster_1a82ff31637d2b388cc382e724319dace5"><span class="std std-ref">cass_cluster_set_whitelist_dc_filtering()</span></a> </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dcs</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dcs_length</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv439cass_cluster_set_blacklist_dc_filteringP11CassClusterPKc">
+<span id="_CPPv339cass_cluster_set_blacklist_dc_filteringP11CassClusterPKc"></span><span id="_CPPv239cass_cluster_set_blacklist_dc_filteringP11CassClusterPKc"></span><span id="cass_cluster_set_blacklist_dc_filtering__CassClusterP.cCP"></span><span class="target" id="struct_cass_cluster_1a173626e06c076728d9f7d1cc4e50c03b"></span>void <code class="sig-name descname">cass_cluster_set_blacklist_dc_filtering</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, <em class="property">const</em> char *<em>dcs</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv439cass_cluster_set_blacklist_dc_filteringP11CassClusterPKc" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Same as <a class="reference internal" href="#struct_cass_cluster_1ad33d26b9f9a99037fad562850bf185e5"><span class="std std-ref">cass_cluster_set_blacklist_filtering()</span></a>, but blacklist all hosts of a dc</p>
+<p>Examples: “dc1”, “dc1,dc2”</p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dcs</span></code>: A comma delimited list of dcs. An empty string will clear the blacklist dcs. The string is copied into the cluster configuration; the memory pointed to by this parameter can be freed after this call. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv441cass_cluster_set_blacklist_dc_filtering_nP11CassClusterPKc6size_t">
+<span id="_CPPv341cass_cluster_set_blacklist_dc_filtering_nP11CassClusterPKc6size_t"></span><span id="_CPPv241cass_cluster_set_blacklist_dc_filtering_nP11CassClusterPKc6size_t"></span><span id="cass_cluster_set_blacklist_dc_filtering_n__CassClusterP.cCP.s"></span><span class="target" id="struct_cass_cluster_1a896fd37a15111eb7a488300d8b460388"></span>void <code class="sig-name descname">cass_cluster_set_blacklist_dc_filtering_n</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, <em class="property">const</em> char *<em>dcs</em>, size_t <em>dcs_length</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv441cass_cluster_set_blacklist_dc_filtering_nP11CassClusterPKc6size_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Same as <a class="reference internal" href="#struct_cass_cluster_1a173626e06c076728d9f7d1cc4e50c03b"><span class="std std-ref">cass_cluster_set_blacklist_dc_filtering()</span></a>, but with lengths for string parameters.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>same as <a class="reference internal" href="#struct_cass_cluster_1a173626e06c076728d9f7d1cc4e50c03b"><span class="std std-ref">cass_cluster_set_blacklist_dc_filtering()</span></a></p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#struct_cass_cluster_1a173626e06c076728d9f7d1cc4e50c03b"><span class="std std-ref">cass_cluster_set_blacklist_dc_filtering()</span></a> </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dcs</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dcs_length</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv428cass_cluster_set_tcp_nodelayP11CassCluster11cass_bool_t">
+<span id="_CPPv328cass_cluster_set_tcp_nodelayP11CassCluster11cass_bool_t"></span><span id="_CPPv228cass_cluster_set_tcp_nodelayP11CassCluster11cass_bool_t"></span><span id="cass_cluster_set_tcp_nodelay__CassClusterP.cass_bool_t"></span><span class="target" id="struct_cass_cluster_1a3378e5aa20dbdb35fa08edf541aa0b3b"></span>void <code class="sig-name descname">cass_cluster_set_tcp_nodelay</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, cass_bool_t <em>enabled</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428cass_cluster_set_tcp_nodelayP11CassCluster11cass_bool_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enable/Disable Nagle’s algorithm on connections.</p>
+<p><strong>Default:</strong> cass_true (disables Nagle’s algorithm).</p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">enabled</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv430cass_cluster_set_tcp_keepaliveP11CassCluster11cass_bool_tj">
+<span id="_CPPv330cass_cluster_set_tcp_keepaliveP11CassCluster11cass_bool_tj"></span><span id="_CPPv230cass_cluster_set_tcp_keepaliveP11CassCluster11cass_bool_tj"></span><span id="cass_cluster_set_tcp_keepalive__CassClusterP.cass_bool_t.unsigned"></span><span class="target" id="struct_cass_cluster_1ab1c26881f6700d0bde4008b6d097f9b0"></span>void <code class="sig-name descname">cass_cluster_set_tcp_keepalive</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, cass_bool_t <em>enabled</em>, unsigned <em>delay_secs</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv430cass_cluster_set_tcp_keepaliveP11CassCluster11cass_bool_tj" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enable/Disable TCP keep-alive</p>
+<p><strong>Default:</strong> cass_false (disabled).</p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">enabled</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">delay_secs</span></code>: The initial delay in seconds, ignored when <code class="docutils literal notranslate"><span class="pre">enabled</span></code> is false. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv430cass_cluster_set_timestamp_genP11CassClusterP16CassTimestampGen">
+<span id="_CPPv330cass_cluster_set_timestamp_genP11CassClusterP16CassTimestampGen"></span><span id="_CPPv230cass_cluster_set_timestamp_genP11CassClusterP16CassTimestampGen"></span><span id="cass_cluster_set_timestamp_gen__CassClusterP.CassTimestampGenP"></span><span class="target" id="struct_cass_cluster_1ac8b633f6fb265480042362bb2754a909"></span>void <code class="sig-name descname">cass_cluster_set_timestamp_gen</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, <a class="reference internal" href="struct.CassTimestampGen.html#_CPPv416CassTimestampGen" title="CassTimestampGen">CassTimestampGen</a> *<em>timestamp_gen</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv430cass_cluster_set_timestamp_genP11CassClusterP16CassTimestampGen" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the timestamp generator used to assign timestamps to all requests unless overridden by setting the timestamp on a statement or a batch.</p>
+<p><strong>Default:</strong> Monotonically increasing, client-side timestamp generator.</p>
+<p><strong>Requires Apache Cassandra:</strong> 2.1+</p>
+<p><dl class="simple">
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="struct.CassStatement.html#struct_cass_statement_1a6a2b3ce2fd1a6680478a800b2d43ee2e"><span class="std std-ref">cass_statement_set_timestamp()</span></a> </p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="struct.CassBatch.html#struct_cass_batch_1a32f50daef4500314d81f94e27ac58a4f"><span class="std std-ref">cass_batch_set_timestamp()</span></a> </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">timestamp_gen</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv446cass_cluster_set_connection_heartbeat_intervalP11CassClusterj">
+<span id="_CPPv346cass_cluster_set_connection_heartbeat_intervalP11CassClusterj"></span><span id="_CPPv246cass_cluster_set_connection_heartbeat_intervalP11CassClusterj"></span><span id="cass_cluster_set_connection_heartbeat_interval__CassClusterP.unsigned"></span><span class="target" id="struct_cass_cluster_1ac592f8d6af0d52ab38ea51ad870b3723"></span>void <code class="sig-name descname">cass_cluster_set_connection_heartbeat_interval</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, unsigned <em>interval_secs</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv446cass_cluster_set_connection_heartbeat_intervalP11CassClusterj" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the amount of time between heartbeat messages and controls the amount of time the connection must be idle before sending heartbeat messages. This is useful for preventing intermediate network devices from dropping connections.</p>
+<p><strong>Default:</strong> 30 seconds</p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">interval_secs</span></code>: Use 0 to disable heartbeat messages </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv440cass_cluster_set_connection_idle_timeoutP11CassClusterj">
+<span id="_CPPv340cass_cluster_set_connection_idle_timeoutP11CassClusterj"></span><span id="_CPPv240cass_cluster_set_connection_idle_timeoutP11CassClusterj"></span><span id="cass_cluster_set_connection_idle_timeout__CassClusterP.unsigned"></span><span class="target" id="struct_cass_cluster_1aa1534b16a0f7fdb42f76275d36d9f399"></span>void <code class="sig-name descname">cass_cluster_set_connection_idle_timeout</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, unsigned <em>timeout_secs</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv440cass_cluster_set_connection_idle_timeoutP11CassClusterj" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the amount of time a connection is allowed to be without a successful heartbeat response before being terminated and scheduled for reconnection.</p>
+<p><strong>Default:</strong> 60 seconds</p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">timeout_secs</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv429cass_cluster_set_retry_policyP11CassClusterP15CassRetryPolicy">
+<span id="_CPPv329cass_cluster_set_retry_policyP11CassClusterP15CassRetryPolicy"></span><span id="_CPPv229cass_cluster_set_retry_policyP11CassClusterP15CassRetryPolicy"></span><span id="cass_cluster_set_retry_policy__CassClusterP.CassRetryPolicyP"></span><span class="target" id="struct_cass_cluster_1ab2093e6dd5a154d8211f4959c0d70bb2"></span>void <code class="sig-name descname">cass_cluster_set_retry_policy</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, <a class="reference internal" href="struct.CassRetryPolicy.html#_CPPv415CassRetryPolicy" title="CassRetryPolicy">CassRetryPolicy</a> *<em>retry_policy</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv429cass_cluster_set_retry_policyP11CassClusterP15CassRetryPolicy" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the retry policy used for all requests unless overridden by setting a retry policy on a statement or a batch.</p>
+<p><strong>Default:</strong> The same policy as would be created by the function: <a class="reference internal" href="struct.CassRetryPolicy.html#struct_cass_retry_policy_1addd68e9a88f975fc9f6a1f15c5633ae0"><span class="std std-ref">cass_retry_policy_default_new()</span></a>. This policy will retry on a read timeout if there was enough replicas, but no data present, on a write timeout if a logged batch request failed to write the batch log, and on a unavailable error it retries using a new host. In all other cases the default policy will return an error.</p>
+<p><dl class="simple">
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="struct.CassRetryPolicy.html#struct_cass_retry_policy_1addd68e9a88f975fc9f6a1f15c5633ae0"><span class="std std-ref">cass_retry_policy_default_new()</span></a> </p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="struct.CassStatement.html#struct_cass_statement_1a8712a73575e42093fec82dc0ccdc2f49"><span class="std std-ref">cass_statement_set_retry_policy()</span></a> </p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="struct.CassBatch.html#struct_cass_batch_1ad8fcd519b5606333378afd7f75555c29"><span class="std std-ref">cass_batch_set_retry_policy()</span></a> </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">retry_policy</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv427cass_cluster_set_use_schemaP11CassCluster11cass_bool_t">
+<span id="_CPPv327cass_cluster_set_use_schemaP11CassCluster11cass_bool_t"></span><span id="_CPPv227cass_cluster_set_use_schemaP11CassCluster11cass_bool_t"></span><span id="cass_cluster_set_use_schema__CassClusterP.cass_bool_t"></span><span class="target" id="struct_cass_cluster_1a05886577792fb7006c0055aae4d56b32"></span>void <code class="sig-name descname">cass_cluster_set_use_schema</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, cass_bool_t <em>enabled</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv427cass_cluster_set_use_schemaP11CassCluster11cass_bool_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enable/Disable retrieving and updating schema metadata. If disabled this is allows the driver to skip over retrieving and updating schema metadata and <a class="reference internal" href="struct.CassSession.html#struct_cass_session_1a4bcf313991aa2a08117d2f1101327dc6"><span class="std std-ref">cass_session_get_schema_meta()</span></a> will always return an empty object. This can be useful for reducing the startup overhead of short-lived sessions.</p>
+<p><strong>Default:</strong> cass_true (enabled).</p>
+<p><dl class="simple">
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="struct.CassSession.html#struct_cass_session_1a4bcf313991aa2a08117d2f1101327dc6"><span class="std std-ref">cass_session_get_schema_meta()</span></a> </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">enabled</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv440cass_cluster_set_use_hostname_resolutionP11CassCluster11cass_bool_t">
+<span id="_CPPv340cass_cluster_set_use_hostname_resolutionP11CassCluster11cass_bool_t"></span><span id="_CPPv240cass_cluster_set_use_hostname_resolutionP11CassCluster11cass_bool_t"></span><span id="cass_cluster_set_use_hostname_resolution__CassClusterP.cass_bool_t"></span><span class="target" id="struct_cass_cluster_1a45d9b11869660eb51dd69b90054d26a6"></span>CassError <code class="sig-name descname">cass_cluster_set_use_hostname_resolution</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, cass_bool_t <em>enabled</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv440cass_cluster_set_use_hostname_resolutionP11CassCluster11cass_bool_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enable/Disable retrieving hostnames for IP addresses using reverse IP lookup.</p>
+<p>This is useful for authentication (Kerberos) or encryption (SSL) services that require a valid hostname for verification.</p>
+<p><strong>Default:</strong> cass_false (disabled).</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise an error occurred</p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#struct_cass_cluster_1a8ae11c93f4592b15deec81bfd998f34c"><span class="std std-ref">cass_cluster_set_resolve_timeout()</span></a> </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">enabled</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv446cass_cluster_set_use_randomized_contact_pointsP11CassCluster11cass_bool_t">
+<span id="_CPPv346cass_cluster_set_use_randomized_contact_pointsP11CassCluster11cass_bool_t"></span><span id="_CPPv246cass_cluster_set_use_randomized_contact_pointsP11CassCluster11cass_bool_t"></span><span id="cass_cluster_set_use_randomized_contact_points__CassClusterP.cass_bool_t"></span><span class="target" id="struct_cass_cluster_1a1747fe29bbda38e5cecb328f645b4938"></span>CassError <code class="sig-name descname">cass_cluster_set_use_randomized_contact_points</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, cass_bool_t <em>enabled</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv446cass_cluster_set_use_randomized_contact_pointsP11CassCluster11cass_bool_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enable/Disable the randomization of the contact points list.</p>
+<p><strong>Default:</strong> cass_true (enabled).</p>
+<p><strong>Important:</strong> This setting should only be disabled for debugging or tests.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise an error occurred </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">enabled</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv454cass_cluster_set_constant_speculative_execution_policyP11CassCluster12cass_int64_ti">
+<span id="_CPPv354cass_cluster_set_constant_speculative_execution_policyP11CassCluster12cass_int64_ti"></span><span id="_CPPv254cass_cluster_set_constant_speculative_execution_policyP11CassCluster12cass_int64_ti"></span><span id="cass_cluster_set_constant_speculative_execution_policy__CassClusterP.cass_int64_t.i"></span><span class="target" id="struct_cass_cluster_1af7a46f2196156a5226f3241fd3cfe62f"></span>CassError <code class="sig-name descname">cass_cluster_set_constant_speculative_execution_policy</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, cass_int64_t <em>constant_delay_ms</em>, int <em>max_speculative_executions</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv454cass_cluster_set_constant_speculative_execution_policyP11CassCluster12cass_int64_ti" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enable constant speculative executions with the supplied settings.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise an error occurred </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">constant_delay_ms</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max_speculative_executions</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv448cass_cluster_set_no_speculative_execution_policyP11CassCluster">
+<span id="_CPPv348cass_cluster_set_no_speculative_execution_policyP11CassCluster"></span><span id="_CPPv248cass_cluster_set_no_speculative_execution_policyP11CassCluster"></span><span id="cass_cluster_set_no_speculative_execution_policy__CassClusterP"></span><span class="target" id="struct_cass_cluster_1a925b6f3f3d3f4d86ba6631470dcc2006"></span>CassError <code class="sig-name descname">cass_cluster_set_no_speculative_execution_policy</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv448cass_cluster_set_no_speculative_execution_policyP11CassCluster" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disable speculative executions</p>
+<p><strong>Default:</strong> This is the default speculative execution policy.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise an error occurred </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv443cass_cluster_set_max_reusable_write_objectsP11CassClusterj">
+<span id="_CPPv343cass_cluster_set_max_reusable_write_objectsP11CassClusterj"></span><span id="_CPPv243cass_cluster_set_max_reusable_write_objectsP11CassClusterj"></span><span id="cass_cluster_set_max_reusable_write_objects__CassClusterP.unsigned"></span><span class="target" id="struct_cass_cluster_1a377e99332299b4fe43c082d50cc750a8"></span>CassError <code class="sig-name descname">cass_cluster_set_max_reusable_write_objects</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, unsigned <em>num_objects</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv443cass_cluster_set_max_reusable_write_objectsP11CassClusterj" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the maximum number of “pending write” objects that will be saved for re-use for marshalling new requests. These objects may hold on to a significant amount of memory and reducing the number of these objects may reduce memory usage of the application.</p>
+<p>The cost of reducing the value of this setting is potentially slower marshalling of requests prior to sending.</p>
+<p><strong>Default:</strong> Max unsigned integer value</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise an error occurred. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_objects</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv434cass_cluster_set_execution_profileP11CassClusterPKcP15CassExecProfile">
+<span id="_CPPv334cass_cluster_set_execution_profileP11CassClusterPKcP15CassExecProfile"></span><span id="_CPPv234cass_cluster_set_execution_profileP11CassClusterPKcP15CassExecProfile"></span><span id="cass_cluster_set_execution_profile__CassClusterP.cCP.CassExecProfileP"></span><span class="target" id="struct_cass_cluster_1a34cb9dc2612fdbf741113d4b55913e47"></span>CassError <code class="sig-name descname">cass_cluster_set_execution_profile</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, <em class="property">const</em> char *<em>name</em>, <a class="reference internal" href="struct.CassExecProfile.html#_CPPv415CassExecProfile" title="CassExecProfile">CassExecProfile</a> *<em>profile</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv434cass_cluster_set_execution_profileP11CassClusterPKcP15CassExecProfile" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Associates a named execution profile which can be utilized during execution.</p>
+<p><strong>Note:</strong> Once the execution profile is added to a cluster, it is immutable and any changes made to the execution profile must be re-assigned to the cluster before a session connection is established in order for those settings to be utilized during query execution.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise an error occurred</p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="struct.CassBatch.html#struct_cass_batch_1a6c03497681afa31797dc78cc1f90fc8a"><span class="std std-ref">cass_batch_set_execution_profile()</span></a> </p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="struct.CassStatement.html#struct_cass_statement_1ad27c3500514ca61051d1a938a276c889"><span class="std std-ref">cass_statement_set_execution_profile()</span></a> </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">profile</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv436cass_cluster_set_execution_profile_nP11CassClusterPKc6size_tP15CassExecProfile">
+<span id="_CPPv336cass_cluster_set_execution_profile_nP11CassClusterPKc6size_tP15CassExecProfile"></span><span id="_CPPv236cass_cluster_set_execution_profile_nP11CassClusterPKc6size_tP15CassExecProfile"></span><span id="cass_cluster_set_execution_profile_n__CassClusterP.cCP.s.CassExecProfileP"></span><span class="target" id="struct_cass_cluster_1a70e92bbb6e00d286f9ddd7ff0db71259"></span>CassError <code class="sig-name descname">cass_cluster_set_execution_profile_n</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, <em class="property">const</em> char *<em>name</em>, size_t <em>name_length</em>, <a class="reference internal" href="struct.CassExecProfile.html#_CPPv415CassExecProfile" title="CassExecProfile">CassExecProfile</a> *<em>profile</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv436cass_cluster_set_execution_profile_nP11CassClusterPKc6size_tP15CassExecProfile" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Same as cass_cluster_add_execution_profile(), but with lengths for string parameters.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>same as <a class="reference internal" href="#struct_cass_cluster_1a34cb9dc2612fdbf741113d4b55913e47"><span class="std std-ref">cass_cluster_set_execution_profile()</span></a></p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="struct.CassBatch.html#struct_cass_batch_1a6c03497681afa31797dc78cc1f90fc8a"><span class="std std-ref">cass_batch_set_execution_profile()</span></a> </p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="struct.CassStatement.html#struct_cass_statement_1ad27c3500514ca61051d1a938a276c889"><span class="std std-ref">cass_statement_set_execution_profile()</span></a> </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">name_length</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">profile</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv437cass_cluster_set_prepare_on_all_hostsP11CassCluster11cass_bool_t">
+<span id="_CPPv337cass_cluster_set_prepare_on_all_hostsP11CassCluster11cass_bool_t"></span><span id="_CPPv237cass_cluster_set_prepare_on_all_hostsP11CassCluster11cass_bool_t"></span><span id="cass_cluster_set_prepare_on_all_hosts__CassClusterP.cass_bool_t"></span><span class="target" id="struct_cass_cluster_1a28fe4a52f41e94c8832bf9a9bc645a5b"></span>CassError <code class="sig-name descname">cass_cluster_set_prepare_on_all_hosts</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, cass_bool_t <em>enabled</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv437cass_cluster_set_prepare_on_all_hostsP11CassCluster11cass_bool_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Prepare statements on all available hosts.</p>
+<p><strong>Default:</strong> cass_true</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise an error occurred </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">enabled</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv427cass_cluster_set_no_compactP11CassCluster11cass_bool_t">
+<span id="_CPPv327cass_cluster_set_no_compactP11CassCluster11cass_bool_t"></span><span id="_CPPv227cass_cluster_set_no_compactP11CassCluster11cass_bool_t"></span><span id="cass_cluster_set_no_compact__CassClusterP.cass_bool_t"></span><span class="target" id="struct_cass_cluster_1a4db4eb70cd085ec52bb9c662be8595c2"></span>CassError <code class="sig-name descname">cass_cluster_set_no_compact</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, cass_bool_t <em>enabled</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv427cass_cluster_set_no_compactP11CassCluster11cass_bool_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enable the <strong>NO_COMPACT</strong> startup option.</p>
+<p>This can help facilitate uninterrupted cluster upgrades where tables using <strong>COMPACT_STORAGE</strong> will operate in “compatibility mode” for <strong>BATCH</strong>, <strong>DELETE</strong>, <strong>SELECT</strong>, and <strong>UPDATE</strong> CQL operations.</p>
+<p><strong>Default:</strong> cass_false</p>
+<p><strong>Requires Apache Cassandra:</strong> 3.0.16+ <strong>Requires Apache Cassandra:</strong> 3.11.2+ <strong>Requires Apache Cassandra:</strong> 4.0+</p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">enabled</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv439cass_cluster_set_host_listener_callbackP11CassCluster24CassHostListenerCallbackPv">
+<span id="_CPPv339cass_cluster_set_host_listener_callbackP11CassCluster24CassHostListenerCallbackPv"></span><span id="_CPPv239cass_cluster_set_host_listener_callbackP11CassCluster24CassHostListenerCallbackPv"></span><span id="cass_cluster_set_host_listener_callback__CassClusterP.CassHostListenerCallback.voidP"></span><span class="target" id="struct_cass_cluster_1a0874d8366c993a33a955a732382067eb"></span>CassError <code class="sig-name descname">cass_cluster_set_host_listener_callback</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, CassHostListenerCallback <em>callback</em>, void *<em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv439cass_cluster_set_host_listener_callbackP11CassCluster24CassHostListenerCallbackPv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets a callback for handling host state changes in the cluster.</p>
+<p><strong>Note:</strong> The callback is invoked only when state changes in the cluster are applicable to the configured load balancing policy(s).</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise and error occurred </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">callback</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv433cass_cluster_set_application_nameP11CassClusterPKc">
+<span id="_CPPv333cass_cluster_set_application_nameP11CassClusterPKc"></span><span id="_CPPv233cass_cluster_set_application_nameP11CassClusterPKc"></span><span id="cass_cluster_set_application_name__CassClusterP.cCP"></span><span class="target" id="struct_cass_cluster_1a345258bd7235d31bc0c6b154e3fa9c5b"></span>void <code class="sig-name descname">cass_cluster_set_application_name</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, <em class="property">const</em> char *<em>application_name</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv433cass_cluster_set_application_nameP11CassClusterPKc" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set the application name.</p>
+<p>This is optional; however it provides the server with the application name that can aid in debugging issues with larger clusters where there are a lot of client (or application) connections.</p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">application_name</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv435cass_cluster_set_application_name_nP11CassClusterPKc6size_t">
+<span id="_CPPv335cass_cluster_set_application_name_nP11CassClusterPKc6size_t"></span><span id="_CPPv235cass_cluster_set_application_name_nP11CassClusterPKc6size_t"></span><span id="cass_cluster_set_application_name_n__CassClusterP.cCP.s"></span><span class="target" id="struct_cass_cluster_1a07f3c16aab641f96a5e3bcdc3652fe0d"></span>void <code class="sig-name descname">cass_cluster_set_application_name_n</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, <em class="property">const</em> char *<em>application_name</em>, size_t <em>application_name_length</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv435cass_cluster_set_application_name_nP11CassClusterPKc6size_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Same as <a class="reference internal" href="#struct_cass_cluster_1a345258bd7235d31bc0c6b154e3fa9c5b"><span class="std std-ref">cass_cluster_set_application_name()</span></a>, but with lengths for string parameters.</p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">application_name</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">application_name_length</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv436cass_cluster_set_application_versionP11CassClusterPKc">
+<span id="_CPPv336cass_cluster_set_application_versionP11CassClusterPKc"></span><span id="_CPPv236cass_cluster_set_application_versionP11CassClusterPKc"></span><span id="cass_cluster_set_application_version__CassClusterP.cCP"></span><span class="target" id="struct_cass_cluster_1adc4b2d6003b5443ae00f9bcc306dd0b8"></span>void <code class="sig-name descname">cass_cluster_set_application_version</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, <em class="property">const</em> char *<em>application_version</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv436cass_cluster_set_application_versionP11CassClusterPKc" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set the application version.</p>
+<p>This is optional; however it provides the server with the application version that can aid in debugging issues with large clusters where there are a lot of client (or application) connections that may have different versions in use.</p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">application_version</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv438cass_cluster_set_application_version_nP11CassClusterPKc6size_t">
+<span id="_CPPv338cass_cluster_set_application_version_nP11CassClusterPKc6size_t"></span><span id="_CPPv238cass_cluster_set_application_version_nP11CassClusterPKc6size_t"></span><span id="cass_cluster_set_application_version_n__CassClusterP.cCP.s"></span><span class="target" id="struct_cass_cluster_1a37d8b2e2ebbee2976a20fc913045314a"></span>void <code class="sig-name descname">cass_cluster_set_application_version_n</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, <em class="property">const</em> char *<em>application_version</em>, size_t <em>application_version_length</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv438cass_cluster_set_application_version_nP11CassClusterPKc6size_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Same as <a class="reference internal" href="#struct_cass_cluster_1adc4b2d6003b5443ae00f9bcc306dd0b8"><span class="std std-ref">cass_cluster_set_application_version()</span></a>, but with lengths for string parameters.</p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">application_version</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">application_version_length</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv426cass_cluster_set_client_idP11CassCluster8CassUuid">
+<span id="_CPPv326cass_cluster_set_client_idP11CassCluster8CassUuid"></span><span id="_CPPv226cass_cluster_set_client_idP11CassCluster8CassUuid"></span><span id="cass_cluster_set_client_id__CassClusterP.CassUuid"></span><span class="target" id="struct_cass_cluster_1a40b8701649de1e2e5b51b7028cf313d5"></span>void <code class="sig-name descname">cass_cluster_set_client_id</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, <a class="reference internal" href="struct.CassUuid.html#_CPPv48CassUuid" title="CassUuid">CassUuid</a> <em>client_id</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426cass_cluster_set_client_idP11CassCluster8CassUuid" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set the client id.</p>
+<p>This is optional; however it provides the server with the client ID that can aid in debugging issues with large clusters where there are a lot of client connections.</p>
+<p>Default: UUID v4 generated (<dl class="simple">
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="struct.CassSession.html#struct_cass_session_1a98ca84b28897f506facef3fb3a86a4d7"><span class="std std-ref">cass_session_get_client_id()</span></a>)</p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">client_id</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv443cass_cluster_set_monitor_reporting_intervalP11CassClusterj">
+<span id="_CPPv343cass_cluster_set_monitor_reporting_intervalP11CassClusterj"></span><span id="_CPPv243cass_cluster_set_monitor_reporting_intervalP11CassClusterj"></span><span id="cass_cluster_set_monitor_reporting_interval__CassClusterP.unsigned"></span><span class="target" id="struct_cass_cluster_1adf41d409376f0747821d3e0cbaab7c0f"></span>void <code class="sig-name descname">cass_cluster_set_monitor_reporting_interval</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, unsigned <em>interval_secs</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv443cass_cluster_set_monitor_reporting_intervalP11CassClusterj" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the amount of time between monitor reporting event messages.</p>
+<p><strong>Default:</strong> 300 seconds.</p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">interval_secs</span></code>: Use 0 to disable monitor reporting event messages. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv441cass_cluster_set_dse_gssapi_authenticatorP11CassClusterPKcPKc">
+<span id="_CPPv341cass_cluster_set_dse_gssapi_authenticatorP11CassClusterPKcPKc"></span><span id="_CPPv241cass_cluster_set_dse_gssapi_authenticatorP11CassClusterPKcPKc"></span><span id="cass_cluster_set_dse_gssapi_authenticator__CassClusterP.cCP.cCP"></span><span class="target" id="struct_cass_cluster_1a6b62911e1d0a53dae20c051323de8d6d"></span>CassError <code class="sig-name descname">cass_cluster_set_dse_gssapi_authenticator</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, <em class="property">const</em> char *<em>service</em>, <em class="property">const</em> char *<em>principal</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv441cass_cluster_set_dse_gssapi_authenticatorP11CassClusterPKcPKc" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables GSSAPI authentication for DSE clusters secured with the <code class="docutils literal notranslate"><span class="pre">DseAuthenticator</span></code>.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise an error occurred. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">service</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">principal</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv443cass_cluster_set_dse_gssapi_authenticator_nP11CassClusterPKc6size_tPKc6size_t">
+<span id="_CPPv343cass_cluster_set_dse_gssapi_authenticator_nP11CassClusterPKc6size_tPKc6size_t"></span><span id="_CPPv243cass_cluster_set_dse_gssapi_authenticator_nP11CassClusterPKc6size_tPKc6size_t"></span><span id="cass_cluster_set_dse_gssapi_authenticator_n__CassClusterP.cCP.s.cCP.s"></span><span class="target" id="struct_cass_cluster_1ab2eedc743d411cd193f5ff920a55b631"></span>CassError <code class="sig-name descname">cass_cluster_set_dse_gssapi_authenticator_n</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, <em class="property">const</em> char *<em>service</em>, size_t <em>service_length</em>, <em class="property">const</em> char *<em>principal</em>, size_t <em>principal_length</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv443cass_cluster_set_dse_gssapi_authenticator_nP11CassClusterPKc6size_tPKc6size_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Same as <a class="reference internal" href="#struct_cass_cluster_1a6b62911e1d0a53dae20c051323de8d6d"><span class="std std-ref">cass_cluster_set_dse_gssapi_authenticator()</span></a>, but with lengths for string parameters.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>same as <a class="reference internal" href="#struct_cass_cluster_1a6b62911e1d0a53dae20c051323de8d6d"><span class="std std-ref">cass_cluster_set_dse_gssapi_authenticator()</span></a> </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">service</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">service_length</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">principal</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">principal_length</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv447cass_cluster_set_dse_gssapi_authenticator_proxyP11CassClusterPKcPKcPKc">
+<span id="_CPPv347cass_cluster_set_dse_gssapi_authenticator_proxyP11CassClusterPKcPKcPKc"></span><span id="_CPPv247cass_cluster_set_dse_gssapi_authenticator_proxyP11CassClusterPKcPKcPKc"></span><span id="cass_cluster_set_dse_gssapi_authenticator_proxy__CassClusterP.cCP.cCP.cCP"></span><span class="target" id="struct_cass_cluster_1a26a0afce5719cc387d72d2eb62a6da76"></span>CassError <code class="sig-name descname">cass_cluster_set_dse_gssapi_authenticator_proxy</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, <em class="property">const</em> char *<em>service</em>, <em class="property">const</em> char *<em>principal</em>, <em class="property">const</em> char *<em>authorization_id</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv447cass_cluster_set_dse_gssapi_authenticator_proxyP11CassClusterPKcPKcPKc" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables GSSAPI authentication with proxy authorization for DSE clusters secured with the <code class="docutils literal notranslate"><span class="pre">DseAuthenticator</span></code>.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise an error occurred. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">service</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">principal</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">authorization_id</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv449cass_cluster_set_dse_gssapi_authenticator_proxy_nP11CassClusterPKc6size_tPKc6size_tPKc6size_t">
+<span id="_CPPv349cass_cluster_set_dse_gssapi_authenticator_proxy_nP11CassClusterPKc6size_tPKc6size_tPKc6size_t"></span><span id="_CPPv249cass_cluster_set_dse_gssapi_authenticator_proxy_nP11CassClusterPKc6size_tPKc6size_tPKc6size_t"></span><span id="cass_cluster_set_dse_gssapi_authenticator_proxy_n__CassClusterP.cCP.s.cCP.s.cCP.s"></span><span class="target" id="struct_cass_cluster_1adcac7b7ee235ae88a97faf3eb0ef517b"></span>CassError <code class="sig-name descname">cass_cluster_set_dse_gssapi_authenticator_proxy_n</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, <em class="property">const</em> char *<em>service</em>, size_t <em>service_length</em>, <em class="property">const</em> char *<em>principal</em>, size_t <em>principal_length</em>, <em class="property">const</em> char *<em>authorization_id</em>, size_t <em>authorization_id_length</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv449cass_cluster_set_dse_gssapi_authenticator_proxy_nP11CassClusterPKc6size_tPKc6size_tPKc6size_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Same as <a class="reference internal" href="#struct_cass_cluster_1a26a0afce5719cc387d72d2eb62a6da76"><span class="std std-ref">cass_cluster_set_dse_gssapi_authenticator_proxy()</span></a>, but with lengths for string parameters.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>same as <a class="reference internal" href="#struct_cass_cluster_1a26a0afce5719cc387d72d2eb62a6da76"><span class="std std-ref">cass_cluster_set_dse_gssapi_authenticator_proxy()</span></a> </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">service</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">service_length</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">principal</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">principal_length</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">authorization_id</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">authorization_id_length</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv444cass_cluster_set_dse_plaintext_authenticatorP11CassClusterPKcPKc">
+<span id="_CPPv344cass_cluster_set_dse_plaintext_authenticatorP11CassClusterPKcPKc"></span><span id="_CPPv244cass_cluster_set_dse_plaintext_authenticatorP11CassClusterPKcPKc"></span><span id="cass_cluster_set_dse_plaintext_authenticator__CassClusterP.cCP.cCP"></span><span class="target" id="struct_cass_cluster_1a5cf5ad94f2a359e632dac22d89c60b1e"></span>CassError <code class="sig-name descname">cass_cluster_set_dse_plaintext_authenticator</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, <em class="property">const</em> char *<em>username</em>, <em class="property">const</em> char *<em>password</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv444cass_cluster_set_dse_plaintext_authenticatorP11CassClusterPKcPKc" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables plaintext authentication for DSE clusters secured with the <code class="docutils literal notranslate"><span class="pre">DseAuthenticator</span></code>.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise an error occurred. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">username</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">password</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv446cass_cluster_set_dse_plaintext_authenticator_nP11CassClusterPKc6size_tPKc6size_t">
+<span id="_CPPv346cass_cluster_set_dse_plaintext_authenticator_nP11CassClusterPKc6size_tPKc6size_t"></span><span id="_CPPv246cass_cluster_set_dse_plaintext_authenticator_nP11CassClusterPKc6size_tPKc6size_t"></span><span id="cass_cluster_set_dse_plaintext_authenticator_n__CassClusterP.cCP.s.cCP.s"></span><span class="target" id="struct_cass_cluster_1a3960a91be0d3311b32762596af26cfb0"></span>CassError <code class="sig-name descname">cass_cluster_set_dse_plaintext_authenticator_n</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, <em class="property">const</em> char *<em>username</em>, size_t <em>username_length</em>, <em class="property">const</em> char *<em>password</em>, size_t <em>password_length</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv446cass_cluster_set_dse_plaintext_authenticator_nP11CassClusterPKc6size_tPKc6size_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Same as <a class="reference internal" href="#struct_cass_cluster_1a5cf5ad94f2a359e632dac22d89c60b1e"><span class="std std-ref">cass_cluster_set_dse_plaintext_authenticator()</span></a>, but with lengths for string parameters.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>same as <a class="reference internal" href="#struct_cass_cluster_1a5cf5ad94f2a359e632dac22d89c60b1e"><span class="std std-ref">cass_cluster_set_dse_plaintext_authenticator()</span></a> </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">username</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">username_length</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">password</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">password_length</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv450cass_cluster_set_dse_plaintext_authenticator_proxyP11CassClusterPKcPKcPKc">
+<span id="_CPPv350cass_cluster_set_dse_plaintext_authenticator_proxyP11CassClusterPKcPKcPKc"></span><span id="_CPPv250cass_cluster_set_dse_plaintext_authenticator_proxyP11CassClusterPKcPKcPKc"></span><span id="cass_cluster_set_dse_plaintext_authenticator_proxy__CassClusterP.cCP.cCP.cCP"></span><span class="target" id="struct_cass_cluster_1a5a71ac93d6fbfea3e67e89c6c22144ea"></span>CassError <code class="sig-name descname">cass_cluster_set_dse_plaintext_authenticator_proxy</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, <em class="property">const</em> char *<em>username</em>, <em class="property">const</em> char *<em>password</em>, <em class="property">const</em> char *<em>authorization_id</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv450cass_cluster_set_dse_plaintext_authenticator_proxyP11CassClusterPKcPKcPKc" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables plaintext authentication with proxy authorization for DSE clusters secured with the <code class="docutils literal notranslate"><span class="pre">DseAuthenticator</span></code>.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise an error occurred. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">username</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">password</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">authorization_id</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv452cass_cluster_set_dse_plaintext_authenticator_proxy_nP11CassClusterPKc6size_tPKc6size_tPKc6size_t">
+<span id="_CPPv352cass_cluster_set_dse_plaintext_authenticator_proxy_nP11CassClusterPKc6size_tPKc6size_tPKc6size_t"></span><span id="_CPPv252cass_cluster_set_dse_plaintext_authenticator_proxy_nP11CassClusterPKc6size_tPKc6size_tPKc6size_t"></span><span id="cass_cluster_set_dse_plaintext_authenticator_proxy_n__CassClusterP.cCP.s.cCP.s.cCP.s"></span><span class="target" id="struct_cass_cluster_1a84f12e10066eef19e86b8b47dc861b25"></span>CassError <code class="sig-name descname">cass_cluster_set_dse_plaintext_authenticator_proxy_n</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411CassCluster" title="CassCluster">CassCluster</a> *<em>cluster</em>, <em class="property">const</em> char *<em>username</em>, size_t <em>username_length</em>, <em class="property">const</em> char *<em>password</em>, size_t <em>password_length</em>, <em class="property">const</em> char *<em>authorization_id</em>, size_t <em>authorization_id_length</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv452cass_cluster_set_dse_plaintext_authenticator_proxy_nP11CassClusterPKc6size_tPKc6size_tPKc6size_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Same as <a class="reference internal" href="#struct_cass_cluster_1a5a71ac93d6fbfea3e67e89c6c22144ea"><span class="std std-ref">cass_cluster_set_dse_plaintext_authenticator_proxy()</span></a>, but with lengths for string parameters.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>same as <a class="reference internal" href="#struct_cass_cluster_1a5a71ac93d6fbfea3e67e89c6c22144ea"><span class="std std-ref">cass_cluster_set_dse_plaintext_authenticator_proxy()</span></a> </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">username</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">username_length</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">password</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">password_length</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">authorization_id</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">authorization_id_length</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</div>
+
+        </div>
+
+        <div id="sidebar" class="large-3 large-pull-6 columns"><div class="side-nav">
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">C/C++ Driver for ScyllaDB</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="struct.CassAggregateMeta.html">CassAggregateMeta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassAuthenticator.html">CassAuthenticator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassBatch.html">CassBatch</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">CassCluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassCollection.html">CassCollection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassColumnMeta.html">CassColumnMeta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassCustomPayload.html">CassCustomPayload</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassDataType.html">CassDataType</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassErrorResult.html">CassErrorResult</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassExecProfile.html">CassExecProfile</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassFunctionMeta.html">CassFunctionMeta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassFuture.html">CassFuture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassIndexMeta.html">CassIndexMeta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassInet.html">CassInet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassIterator.html">CassIterator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassKeyspaceMeta.html">CassKeyspaceMeta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassMaterializedViewMeta.html">CassMaterializedViewMeta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassMetrics.html">CassMetrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassPrepared.html">CassPrepared</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassResult.html">CassResult</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassRetryPolicy.html">CassRetryPolicy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassRow.html">CassRow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassSchemaMeta.html">CassSchemaMeta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassSession.html">CassSession</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassSsl.html">CassSsl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassStatement.html">CassStatement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassTableMeta.html">CassTableMeta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassTimestampGen.html">CassTimestampGen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassTuple.html">CassTuple</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassUserType.html">CassUserType</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassUuid.html">CassUuid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassUuidGen.html">CassUuidGen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassValue.html">CassValue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassVersion.html">CassVersion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.DseDateRange.html">DseDateRange</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.DseDateRangeBound.html">DseDateRangeBound</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.DseLineString.html">DseLineString</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.DseLineStringIterator.html">DseLineStringIterator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.DsePolygon.html">DsePolygon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.DsePolygonIterator.html">DsePolygonIterator</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../topics/index.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../topics/dse_features/index.html">DSE Features</a></li>
+</ul>
+
+</div>
+        </div>
+
+        <div class="large-3 columns">
+            
+                <div class="versions-dropdown single-version">
+    <button class="button">
+	master
+
+	 <i class="fa fa-caret-down" aria-hidden="true"></i>
+    </button>
+    <ul class="content">
+            <li><a href="struct.CassCluster.html">master</a></li>
+    </ul>
+</div>
+            
+        </div>
+
+    </div>
+</section>
+
+<!-- newsleter modal -->
+
+<div id="newsletter_signup" class="reveal-modal tiny radius dark_modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+    <a class="close-reveal-modal" aria-label="Close">×</a>
+    <h2 id="modalTitle">Sign up for the Scylla newsletter</h2>
+    <div id="mc_embed_signup">
+        <form action="//cloudius-systems.us10.list-manage.com/subscribe/post?u=df8bb543c68230d5f7b4dcf78&amp;id=9a4589f144" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate="">
+            <div id="mc_embed_signup_scroll">
+
+                <div class="mc-field-group">
+                    <div class="row collapse">
+                        <div class="small-3 columns"><label for="mce-EMAIL">Email</label></div>
+                        <div class="small-9 columns"><input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL"></div>
+                    </div>
+                </div>
+                <div class="mc-field-group">
+                    <div class="row collapse">
+                        <div class="small-3 columns"><label for="mce-FNAME">First Name </label></div>
+                        <div class="small-9 columns"><input type="text" value="" name="FNAME" class="" id="mce-FNAME"></div>
+                    </div>
+                </div>
+                <div class="mc-field-group">
+                    <div class="row collapse">
+                        <div class="small-3 columns"><label for="mce-LNAME">Last Name </label></div>
+                        <div class="small-9 columns"><input type="text" value="" name="LNAME" class="" id="mce-LNAME"></div>
+                    </div>
+                </div>
+                <div id="mce-responses" class="clear">
+                    <div class="response" id="mce-error-response" style="display:none"></div>
+                    <div class="response" id="mce-success-response" style="display:none"></div>
+                </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                <div style="position: absolute; left: -5000px;"><input type="text" name="b_df8bb543c68230d5f7b4dcf78_9a4589f144" tabindex="-1" value=""></div>
+                <div class="clear"><input type="submit" class="button" value="Sign up" name="subscribe" id="mc-embedded-subscribe"></div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- end newsleter modal -->
+
+
+
+<!-- footer.html -->
+<footer id="footer">
+    <div class="footer-top">
+        <a class="logo" href="https://www.scylladb.com"><img src="../_static/img/logo-scylla-horizontal-RGB.svg" alt=""></a>
+        <div class="footer-links">
+            <a class="link" href="https://docs.scylladb.com">Docs</a>
+            <a class="link" href="https://www.scylladb.com/company/contact-us/">Contact Us</a>
+            <a class="link" href="https://www.scylladb.com/company/">About Us</a>
+            <a class="link button" href="https://github.com/scylladb/cpp-driver/issues/new?title=Issue in page CassCluster&&body=I%20would%20like%20to%20report%20an%20issue%20in%20page%20https://cpp-driver.docs.scylladb.com/master/api/struct.CassCluster%0A%0A%23%23%23%20Problem%0A%0A%23%23%23%20%20Suggest%20a%20fix" target="_blank">
+                Report an issue on this page</a>
+        </div>
+        <div class="footer-actions">
+            <a class="link-icon" href="https://github.com/ScyllaDB" target="_blank">
+                <span class="icon-github2"></span></a>
+            <a class="link-icon" href="https://twitter.com/ScyllaDB" target="_blank">
+                <span class="icon-twitter"></span></a>
+            <a class="link-icon" href="https://www.linkedin.com/company/scylladb"  target="_blank">
+                <span class="icon-linkedin2"></span></a>
+            <a class="link-icon" href="https://www.facebook.com/scylladb/" target="_blank">
+                <span class="icon-facebook"></span></a>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="footer-info">
+            <div class="footer-copyright">
+                &#169; 2021, ScyllaDB. All rights reserved.
+            </div>
+            <div class="footer-last-updated">
+                Last updated on 26 February 2021.
+            </div>
+            <div class="footer-version">
+                Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.4</a>
+                &amp; <a href="https://pypi.org/project/sphinx-scylladb-theme">ScyllaDB Theme 0.1.21</a>
+            </div>
+        </div>
+        <div class="footer-links">
+        </div>
+    </div>
+</footer>
+<!-- end footer.html -->
+
+<!-- bodyscripts.html -->
+<!-- at the end of the BODY --> 
+<script src="../_static/js/vendor/jquery.js"></script>
+<script src="../_static/js/vendor/jquery.cookie.min.js"></script>
+<script src="../_static/expertrec.js"></script>
+<script src="../_static/js/foundation/foundation.js"></script>
+<script src="../_static/js/foundation/foundation.topbar.js"></script>
+<script src="../_static/app.js"></script>
+<script>
+    $(document).foundation();
+</script>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T8P2JP"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+  <!-- end bodyscripts.html -->
+</body>
+</html>

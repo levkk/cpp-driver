@@ -1,0 +1,752 @@
+
+
+
+<!doctype html>
+<html class="no-js" lang="en">
+  
+<head><!-- begin head.html -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>
+    CassCollection | Scylla Docs
+    </title>
+    <meta name="description" content="Scylla is an Apache Cassandra-compatible NoSQL data store that can handle 1 million transactions per second on a single server."/>
+
+    <link rel="icon" href="../_static/img/favicon.ico" type="image/x-icon"/>
+    <link rel="canonical" href="https://docs.scylladb.com/">
+
+    <link rel="author" href="mailto:info@scylladb.com">
+    <link rel="stylesheet" href="../_static/" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx_tabs/semantic-ui-2.4.1/segment.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx_tabs/semantic-ui-2.4.1/menu.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx_tabs/semantic-ui-2.4.1/tab.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx_tabs/tabs.css" />
+    
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.2/css/foundation.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/css/doc/main.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+
+    <script src="../_static/js/vendor/modernizr.js"></script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-T8P2JP');</script>
+    <!-- End Google Tag Manager -->
+
+    <!-- Marketo -->
+    <script type="text/javascript"> (function() { var didInit = false; function initMunchkin() { if(didInit === false) { didInit = true; Munchkin.init('791-QBF-350'); } } var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = '//munchkin.marketo.net/munchkin.js'; s.onreadystatechange = function() { if (this.readyState == 'complete' || this.readyState == 'loaded') { initMunchkin(); } }; s.onload = initMunchkin; document.getElementsByTagName('head')[0].appendChild(s); })(); </script>
+    <!-- End Marketo -->
+
+<!-- end head.html -->
+</head>
+
+<body>
+
+
+
+<header id="header" class="animated">
+    <div class="topbar_continer contain-to-grid clearfix">
+        <nav class="top-bar" id="top-bar" data-topbar role="navigation">
+            <ul class="title-area">
+                <li class="name">
+                    <div class="logo">
+                        <a href="https://docs.scylladb.com/"><img src="../_static/img/logo-scylla-docs.svg" alt="" width="151"></a>
+                    </div>
+                </li>
+                <li class="toggle-topbar"><a href="#"><span class="icon-manu"></span></a></li>
+            </ul>
+            <section class="top-bar-section clearfix">
+                <ul class="right">
+                    
+                    <li>
+                        <a href="https://cpp-driver.docs.scylladb.com/">C/C++ Driver</a>
+                    </li>
+                    
+                    <li>
+                        <a href="https://docs.scylladb.com/scylla-cloud/">Scylla Cloud</a>
+                    </li>
+                    
+                    <li>
+                        <a href="https://university.scylladb.com/">Scylla University</a>
+                    </li>
+                    
+                    <li>
+                        <a href="https://www.scylladb.com/">ScyllaDB Home</a>
+                    </li>
+                    
+                    <li class="search_continer show-for-medium-up">	
+                        <ci-search></ci-search>	
+                    </li>	
+                </ul>
+            </section>
+        </nav>
+    </div>
+</header>
+<section id="content">
+    <div class="row">
+	
+	<div class="large-6 large-push-3 columns">
+
+        
+
+        <div class="section" id="casscollection">
+<h1>CassCollection<a class="headerlink" href="#casscollection" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="_CPPv414CassCollection">
+<span id="_CPPv314CassCollection"></span><span id="_CPPv214CassCollection"></span><span id="CassCollection"></span><span class="target" id="struct_cass_collection"></span><em class="property">struct </em><code class="sig-name descname">CassCollection</code><a class="headerlink" href="#_CPPv414CassCollection" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>A collection of values. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="function">
+<dt id="_CPPv419cass_collection_new18CassCollectionType6size_t">
+<span id="_CPPv319cass_collection_new18CassCollectionType6size_t"></span><span id="_CPPv219cass_collection_new18CassCollectionType6size_t"></span><span id="cass_collection_new__CassCollectionType.s"></span><span class="target" id="struct_cass_collection_1aae25bee23776f68e4115102afe068d13"></span><a class="reference internal" href="#_CPPv414CassCollection" title="CassCollection">CassCollection</a> *<code class="sig-name descname">cass_collection_new</code><span class="sig-paren">(</span>CassCollectionType <em>type</em>, size_t <em>item_count</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419cass_collection_new18CassCollectionType6size_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Creates a new collection.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns a collection that must be freed.</p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#struct_cass_collection_1a58827b1b3b1865c2e0981cfdef38b47a"><span class="std std-ref">cass_collection_free()</span></a> </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">type</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">item_count</span></code>: The approximate number of items in the collection. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv434cass_collection_new_from_data_typePK12CassDataType6size_t">
+<span id="_CPPv334cass_collection_new_from_data_typePK12CassDataType6size_t"></span><span id="_CPPv234cass_collection_new_from_data_typePK12CassDataType6size_t"></span><span id="cass_collection_new_from_data_type__CassDataTypeCP.s"></span><span class="target" id="struct_cass_collection_1a40285f2e697fc0a1774f35766bbd791e"></span><a class="reference internal" href="#_CPPv414CassCollection" title="CassCollection">CassCollection</a> *<code class="sig-name descname">cass_collection_new_from_data_type</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="struct.CassDataType.html#_CPPv412CassDataType" title="CassDataType">CassDataType</a> *<em>data_type</em>, size_t <em>item_count</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv434cass_collection_new_from_data_typePK12CassDataType6size_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Creates a new collection from an existing data type.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns a collection that must be freed.</p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#struct_cass_collection_1a58827b1b3b1865c2e0981cfdef38b47a"><span class="std std-ref">cass_collection_free()</span></a>; </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">data_type</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">item_count</span></code>: The approximate number of items in the collection. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv420cass_collection_freeP14CassCollection">
+<span id="_CPPv320cass_collection_freeP14CassCollection"></span><span id="_CPPv220cass_collection_freeP14CassCollection"></span><span id="cass_collection_free__CassCollectionP"></span><span class="target" id="struct_cass_collection_1a58827b1b3b1865c2e0981cfdef38b47a"></span>void <code class="sig-name descname">cass_collection_free</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv414CassCollection" title="CassCollection">CassCollection</a> *<em>collection</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420cass_collection_freeP14CassCollection" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Frees a collection instance.</p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">collection</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv427cass_collection_append_int8P14CassCollection11cass_int8_t">
+<span id="_CPPv327cass_collection_append_int8P14CassCollection11cass_int8_t"></span><span id="_CPPv227cass_collection_append_int8P14CassCollection11cass_int8_t"></span><span id="cass_collection_append_int8__CassCollectionP.cass_int8_t"></span><span class="target" id="struct_cass_collection_1a2577c35e7eaae0c4d45e7a3af83f1e36"></span>CassError <code class="sig-name descname">cass_collection_append_int8</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv414CassCollection" title="CassCollection">CassCollection</a> *<em>collection</em>, cass_int8_t <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv427cass_collection_append_int8P14CassCollection11cass_int8_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Appends a “tinyint” to the collection.</p>
+<p><strong>Requires Apache Cassandra:</strong> 2.2+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise an error occurred. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">collection</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">value</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv428cass_collection_append_int16P14CassCollection12cass_int16_t">
+<span id="_CPPv328cass_collection_append_int16P14CassCollection12cass_int16_t"></span><span id="_CPPv228cass_collection_append_int16P14CassCollection12cass_int16_t"></span><span id="cass_collection_append_int16__CassCollectionP.cass_int16_t"></span><span class="target" id="struct_cass_collection_1a9deef31e46382e99ac0f2a6b688a3c58"></span>CassError <code class="sig-name descname">cass_collection_append_int16</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv414CassCollection" title="CassCollection">CassCollection</a> *<em>collection</em>, cass_int16_t <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428cass_collection_append_int16P14CassCollection12cass_int16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Appends an “smallint” to the collection.</p>
+<p><strong>Requires Apache Cassandra:</strong> 2.2+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise an error occurred. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">collection</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">value</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv428cass_collection_append_int32P14CassCollection12cass_int32_t">
+<span id="_CPPv328cass_collection_append_int32P14CassCollection12cass_int32_t"></span><span id="_CPPv228cass_collection_append_int32P14CassCollection12cass_int32_t"></span><span id="cass_collection_append_int32__CassCollectionP.cass_int32_t"></span><span class="target" id="struct_cass_collection_1a3525b859b48445eedf067f637ae60ea8"></span>CassError <code class="sig-name descname">cass_collection_append_int32</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv414CassCollection" title="CassCollection">CassCollection</a> *<em>collection</em>, cass_int32_t <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428cass_collection_append_int32P14CassCollection12cass_int32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Appends an “int” to the collection.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise an error occurred. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">collection</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">value</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv429cass_collection_append_uint32P14CassCollection13cass_uint32_t">
+<span id="_CPPv329cass_collection_append_uint32P14CassCollection13cass_uint32_t"></span><span id="_CPPv229cass_collection_append_uint32P14CassCollection13cass_uint32_t"></span><span id="cass_collection_append_uint32__CassCollectionP.cass_uint32_t"></span><span class="target" id="struct_cass_collection_1a8fc19cb28d820406f8dde6c7abd0f7c9"></span>CassError <code class="sig-name descname">cass_collection_append_uint32</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv414CassCollection" title="CassCollection">CassCollection</a> *<em>collection</em>, cass_uint32_t <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv429cass_collection_append_uint32P14CassCollection13cass_uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Appends a “date” to the collection.</p>
+<p><strong>Requires Apache Cassandra:</strong> 2.2+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise an error occurred. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">collection</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">value</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv428cass_collection_append_int64P14CassCollection12cass_int64_t">
+<span id="_CPPv328cass_collection_append_int64P14CassCollection12cass_int64_t"></span><span id="_CPPv228cass_collection_append_int64P14CassCollection12cass_int64_t"></span><span id="cass_collection_append_int64__CassCollectionP.cass_int64_t"></span><span class="target" id="struct_cass_collection_1a15343db13ac4bcbbb7f0a9503e26a742"></span>CassError <code class="sig-name descname">cass_collection_append_int64</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv414CassCollection" title="CassCollection">CassCollection</a> *<em>collection</em>, cass_int64_t <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428cass_collection_append_int64P14CassCollection12cass_int64_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Appends a “bigint”, “counter”, “timestamp” or “time” to the collection.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise an error occurred. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">collection</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">value</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv428cass_collection_append_floatP14CassCollection12cass_float_t">
+<span id="_CPPv328cass_collection_append_floatP14CassCollection12cass_float_t"></span><span id="_CPPv228cass_collection_append_floatP14CassCollection12cass_float_t"></span><span id="cass_collection_append_float__CassCollectionP.cass_float_t"></span><span class="target" id="struct_cass_collection_1abf42ed95f7b659dc55bd252997cca0d9"></span>CassError <code class="sig-name descname">cass_collection_append_float</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv414CassCollection" title="CassCollection">CassCollection</a> *<em>collection</em>, cass_float_t <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428cass_collection_append_floatP14CassCollection12cass_float_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Appends a “float” to the collection.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise an error occurred. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">collection</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">value</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv429cass_collection_append_doubleP14CassCollection13cass_double_t">
+<span id="_CPPv329cass_collection_append_doubleP14CassCollection13cass_double_t"></span><span id="_CPPv229cass_collection_append_doubleP14CassCollection13cass_double_t"></span><span id="cass_collection_append_double__CassCollectionP.cass_double_t"></span><span class="target" id="struct_cass_collection_1a4d15219870983ee33249e7f643708de1"></span>CassError <code class="sig-name descname">cass_collection_append_double</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv414CassCollection" title="CassCollection">CassCollection</a> *<em>collection</em>, cass_double_t <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv429cass_collection_append_doubleP14CassCollection13cass_double_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Appends a “double” to the collection.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise an error occurred. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">collection</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">value</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv427cass_collection_append_boolP14CassCollection11cass_bool_t">
+<span id="_CPPv327cass_collection_append_boolP14CassCollection11cass_bool_t"></span><span id="_CPPv227cass_collection_append_boolP14CassCollection11cass_bool_t"></span><span id="cass_collection_append_bool__CassCollectionP.cass_bool_t"></span><span class="target" id="struct_cass_collection_1a7918f6548dfde53a0a93ea67fad7357f"></span>CassError <code class="sig-name descname">cass_collection_append_bool</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv414CassCollection" title="CassCollection">CassCollection</a> *<em>collection</em>, cass_bool_t <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv427cass_collection_append_boolP14CassCollection11cass_bool_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Appends a “boolean” to the collection.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise an error occurred. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">collection</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">value</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv429cass_collection_append_stringP14CassCollectionPKc">
+<span id="_CPPv329cass_collection_append_stringP14CassCollectionPKc"></span><span id="_CPPv229cass_collection_append_stringP14CassCollectionPKc"></span><span id="cass_collection_append_string__CassCollectionP.cCP"></span><span class="target" id="struct_cass_collection_1a2919edd2d95b0aa9d92060ab62cd7ff3"></span>CassError <code class="sig-name descname">cass_collection_append_string</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv414CassCollection" title="CassCollection">CassCollection</a> *<em>collection</em>, <em class="property">const</em> char *<em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv429cass_collection_append_stringP14CassCollectionPKc" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Appends an “ascii”, “text” or “varchar” to the collection.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise an error occurred. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">collection</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">value</span></code>: The value is copied into the collection object; the memory pointed to by this parameter can be freed after this call. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv431cass_collection_append_string_nP14CassCollectionPKc6size_t">
+<span id="_CPPv331cass_collection_append_string_nP14CassCollectionPKc6size_t"></span><span id="_CPPv231cass_collection_append_string_nP14CassCollectionPKc6size_t"></span><span id="cass_collection_append_string_n__CassCollectionP.cCP.s"></span><span class="target" id="struct_cass_collection_1a35f06c1f9544e5fb7153a09c71fa6d1b"></span>CassError <code class="sig-name descname">cass_collection_append_string_n</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv414CassCollection" title="CassCollection">CassCollection</a> *<em>collection</em>, <em class="property">const</em> char *<em>value</em>, size_t <em>value_length</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv431cass_collection_append_string_nP14CassCollectionPKc6size_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Same as <a class="reference internal" href="#struct_cass_collection_1a2919edd2d95b0aa9d92060ab62cd7ff3"><span class="std std-ref">cass_collection_append_string()</span></a>, but with lengths for string parameters.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>same as <a class="reference internal" href="#struct_cass_collection_1a2919edd2d95b0aa9d92060ab62cd7ff3"><span class="std std-ref">cass_collection_append_string()</span></a></p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#struct_cass_collection_1a2919edd2d95b0aa9d92060ab62cd7ff3"><span class="std std-ref">cass_collection_append_string()</span></a>; </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">collection</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">value</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">value_length</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv428cass_collection_append_bytesP14CassCollectionPK11cass_byte_t6size_t">
+<span id="_CPPv328cass_collection_append_bytesP14CassCollectionPK11cass_byte_t6size_t"></span><span id="_CPPv228cass_collection_append_bytesP14CassCollectionPK11cass_byte_t6size_t"></span><span id="cass_collection_append_bytes__CassCollectionP.cass_byte_tCP.s"></span><span class="target" id="struct_cass_collection_1ae870060fcce609dcfaf208e71fe7cc42"></span>CassError <code class="sig-name descname">cass_collection_append_bytes</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv414CassCollection" title="CassCollection">CassCollection</a> *<em>collection</em>, <em class="property">const</em> cass_byte_t *<em>value</em>, size_t <em>value_size</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428cass_collection_append_bytesP14CassCollectionPK11cass_byte_t6size_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Appends a “blob”, “varint” or “custom” to the collection.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise an error occurred. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">collection</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">value</span></code>: The value is copied into the collection object; the memory pointed to by this parameter can be freed after this call. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">value_size</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv429cass_collection_append_customP14CassCollectionPKcPK11cass_byte_t6size_t">
+<span id="_CPPv329cass_collection_append_customP14CassCollectionPKcPK11cass_byte_t6size_t"></span><span id="_CPPv229cass_collection_append_customP14CassCollectionPKcPK11cass_byte_t6size_t"></span><span id="cass_collection_append_custom__CassCollectionP.cCP.cass_byte_tCP.s"></span><span class="target" id="struct_cass_collection_1a7619b3949252ec2d7553b2f25553c38a"></span>CassError <code class="sig-name descname">cass_collection_append_custom</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv414CassCollection" title="CassCollection">CassCollection</a> *<em>collection</em>, <em class="property">const</em> char *<em>class_name</em>, <em class="property">const</em> cass_byte_t *<em>value</em>, size_t <em>value_size</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv429cass_collection_append_customP14CassCollectionPKcPK11cass_byte_t6size_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Appends a “custom” to the collection.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise an error occurred. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">collection</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">class_name</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">value</span></code>: The value is copied into the collection object; the memory pointed to by this parameter can be freed after this call. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">value_size</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv431cass_collection_append_custom_nP14CassCollectionPKc6size_tPK11cass_byte_t6size_t">
+<span id="_CPPv331cass_collection_append_custom_nP14CassCollectionPKc6size_tPK11cass_byte_t6size_t"></span><span id="_CPPv231cass_collection_append_custom_nP14CassCollectionPKc6size_tPK11cass_byte_t6size_t"></span><span id="cass_collection_append_custom_n__CassCollectionP.cCP.s.cass_byte_tCP.s"></span><span class="target" id="struct_cass_collection_1ae1245f8a411fd0f347464752ec82862c"></span>CassError <code class="sig-name descname">cass_collection_append_custom_n</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv414CassCollection" title="CassCollection">CassCollection</a> *<em>collection</em>, <em class="property">const</em> char *<em>class_name</em>, size_t <em>class_name_length</em>, <em class="property">const</em> cass_byte_t *<em>value</em>, size_t <em>value_size</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv431cass_collection_append_custom_nP14CassCollectionPKc6size_tPK11cass_byte_t6size_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Same as <a class="reference internal" href="#struct_cass_collection_1a7619b3949252ec2d7553b2f25553c38a"><span class="std std-ref">cass_collection_append_custom()</span></a>, but with lengths for string parameters.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>same as <a class="reference internal" href="#struct_cass_collection_1a7619b3949252ec2d7553b2f25553c38a"><span class="std std-ref">cass_collection_append_custom()</span></a></p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#struct_cass_collection_1a7619b3949252ec2d7553b2f25553c38a"><span class="std std-ref">cass_collection_append_custom()</span></a> </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">collection</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">class_name</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">class_name_length</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">value</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">value_size</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv427cass_collection_append_uuidP14CassCollection8CassUuid">
+<span id="_CPPv327cass_collection_append_uuidP14CassCollection8CassUuid"></span><span id="_CPPv227cass_collection_append_uuidP14CassCollection8CassUuid"></span><span id="cass_collection_append_uuid__CassCollectionP.CassUuid"></span><span class="target" id="struct_cass_collection_1aef998389525f90d993f052261cd9e037"></span>CassError <code class="sig-name descname">cass_collection_append_uuid</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv414CassCollection" title="CassCollection">CassCollection</a> *<em>collection</em>, <a class="reference internal" href="struct.CassUuid.html#_CPPv48CassUuid" title="CassUuid">CassUuid</a> <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv427cass_collection_append_uuidP14CassCollection8CassUuid" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Appends a “uuid” or “timeuuid” to the collection.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise an error occurred. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">collection</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">value</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv427cass_collection_append_inetP14CassCollection8CassInet">
+<span id="_CPPv327cass_collection_append_inetP14CassCollection8CassInet"></span><span id="_CPPv227cass_collection_append_inetP14CassCollection8CassInet"></span><span id="cass_collection_append_inet__CassCollectionP.CassInet"></span><span class="target" id="struct_cass_collection_1a57b4c765d9b4132a2c55485870c62130"></span>CassError <code class="sig-name descname">cass_collection_append_inet</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv414CassCollection" title="CassCollection">CassCollection</a> *<em>collection</em>, <a class="reference internal" href="struct.CassInet.html#_CPPv48CassInet" title="CassInet">CassInet</a> <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv427cass_collection_append_inetP14CassCollection8CassInet" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Appends an “inet” to the collection.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise an error occurred. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">collection</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">value</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv430cass_collection_append_decimalP14CassCollectionPK11cass_byte_t6size_t12cass_int32_t">
+<span id="_CPPv330cass_collection_append_decimalP14CassCollectionPK11cass_byte_t6size_t12cass_int32_t"></span><span id="_CPPv230cass_collection_append_decimalP14CassCollectionPK11cass_byte_t6size_t12cass_int32_t"></span><span id="cass_collection_append_decimal__CassCollectionP.cass_byte_tCP.s.cass_int32_t"></span><span class="target" id="struct_cass_collection_1ae8b0901c2523b742827fb7729f41f856"></span>CassError <code class="sig-name descname">cass_collection_append_decimal</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv414CassCollection" title="CassCollection">CassCollection</a> *<em>collection</em>, <em class="property">const</em> cass_byte_t *<em>varint</em>, size_t <em>varint_size</em>, cass_int32_t <em>scale</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv430cass_collection_append_decimalP14CassCollectionPK11cass_byte_t6size_t12cass_int32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Appends a “decimal” to the collection.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise an error occurred. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">collection</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">varint</span></code>: The value is copied into the collection object; the memory pointed to by this parameter can be freed after this call. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">varint_size</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">scale</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv431cass_collection_append_durationP14CassCollection12cass_int32_t12cass_int32_t12cass_int64_t">
+<span id="_CPPv331cass_collection_append_durationP14CassCollection12cass_int32_t12cass_int32_t12cass_int64_t"></span><span id="_CPPv231cass_collection_append_durationP14CassCollection12cass_int32_t12cass_int32_t12cass_int64_t"></span><span id="cass_collection_append_duration__CassCollectionP.cass_int32_t.cass_int32_t.cass_int64_t"></span><span class="target" id="struct_cass_collection_1a40eefb5a754248aa273746bc40c950ac"></span>CassError <code class="sig-name descname">cass_collection_append_duration</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv414CassCollection" title="CassCollection">CassCollection</a> *<em>collection</em>, cass_int32_t <em>months</em>, cass_int32_t <em>days</em>, cass_int64_t <em>nanos</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv431cass_collection_append_durationP14CassCollection12cass_int32_t12cass_int32_t12cass_int64_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Appends a “duration” to the collection.</p>
+<p><strong>Requires Apache Cassandra:</strong> 3.10+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise an error occurred. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">collection</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">months</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">days</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nanos</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv433cass_collection_append_collectionP14CassCollectionPK14CassCollection">
+<span id="_CPPv333cass_collection_append_collectionP14CassCollectionPK14CassCollection"></span><span id="_CPPv233cass_collection_append_collectionP14CassCollectionPK14CassCollection"></span><span id="cass_collection_append_collection__CassCollectionP.CassCollectionCP"></span><span class="target" id="struct_cass_collection_1a2b4bc687f566b4813fd79f4d8bffffed"></span>CassError <code class="sig-name descname">cass_collection_append_collection</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv414CassCollection" title="CassCollection">CassCollection</a> *<em>collection</em>, <em class="property">const</em> <a class="reference internal" href="#_CPPv414CassCollection" title="CassCollection">CassCollection</a> *<em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv433cass_collection_append_collectionP14CassCollectionPK14CassCollection" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Appends a “list”, “map” or “set” to the collection.</p>
+<p><strong>Requires Apache Cassandra:</strong> 2.1+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise an error occurred. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">collection</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">value</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv428cass_collection_append_tupleP14CassCollectionPK9CassTuple">
+<span id="_CPPv328cass_collection_append_tupleP14CassCollectionPK9CassTuple"></span><span id="_CPPv228cass_collection_append_tupleP14CassCollectionPK9CassTuple"></span><span id="cass_collection_append_tuple__CassCollectionP.CassTupleCP"></span><span class="target" id="struct_cass_collection_1a50c02e38e44ea264b0946723165d01f3"></span>CassError <code class="sig-name descname">cass_collection_append_tuple</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv414CassCollection" title="CassCollection">CassCollection</a> *<em>collection</em>, <em class="property">const</em> <a class="reference internal" href="struct.CassTuple.html#_CPPv49CassTuple" title="CassTuple">CassTuple</a> *<em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428cass_collection_append_tupleP14CassCollectionPK9CassTuple" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Appends a “tuple” to the collection.</p>
+<p><strong>Requires Apache Cassandra:</strong> 2.1+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise an error occurred. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">collection</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">value</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv432cass_collection_append_user_typeP14CassCollectionPK12CassUserType">
+<span id="_CPPv332cass_collection_append_user_typeP14CassCollectionPK12CassUserType"></span><span id="_CPPv232cass_collection_append_user_typeP14CassCollectionPK12CassUserType"></span><span id="cass_collection_append_user_type__CassCollectionP.CassUserTypeCP"></span><span class="target" id="struct_cass_collection_1a2238fc4c09c657ca19e493f62b075e3b"></span>CassError <code class="sig-name descname">cass_collection_append_user_type</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv414CassCollection" title="CassCollection">CassCollection</a> *<em>collection</em>, <em class="property">const</em> <a class="reference internal" href="struct.CassUserType.html#_CPPv412CassUserType" title="CassUserType">CassUserType</a> *<em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv432cass_collection_append_user_typeP14CassCollectionPK12CassUserType" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Appends a “udt” to the collection.</p>
+<p><strong>Requires Apache Cassandra:</strong> 2.1+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise an error occurred. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">collection</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">value</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv432cass_collection_append_dse_pointP14CassCollection13cass_double_t13cass_double_t">
+<span id="_CPPv332cass_collection_append_dse_pointP14CassCollection13cass_double_t13cass_double_t"></span><span id="_CPPv232cass_collection_append_dse_pointP14CassCollection13cass_double_t13cass_double_t"></span><span id="cass_collection_append_dse_point__CassCollectionP.cass_double_t.cass_double_t"></span><span class="target" id="struct_cass_collection_1a589f23178a769726f83aecf733c1f5ea"></span>CassError <code class="sig-name descname">cass_collection_append_dse_point</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv414CassCollection" title="CassCollection">CassCollection</a> *<em>collection</em>, cass_double_t <em>x</em>, cass_double_t <em>y</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv432cass_collection_append_dse_pointP14CassCollection13cass_double_t13cass_double_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Appends a point to the collection.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise an error occurred. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">collection</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">x</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">y</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv438cass_collection_append_dse_line_stringP14CassCollectionPK13DseLineString">
+<span id="_CPPv338cass_collection_append_dse_line_stringP14CassCollectionPK13DseLineString"></span><span id="_CPPv238cass_collection_append_dse_line_stringP14CassCollectionPK13DseLineString"></span><span id="cass_collection_append_dse_line_string__CassCollectionP.DseLineStringCP"></span><span class="target" id="struct_cass_collection_1a61b551bab1bf370db6ed6994071ff5ef"></span>CassError <code class="sig-name descname">cass_collection_append_dse_line_string</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv414CassCollection" title="CassCollection">CassCollection</a> *<em>collection</em>, <em class="property">const</em> <a class="reference internal" href="struct.DseLineString.html#_CPPv413DseLineString" title="DseLineString">DseLineString</a> *<em>line_string</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv438cass_collection_append_dse_line_stringP14CassCollectionPK13DseLineString" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Appends a line string to the collection.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise an error occurred. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">collection</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">line_string</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv434cass_collection_append_dse_polygonP14CassCollectionPK10DsePolygon">
+<span id="_CPPv334cass_collection_append_dse_polygonP14CassCollectionPK10DsePolygon"></span><span id="_CPPv234cass_collection_append_dse_polygonP14CassCollectionPK10DsePolygon"></span><span id="cass_collection_append_dse_polygon__CassCollectionP.DsePolygonCP"></span><span class="target" id="struct_cass_collection_1a19e0fb1fcfd745b8a7afb03501005800"></span>CassError <code class="sig-name descname">cass_collection_append_dse_polygon</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv414CassCollection" title="CassCollection">CassCollection</a> *<em>collection</em>, <em class="property">const</em> <a class="reference internal" href="struct.DsePolygon.html#_CPPv410DsePolygon" title="DsePolygon">DsePolygon</a> *<em>polygon</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv434cass_collection_append_dse_polygonP14CassCollectionPK10DsePolygon" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Appends a polygon to the collection.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise an error occurred. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">collection</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">polygon</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv437cass_collection_append_dse_date_rangeP14CassCollectionPK12DseDateRange">
+<span id="_CPPv337cass_collection_append_dse_date_rangeP14CassCollectionPK12DseDateRange"></span><span id="_CPPv237cass_collection_append_dse_date_rangeP14CassCollectionPK12DseDateRange"></span><span id="cass_collection_append_dse_date_range__CassCollectionP.DseDateRangeCP"></span><span class="target" id="struct_cass_collection_1ad1b12405f716cdea4050b6d10674ad25"></span>CassError <code class="sig-name descname">cass_collection_append_dse_date_range</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv414CassCollection" title="CassCollection">CassCollection</a> *<em>collection</em>, <em class="property">const</em> <a class="reference internal" href="struct.DseDateRange.html#_CPPv412DseDateRange" title="DseDateRange">DseDateRange</a> *<em>range</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv437cass_collection_append_dse_date_rangeP14CassCollectionPK12DseDateRange" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Appends a DateRange to the collection.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>CASS_OK if successful, otherwise an error occurred. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">collection</span></code>: </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">range</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</div>
+
+        </div>
+
+        <div id="sidebar" class="large-3 large-pull-6 columns"><div class="side-nav">
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">C/C++ Driver for ScyllaDB</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="struct.CassAggregateMeta.html">CassAggregateMeta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassAuthenticator.html">CassAuthenticator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassBatch.html">CassBatch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassCluster.html">CassCluster</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">CassCollection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassColumnMeta.html">CassColumnMeta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassCustomPayload.html">CassCustomPayload</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassDataType.html">CassDataType</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassErrorResult.html">CassErrorResult</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassExecProfile.html">CassExecProfile</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassFunctionMeta.html">CassFunctionMeta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassFuture.html">CassFuture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassIndexMeta.html">CassIndexMeta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassInet.html">CassInet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassIterator.html">CassIterator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassKeyspaceMeta.html">CassKeyspaceMeta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassMaterializedViewMeta.html">CassMaterializedViewMeta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassMetrics.html">CassMetrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassPrepared.html">CassPrepared</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassResult.html">CassResult</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassRetryPolicy.html">CassRetryPolicy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassRow.html">CassRow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassSchemaMeta.html">CassSchemaMeta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassSession.html">CassSession</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassSsl.html">CassSsl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassStatement.html">CassStatement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassTableMeta.html">CassTableMeta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassTimestampGen.html">CassTimestampGen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassTuple.html">CassTuple</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassUserType.html">CassUserType</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassUuid.html">CassUuid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassUuidGen.html">CassUuidGen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassValue.html">CassValue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.CassVersion.html">CassVersion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.DseDateRange.html">DseDateRange</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.DseDateRangeBound.html">DseDateRangeBound</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.DseLineString.html">DseLineString</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.DseLineStringIterator.html">DseLineStringIterator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.DsePolygon.html">DsePolygon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct.DsePolygonIterator.html">DsePolygonIterator</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../topics/index.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../topics/dse_features/index.html">DSE Features</a></li>
+</ul>
+
+</div>
+        </div>
+
+        <div class="large-3 columns">
+            
+                <div class="versions-dropdown single-version">
+    <button class="button">
+	master
+
+	 <i class="fa fa-caret-down" aria-hidden="true"></i>
+    </button>
+    <ul class="content">
+            <li><a href="struct.CassCollection.html">master</a></li>
+    </ul>
+</div>
+            
+        </div>
+
+    </div>
+</section>
+
+<!-- newsleter modal -->
+
+<div id="newsletter_signup" class="reveal-modal tiny radius dark_modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+    <a class="close-reveal-modal" aria-label="Close">×</a>
+    <h2 id="modalTitle">Sign up for the Scylla newsletter</h2>
+    <div id="mc_embed_signup">
+        <form action="//cloudius-systems.us10.list-manage.com/subscribe/post?u=df8bb543c68230d5f7b4dcf78&amp;id=9a4589f144" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate="">
+            <div id="mc_embed_signup_scroll">
+
+                <div class="mc-field-group">
+                    <div class="row collapse">
+                        <div class="small-3 columns"><label for="mce-EMAIL">Email</label></div>
+                        <div class="small-9 columns"><input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL"></div>
+                    </div>
+                </div>
+                <div class="mc-field-group">
+                    <div class="row collapse">
+                        <div class="small-3 columns"><label for="mce-FNAME">First Name </label></div>
+                        <div class="small-9 columns"><input type="text" value="" name="FNAME" class="" id="mce-FNAME"></div>
+                    </div>
+                </div>
+                <div class="mc-field-group">
+                    <div class="row collapse">
+                        <div class="small-3 columns"><label for="mce-LNAME">Last Name </label></div>
+                        <div class="small-9 columns"><input type="text" value="" name="LNAME" class="" id="mce-LNAME"></div>
+                    </div>
+                </div>
+                <div id="mce-responses" class="clear">
+                    <div class="response" id="mce-error-response" style="display:none"></div>
+                    <div class="response" id="mce-success-response" style="display:none"></div>
+                </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                <div style="position: absolute; left: -5000px;"><input type="text" name="b_df8bb543c68230d5f7b4dcf78_9a4589f144" tabindex="-1" value=""></div>
+                <div class="clear"><input type="submit" class="button" value="Sign up" name="subscribe" id="mc-embedded-subscribe"></div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- end newsleter modal -->
+
+
+
+<!-- footer.html -->
+<footer id="footer">
+    <div class="footer-top">
+        <a class="logo" href="https://www.scylladb.com"><img src="../_static/img/logo-scylla-horizontal-RGB.svg" alt=""></a>
+        <div class="footer-links">
+            <a class="link" href="https://docs.scylladb.com">Docs</a>
+            <a class="link" href="https://www.scylladb.com/company/contact-us/">Contact Us</a>
+            <a class="link" href="https://www.scylladb.com/company/">About Us</a>
+            <a class="link button" href="https://github.com/scylladb/cpp-driver/issues/new?title=Issue in page CassCollection&&body=I%20would%20like%20to%20report%20an%20issue%20in%20page%20https://cpp-driver.docs.scylladb.com/master/api/struct.CassCollection%0A%0A%23%23%23%20Problem%0A%0A%23%23%23%20%20Suggest%20a%20fix" target="_blank">
+                Report an issue on this page</a>
+        </div>
+        <div class="footer-actions">
+            <a class="link-icon" href="https://github.com/ScyllaDB" target="_blank">
+                <span class="icon-github2"></span></a>
+            <a class="link-icon" href="https://twitter.com/ScyllaDB" target="_blank">
+                <span class="icon-twitter"></span></a>
+            <a class="link-icon" href="https://www.linkedin.com/company/scylladb"  target="_blank">
+                <span class="icon-linkedin2"></span></a>
+            <a class="link-icon" href="https://www.facebook.com/scylladb/" target="_blank">
+                <span class="icon-facebook"></span></a>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="footer-info">
+            <div class="footer-copyright">
+                &#169; 2021, ScyllaDB. All rights reserved.
+            </div>
+            <div class="footer-last-updated">
+                Last updated on 26 February 2021.
+            </div>
+            <div class="footer-version">
+                Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.4</a>
+                &amp; <a href="https://pypi.org/project/sphinx-scylladb-theme">ScyllaDB Theme 0.1.21</a>
+            </div>
+        </div>
+        <div class="footer-links">
+        </div>
+    </div>
+</footer>
+<!-- end footer.html -->
+
+<!-- bodyscripts.html -->
+<!-- at the end of the BODY --> 
+<script src="../_static/js/vendor/jquery.js"></script>
+<script src="../_static/js/vendor/jquery.cookie.min.js"></script>
+<script src="../_static/expertrec.js"></script>
+<script src="../_static/js/foundation/foundation.js"></script>
+<script src="../_static/js/foundation/foundation.topbar.js"></script>
+<script src="../_static/app.js"></script>
+<script>
+    $(document).foundation();
+</script>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T8P2JP"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+  <!-- end bodyscripts.html -->
+</body>
+</html>
